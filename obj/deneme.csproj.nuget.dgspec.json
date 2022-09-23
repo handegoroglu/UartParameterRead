@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hande\\Desktop\\deneme\\deneme\\deneme.csproj": {}
+    "C:\\Projects\\UartParameterRead\\deneme.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hande\\Desktop\\deneme\\deneme\\deneme.csproj": {
+    "C:\\Projects\\UartParameterRead\\deneme.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hande\\Desktop\\deneme\\deneme\\deneme.csproj",
+        "projectUniqueName": "C:\\Projects\\UartParameterRead\\deneme.csproj",
         "projectName": "deneme",
-        "projectPath": "C:\\Users\\hande\\Desktop\\deneme\\deneme\\deneme.csproj",
+        "projectPath": "C:\\Projects\\UartParameterRead\\deneme.csproj",
         "packagesPath": "C:\\Users\\hande\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hande\\Desktop\\deneme\\deneme\\obj\\",
+        "outputPath": "C:\\Projects\\UartParameterRead\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

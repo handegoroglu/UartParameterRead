@@ -7,29 +7,49 @@ namespace deneme
     public partial class Form1 : Form
     {
         List<Parameter> parameters = new List<Parameter>();
-        SerialPort serialPort = new SerialPort();
+        //SerialPort serialPort = new SerialPort();
+
         public Form1()
         {
             InitializeComponent();
 
-            parameters = readParameters(); //dosyadan parametre okuyor
+            //dosyadan parametre okuyor
+            parameters = readParameters();
 
-            dataGridView1.AutoGenerateColumns = false; // modelde oluşturduklarımız otomatik gelmesin diye 
+            //Eski modelde oluşturduklarımız otomatik gelmesin diye 
+            dataGridView1.AutoGenerateColumns = false; 
             tablefill(parameters);
 
+            //VERİ ALACAĞIN YER BURASI
             //göndereceğin veriyi bytlara çevir. (TAMAMLA)
             int i = 0x010003;
             byte[] array = BitConverter.GetBytes(i);
 
-            //int sayıyı bytelara çevir.(veriyi alırken böyle alacaksın) 
-            int x = BitConverter.ToInt32(array, 0);
 
-            serialPort.DataReceived += SerialPort_DataReceived;
+            Program.serial.DataReceived += SerialPort_DataReceived;
+            Program.serial.ReadTimeout = 1000;
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             
+            //Veri okuduğun alan
+            string data = "";
+            while (true)
+            {
+                try
+                {
+                    data += Program.serial.ReadByte().ToString("X") + " ";
+                }
+                catch (Exception)
+                {
+                    break;
+                } 
+            }
+
+            MessageBox.Show(data);
+
+            Program.serial.DiscardInBuffer();
         }
 
         void tablefill(List<Parameter> parameters)
@@ -111,12 +131,9 @@ namespace deneme
 
         }
 
-        
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
         }
 
 
@@ -128,13 +145,12 @@ namespace deneme
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //resim kutusuna dokununca url ye gidecek.
-            System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/"); //ÇALIŞIYOR
+            System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/"); 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //datayı gönder
-        //0XFF, 0X01, 0X02
+  
         }
 
         public static bool IsAllDigits(string s)
@@ -153,14 +169,14 @@ namespace deneme
             //değişkeni valuenin içine attık
 
             var value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-           
+
             var minValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
             var maxValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
             //null veya boş mu diye kontrol ettik
             if (String.IsNullOrEmpty(value) == false)
             {
                 //bu bir real yada decimal bir sayı mı diye kontrol ettik.
-                if(IsAllDigits(value) == false)
+                if (IsAllDigits(value) == false)
                 {
                     //sayı değilse girilen değeri sildik.
                     MessageBox.Show("Lütfen doğru formatta giriş yapınız!");
@@ -192,6 +208,17 @@ namespace deneme
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ComPortForm comPortForm = new ComPortForm(Program.serial);
+            comPortForm.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
