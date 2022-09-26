@@ -55,3 +55,5 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.pdb
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.genruntimeconfig.cache
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\ref\deneme.dll
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.ComPortForm.resources
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.ResolveComReference.cache

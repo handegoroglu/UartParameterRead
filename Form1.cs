@@ -202,10 +202,9 @@ namespace deneme
 
                         //min ve max aralığında değilse..
                         if (!(minValue <= userValue && maxValue >= userValue))
-                        {
+                        {   
                             MessageBox.Show("Min. ve max. değerleri arasında giriş yapınız!");
                             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
-
                         }
                     }
                 }
@@ -216,6 +215,7 @@ namespace deneme
             }
             catch (Exception)
             {
+
             }
 
         }
@@ -235,10 +235,53 @@ namespace deneme
         private void button3_Click(object sender, EventArgs e)
         {
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows) 
             {
                 row.Cells[6].Value = row.Cells[4].Value;
             }
+           
+  
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Excel Uygulaması oluşturma  
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // Excel uygulaması içinde yeni Çalışma Kitabı oluşturma  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            //çalışma kitabında yeni Excel sayfası oluşturma
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // programın arkasındaki excel sayfasına bakın
+            app.Visible = true;
+            // ilk sayfanın referansını al. Varsayılan olarak adı Sayfa1'dir.
+            // referansını çalışma sayfasına kaydet
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // aktif sayfanın adını değiştirme
+            worksheet.Name = "Exported from gridview";
+            // başlık kısmını Excel'de depolamak
+            for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+            }
+            // Her satır ve sütun değerini excel sayfasına kaydetme
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            // uygulamayı kaydet
+            workbook.SaveAs(Application.StartupPath + "Files\\output.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            // Uygulamadan çık
+            app.Quit();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+             
         }
     }
 }
