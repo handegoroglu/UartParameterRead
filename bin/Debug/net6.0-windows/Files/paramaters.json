@@ -13,7 +13,7 @@
     "description": "Başlama Zamanı",
     "minValue": 2,
     "maxValue": 20,
-    "defaultValue": "2",
+    "defaultValue": "c",
     "unit": "dk",
     "Value": ""
   },
@@ -287,8 +287,4 @@
     "unit": "sn",
     "Value": ""
   }
-
-
-
-
 ]

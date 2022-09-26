@@ -1,24 +1,30 @@
 ﻿using deneme.Models;
 using Newtonsoft.Json;
+using System.Data;
 using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace deneme
 {
     public partial class Form1 : Form
     {
         List<Parameter> parameters = new List<Parameter>();
-        //SerialPort serialPort = new SerialPort();
+        
+        
 
         public Form1()
         {
+            
             InitializeComponent();
 
             //dosyadan parametre okuyor
             parameters = readParameters();
+            
 
             //Eski modelde oluşturduklarımız otomatik gelmesin diye 
             dataGridView1.AutoGenerateColumns = false; 
             tablefill(parameters);
+            
 
             //VERİ ALACAĞIN YER BURASI
             //göndereceğin veriyi bytlara çevir. (TAMAMLA)
@@ -54,14 +60,19 @@ namespace deneme
 
         void tablefill(List<Parameter> parameters)
         {
+            dataGridView1.Rows.Clear();
+
             foreach (var parameter in parameters)
             {
                 object[] values = new object[] { parameter.Code, parameter.Description, parameter.MinValue, parameter.MaxValue, parameter.DefaultValue, parameter.Unit, parameter.Value };
                 dataGridView1.Rows.Add(values);
             }
+            
+
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,8 +90,8 @@ namespace deneme
             //3.parametre dosyaya erişimin veri okumak için olacağını gösterir.
             StreamReader sw = new StreamReader(fs);
             //Okuma işlemi için bir StreamReader nesnesi oluşturduk.
-            string yazi = sw.ReadToEnd();
-            //Satır satır okuma işlemini gerçekleştirdik ve ekrana yazdırdık
+            string yazi = sw.ReadToEnd();           
+            //Satır satır okuma işlemini gerçekleştirdik 
             //Son satır okunduktan sonra okuma işlemini bitirdik
             sw.Close();
             fs.Close();
@@ -126,6 +137,7 @@ namespace deneme
 
         }
 
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -168,41 +180,44 @@ namespace deneme
             //Bir değişiklik algılandıktan sonrası ..
             //değişkeni valuenin içine attık
 
-            var value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
-            var minValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
-            var maxValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
-            //null veya boş mu diye kontrol ettik
-            if (String.IsNullOrEmpty(value) == false)
+            try
             {
-                //bu bir real yada decimal bir sayı mı diye kontrol ettik.
-                if (IsAllDigits(value) == false)
+                var value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                var minValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                var maxValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                //null veya boş mu diye kontrol ettik
+                if (String.IsNullOrEmpty(value) == false)
                 {
-                    //sayı değilse girilen değeri sildik.
-                    MessageBox.Show("Lütfen doğru formatta giriş yapınız!");
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+                    //bu bir real yada decimal bir sayı mı diye kontrol ettik.
+                    if (IsAllDigits(value) == false)
+                    {
+                        //sayı değilse girilen değeri sildik.
+                        MessageBox.Show("Lütfen doğru formatta giriş yapınız!");
+                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+                    }
+                    else
+                    {
+                        var userValue = Convert.ToDouble(value);
+
+                        //min ve max aralığında değilse..
+                        if (!(minValue <= userValue && maxValue >= userValue))
+                        {
+                            MessageBox.Show("Min. ve max. değerleri arasında giriş yapınız!");
+                            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
+
+                        }
+                    }
                 }
                 else
                 {
-                    var userValue = Convert.ToDouble(value);
-
-                    //min ve max aralığında değilse..
-                    if (!(minValue <= userValue && maxValue >= userValue))
-                    {
-                        MessageBox.Show("Min. ve max. değerleri arasında giriş yapınız!");
-                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
-
-                    }
+                    MessageBox.Show("Lütfen boş alanları doldurunuz!");
                 }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Lütfen boş alanları doldurunuz!");
             }
 
-
-            //dataGridView1.UpdateCellValue(e.RowIndex, e.ColumnIndex);
-            //MessageBox.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -216,9 +231,14 @@ namespace deneme
             comPortForm.ShowDialog();
         }
 
+
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Cells[6].Value = row.Cells[4].Value;
+            }
         }
     }
 }
