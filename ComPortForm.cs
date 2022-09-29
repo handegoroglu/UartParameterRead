@@ -120,5 +120,10 @@ namespace deneme
             //resim kutusuna dokununca url ye gidecek.
             System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/");
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

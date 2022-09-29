@@ -1,8 +1,12 @@
 ﻿using deneme.Models;
+using ExcelDataReader;
 using Newtonsoft.Json;
 using System.Data;
 using System.IO.Ports;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 
 namespace deneme
 {
@@ -272,16 +276,40 @@ namespace deneme
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
+
+            /*
             // uygulamayı kaydet
             workbook.SaveAs(Application.StartupPath + "Files\\output.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             // Uygulamadan çık
             app.Quit();
+            */
 
         }
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
-             
+            
+            //Excel dosyasını seçtirdiğimiz alan
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select File.";
+            openFileDialog.FileName = "";
+            openFileDialog.Filter = "Excel Sheet(*.xls)| *.xls | All Files(*.*) | *.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                
+                
+            }
+            
+         
+               
         }
+
+
+
+
+
+
+
+        
     }
 }

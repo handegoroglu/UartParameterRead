@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "XW4EgQdJ7gBKpOhwGx61WOzC/JTDRrGbdg4zI018yn38vH6W8lPcGx3nBJQrtYng4w6GC37QxFvHoOUfzMb0Fg==",
+  "dgSpecHash": "fodkZLVacXh8lDNHnn7OCnn7Eh5ZXp9vKlZA8jgcXKqU1sodhIyHYHxQUezY+24UIFNWTbGHvWWraHj4FaArrw==",
   "success": true,
   "projectFilePath": "C:\\Projects\\UartParameterRead\\deneme.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hande\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
+    "C:\\Users\\hande\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512",
     "C:\\Users\\hande\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\hande\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\6.0.0\\runtime.linux-arm.runtime.native.system.io.ports.6.0.0.nupkg.sha512",
     "C:\\Users\\hande\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\6.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.6.0.0.nupkg.sha512",
