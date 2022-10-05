@@ -145,6 +145,7 @@
             this.Code.HeaderText = "Parametreler";
             this.Code.Name = "Code";
             this.Code.ReadOnly = true;
+            this.Code.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Code.ToolTipText = "Bu parametrelerin girildiği alandır";
             // 
             // Description
@@ -153,6 +154,7 @@
             this.Description.HeaderText = "Açıklama";
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
+            this.Description.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MinValue
             // 
@@ -160,6 +162,7 @@
             this.MinValue.HeaderText = "Min. Değer";
             this.MinValue.Name = "MinValue";
             this.MinValue.ReadOnly = true;
+            this.MinValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MaxValue
             // 
@@ -167,6 +170,7 @@
             this.MaxValue.HeaderText = "Max. Değer";
             this.MaxValue.Name = "MaxValue";
             this.MaxValue.ReadOnly = true;
+            this.MaxValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DefaultValue
             // 
@@ -174,6 +178,7 @@
             this.DefaultValue.HeaderText = "Fabrika Ayarları";
             this.DefaultValue.Name = "DefaultValue";
             this.DefaultValue.ReadOnly = true;
+            this.DefaultValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Unit
             // 
@@ -181,12 +186,14 @@
             this.Unit.HeaderText = "Birim";
             this.Unit.Name = "Unit";
             this.Unit.ReadOnly = true;
+            this.Unit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Value
             // 
             this.Value.FillWeight = 53.29949F;
             this.Value.HeaderText = "Kullanıcı Girişi";
             this.Value.Name = "Value";
+            this.Value.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // panel1
             // 
@@ -331,6 +338,9 @@
         private Button button4;
         private Button button5;
         private Button button6;
+        private PictureBox pictureBox1;
+        private ImageList imageList1;
+        private OpenFileDialog openFileDialog1;
         private DataGridViewTextBoxColumn Code;
         private DataGridViewTextBoxColumn Description;
         private DataGridViewTextBoxColumn MinValue;
@@ -338,8 +348,5 @@
         private DataGridViewTextBoxColumn DefaultValue;
         private DataGridViewTextBoxColumn Unit;
         private DataGridViewTextBoxColumn Value;
-        private PictureBox pictureBox1;
-        private ImageList imageList1;
-        private OpenFileDialog openFileDialog1;
     }
 }

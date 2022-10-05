@@ -13,4 +13,7 @@
     <SourceRoot Include="C:\Users\hande\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgUno_UI Condition=" '$(PkgUno_UI)' == '' ">C:\Users\hande\.nuget\packages\uno.ui\4.5.12</PkgUno_UI>
+  </PropertyGroup>
 </Project>

@@ -59,6 +59,10 @@
             "System.IO.Ports": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "Uno.UI": {
+              "target": "Package",
+              "version": "[4.5.12, )"
             }
           },
           "imports": [

@@ -44,7 +44,6 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.AssemblyRef
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Form1.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Properties.Resources.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.GenerateResource.cache
-C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.GeneratedMSBuildEditorConfig.editorconfig
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.AssemblyInfoInputs.cache
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.AssemblyInfo.cs
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.CoreCompileInputs.cache
@@ -61,3 +60,17 @@ C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\ExcelDataReader.dll
 C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\ExcelDataReader.DataSet.dll
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Form2.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Hosseven.resources
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\System.Runtime.InteropServices.WindowsRuntime.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.Diagnostics.Eventing.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.Foundation.Logging.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.Foundation.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.Composition.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.Dispatching.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.FluentTheme.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.FluentTheme.v1.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.FluentTheme.v2.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.Toolkit.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.UI.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.Xaml.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Uno.dll
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.d-bfalse.GeneratedMSBuildEditorConfig.editorconfig

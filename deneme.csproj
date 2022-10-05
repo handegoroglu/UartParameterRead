@@ -25,6 +25,7 @@
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="Uno.UI" Version="4.5.12" />
   </ItemGroup>
 
   <ItemGroup>

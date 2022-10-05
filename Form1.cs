@@ -25,7 +25,7 @@ namespace deneme
             InitializeComponent();
 
             //dosyadan parametre okuyor
-            parameters = readParameters();
+            parameters = readParameters(Application.StartupPath + @"Files\\paramaters.json");
 
 
             //Eski modelde oluşturduklarımız otomatik gelmesin diye 
@@ -87,9 +87,9 @@ namespace deneme
         }
 
 
-        public static string readFile()
+        public static string readFile(string path)
         {
-            string dosya_yolu = Application.StartupPath + "Files\\paramaters.json";
+            string dosya_yolu = path;
             //Okuma işlem yapacağımız dosyanın yolunu belirtiyoruz.
             FileStream fs = new FileStream(dosya_yolu, FileMode.Open, FileAccess.Read);
             //Bir file stream nesnesi oluşturuyoruz. 1.parametre dosya yolunu,
@@ -106,9 +106,9 @@ namespace deneme
 
             return yazi;
         }
-        private static void saveFile(string value)
+        private static void saveFile(string path, string value)
         {
-            string dosya_yolu = Application.StartupPath + "Files\\paramaters.json";
+            string dosya_yolu = path;
             //İşlem yapacağımız dosyanın yolunu belirtiyoruz.
             FileStream fs = new FileStream(dosya_yolu, FileMode.OpenOrCreate, FileAccess.Write);
             //Bir file stream nesnesi oluşturuyoruz. 1.parametre dosya yolunu,
@@ -124,24 +124,33 @@ namespace deneme
             fs.Close();
             //İşimiz bitince kullandığımız nesneleri iade ettik..
         }
-        private void saveParameters(List<Parameter> remindings)
-        {
-            string json = JsonConvert.SerializeObject(remindings);
-            saveFile(json);
 
-        }
-
-        private List<Parameter> readParameters()
+        private List<Parameter> readParameters(string path)
         {
             try
             {
-                return JsonConvert.DeserializeObject<List<Parameter>>(readFile());
+                return JsonConvert.DeserializeObject<List<Parameter>>(readFile(path));
             }
             catch (Exception)
             {
                 return new List<Parameter>();
             }
 
+        }
+
+        private bool saveParameters(string path, List<Parameter> new_parameters)
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(new_parameters);
+                saveFile(path, json);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
 
@@ -252,32 +261,29 @@ namespace deneme
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //sys dosyasına kaydetme
+            //json sys dosyasına kaydetme
             SaveFileDialog sysSave = new SaveFileDialog();
             sysSave.Filter = "sys files (*.sys)|*.sys";
             sysSave.OverwritePrompt = true;
             if (sysSave.ShowDialog() == DialogResult.OK)
             {
-                StreamWriter write = new StreamWriter(File.Create(sysSave.FileName));
-
-                string str = "";
-                int row = dataGridView1.Rows.Count;
-                int cell = dataGridView1.Rows[1].Cells.Count;
-                for (int i = 0; i < row; i++)
+                int row = 0;
+                foreach (var parameter in parameters)
                 {
-                    for (int j = 0; j < cell; j++)
-                    {
-                        if (dataGridView1.Rows[i].Cells[j].Value == null)
-                        {
-
-                            dataGridView1.Rows[i].Cells[j].Value = "null";
-                        }
-                        str += dataGridView1.Rows[i].Cells[j].Value.ToString() + "\n";
-                    }
+                    parameter.Code = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                    parameter.Description = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                    parameter.MinValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[2].Value);
+                    parameter.MaxValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[3].Value);
+                    parameter.DefaultValue = dataGridView1.Rows[row].Cells[4].Value.ToString();
+                    parameter.Unit = dataGridView1.Rows[row].Cells[5].Value.ToString();
+                    parameter.Value = dataGridView1.Rows[row].Cells[6].Value.ToString();
+                    row++;
                 }
-                write.WriteLine(str);
-                write.Close();
-                write.Dispose();
+
+                if(saveParameters(sysSave.FileName, parameters) == false)
+                {
+                    MessageBox.Show("Dosya kaydedilirken bir hata oluştu.");
+                }
             }
 
 
@@ -317,17 +323,16 @@ namespace deneme
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //sys dosyası import etme
-            using (OpenFileDialog dlgText = new OpenFileDialog())
+            //json sys dosyasına import
+            OpenFileDialog sysSave = new OpenFileDialog();
+            sysSave.Filter = "sys files (*.sys)|*.sys";
+
+            if (sysSave.ShowDialog() == DialogResult.OK)
             {
-                dlgText.Filter = "sys|*.sys";
-
-                if (dlgText.ShowDialog() == DialogResult.OK)
-                {
-                    
-                }
+                parameters = readParameters(sysSave.FileName);
+                tablefill(parameters);
             }
-
+               
 
             /*
             string file = "";   // Excel Dosya Konumu için değişken
@@ -385,8 +390,8 @@ namespace deneme
             */
 
 
-
-
         }
     }
+
+
 }

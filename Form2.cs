@@ -35,11 +35,14 @@ namespace deneme
         {
             //şifre arayüzünü aç
             Hosseven sifre  = new Hosseven();
-            sifre.ShowDialog();
-            this.Enabled = true;
-            
-            
+          
+            if (sifre.ShowDialog() == DialogResult.Yes)
+            {
+                //şifre doğru ise
+                Form1 parametrearayüz = new Form1();
+                parametrearayüz.ShowDialog();
 
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)

@@ -20,7 +20,6 @@ namespace deneme
         public Hosseven()
         {
             InitializeComponent();
-
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -28,22 +27,40 @@ namespace deneme
             if(textBox1.Text == "123")
             {
                 //şifre doğru ise
-                Form1 parametrearayüz = new Form1();
-                parametrearayüz.Show();
-                this.Close();
 
+
+                this.DialogResult = DialogResult.Yes;
+
+                this.Close();
             }
             else
             {
-                
-                //şifre yanlış ise
+
+                //şifre yanlış 
                 label2.Text = "Hatalı Giriş";
                 label2.ForeColor = Color.Red;
                 timer1.Start();
                 textBox1.Clear();
-                
-               
-                return;
+
+
+                int PagePositionX = this.Left;
+                Task t = Task.Run(() =>
+                {
+                    
+
+                    
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Thread.Sleep(20);
+                        this.Invoke(() => this.Left = this.Left == PagePositionX ? PagePositionX - 5 : PagePositionX);
+
+                    }
+                    
+
+                    this.Invoke(() => this.Left = PagePositionX);
+
+                });
+
             }
             
         }
