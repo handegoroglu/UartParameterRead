@@ -28,6 +28,7 @@ namespace deneme
 
         private void ComPortForm_Load(object sender, EventArgs e)
         {
+            
             foreach (string port in ports)
             {
                 // Port isimlerini combobox1'de gösteriyoruz.
@@ -80,7 +81,7 @@ namespace deneme
                     //Haberleşme için port açılıyor
                     Program.serial.Open(); 
                     label1.ForeColor = Color.Green;
-                    label1.Text = "Bağlantı kuruldu.";
+                    label1.Text = "Bağlantı Açık.";
 
 
                 }
@@ -91,7 +92,7 @@ namespace deneme
             }
             else
             {
-                label1.Text = "Bağlantı zaten kurulu!!!";
+                label1.Text = "Bağlantı Zaten Açık!";
             }
 
         }
@@ -105,7 +106,7 @@ namespace deneme
                 Program.serial.Close();
                 label1.BackColor = Color.Transparent;
                 label1.ForeColor = Color.Red;
-                label1.Text = "Bağlantı Kesildi.";
+                label1.Text = "Bağlantı Kapalı.";
             }
         }
 

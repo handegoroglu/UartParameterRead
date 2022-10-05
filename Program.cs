@@ -15,8 +15,9 @@ namespace deneme
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            
+            //Application.Run(new Form1());
+            Application.Run(new Form2());
+
 
         }
         public static SerialPort serial = new SerialPort();

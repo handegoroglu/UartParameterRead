@@ -59,3 +59,5 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\Interop.Microsoft.Office.
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.ResolveComReference.cache
 C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\ExcelDataReader.dll
 C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\ExcelDataReader.DataSet.dll
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Form2.resources
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Hosseven.resources

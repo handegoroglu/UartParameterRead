@@ -120,11 +120,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(187, 185);
+            this.button3.Location = new System.Drawing.Point(177, 185);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(95, 23);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Kaydet";
+            this.button3.Text = "Uygula/Kapat";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -141,9 +141,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ComPortForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Com Port Ayarları";
+            this.Text = "Bağlantı Ayarları";
             this.Load += new System.EventHandler(this.ComPortForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -7,28 +7,31 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Threading.Tasks;
 using System.Windows.Forms.Design;
+using System.Runtime.InteropServices;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace deneme
 {
     public partial class Form1 : Form
     {
         List<Parameter> parameters = new List<Parameter>();
-        
-        
+
+
 
         public Form1()
         {
-            
+
             InitializeComponent();
 
             //dosyadan parametre okuyor
             parameters = readParameters();
-            
+
 
             //Eski modelde oluşturduklarımız otomatik gelmesin diye 
-            dataGridView1.AutoGenerateColumns = false; 
+            dataGridView1.AutoGenerateColumns = false;
             tablefill(parameters);
-            
+
 
             //VERİ ALACAĞIN YER BURASI
             //göndereceğin veriyi bytlara çevir. (TAMAMLA)
@@ -42,7 +45,7 @@ namespace deneme
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            
+
             //Veri okuduğun alan
             string data = "";
             while (true)
@@ -54,7 +57,7 @@ namespace deneme
                 catch (Exception)
                 {
                     break;
-                } 
+                }
             }
 
             MessageBox.Show(data);
@@ -71,7 +74,7 @@ namespace deneme
                 object[] values = new object[] { parameter.Code, parameter.Description, parameter.MinValue, parameter.MaxValue, parameter.DefaultValue, parameter.Unit, parameter.Value };
                 dataGridView1.Rows.Add(values);
             }
-            
+
 
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
@@ -94,7 +97,7 @@ namespace deneme
             //3.parametre dosyaya erişimin veri okumak için olacağını gösterir.
             StreamReader sw = new StreamReader(fs);
             //Okuma işlemi için bir StreamReader nesnesi oluşturduk.
-            string yazi = sw.ReadToEnd();           
+            string yazi = sw.ReadToEnd();
             //Satır satır okuma işlemini gerçekleştirdik 
             //Son satır okunduktan sonra okuma işlemini bitirdik
             sw.Close();
@@ -161,12 +164,12 @@ namespace deneme
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //resim kutusuna dokununca url ye gidecek.
-            System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/"); 
+            System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-  
+
         }
 
         public static bool IsAllDigits(string s)
@@ -206,7 +209,7 @@ namespace deneme
 
                         //min ve max aralığında değilse..
                         if (!(minValue <= userValue && maxValue >= userValue))
-                        {   
+                        {
                             MessageBox.Show("Min. ve max. değerleri arasında giriş yapınız!");
                             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
                         }
@@ -239,16 +242,47 @@ namespace deneme
         private void button3_Click(object sender, EventArgs e)
         {
 
-            foreach (DataGridViewRow row in dataGridView1.Rows) 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 row.Cells[6].Value = row.Cells[4].Value;
             }
-           
-  
+
+
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            //sys dosyasına kaydetme
+            SaveFileDialog sysSave = new SaveFileDialog();
+            sysSave.Filter = "sys files (*.sys)|*.sys";
+            sysSave.OverwritePrompt = true;
+            if (sysSave.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter write = new StreamWriter(File.Create(sysSave.FileName));
+
+                string str = "";
+                int row = dataGridView1.Rows.Count;
+                int cell = dataGridView1.Rows[1].Cells.Count;
+                for (int i = 0; i < row; i++)
+                {
+                    for (int j = 0; j < cell; j++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[j].Value == null)
+                        {
+
+                            dataGridView1.Rows[i].Cells[j].Value = "null";
+                        }
+                        str += dataGridView1.Rows[i].Cells[j].Value.ToString() + "\n";
+                    }
+                }
+                write.WriteLine(str);
+                write.Close();
+                write.Dispose();
+            }
+
+
+
+            /*
             // Excel Uygulaması oluşturma  
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             // Excel uygulaması içinde yeni Çalışma Kitabı oluşturma  
@@ -276,40 +310,83 @@ namespace deneme
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
-
-            /*
-            // uygulamayı kaydet
-            workbook.SaveAs(Application.StartupPath + "Files\\output.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-            // Uygulamadan çık
-            app.Quit();
             */
 
+
         }
-        
+
         private void button4_Click(object sender, EventArgs e)
         {
-            
-            //Excel dosyasını seçtirdiğimiz alan
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Select File.";
-            openFileDialog.FileName = "";
-            openFileDialog.Filter = "Excel Sheet(*.xls)| *.xls | All Files(*.*) | *.*";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //sys dosyası import etme
+            using (OpenFileDialog dlgText = new OpenFileDialog())
             {
-                
-                
+                dlgText.Filter = "sys|*.sys";
+
+                if (dlgText.ShowDialog() == DialogResult.OK)
+                {
+                    
+                }
             }
-            
-         
-               
+
+
+            /*
+            string file = "";   // Excel Dosya Konumu için değişken
+            DataTable dt = new DataTable();   //excel verilerimiz için kapsayıcı
+            DataRow row;
+            DialogResult result = openFileDialog1.ShowDialog();  //İletişim kutusunu göster.
+            if (result == DialogResult.OK)   //Sonuç == "Tamam" olup olmadığını kontrol edin.
+            {
+                file = openFileDialog1.FileName; //dosya adını dosyanın konumuyla birlikte alın
+                try
+
+                {
+                    //Excel dosyasını okumak için kullanılacak Microsoft.Office.Interop.Excel için Nesne Oluşturma
+
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
+
+                    Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+
+                    Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
+
+
+                    int rowCount = excelRange.Rows.Count;  //excel verilerinin satır sayısını al
+
+                    int colCount = excelRange.Columns.Count; //excel verilerinin sütun sayısını al
+
+                    //Sütun Adı olan excel dosyasının ilk Sütununu alın
+                    //excel verilerinin sütun sayısını al
+
+
+                    for (int i = 2; i <= rowCount; i++)
+                    {
+                        for (int j = 7; j <= colCount; j++)
+                        {
+                            try
+                            { 
+                                dataGridView1.Rows[i - 2].Cells[j - 1].Value = excelRange.Cells[i, j].Value2.ToString();
+                            }
+                            catch (Exception ex)
+                            {
+                                dataGridView1.Rows[i - 2].Cells[j - 1].Value = "";
+                                                             
+                            }
+
+                        }
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            */
+
+
+
+
         }
-
-
-
-
-
-
-
-        
     }
 }
