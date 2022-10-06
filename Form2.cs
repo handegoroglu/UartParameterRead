@@ -22,7 +22,7 @@ namespace deneme
         {
             //Form2'yi sağ alt köşede başlatma
             Rectangle workingArea = Screen.GetWorkingArea(this);
-            this.Location = new Point(workingArea.Right - Size.Width,workingArea.Bottom - Size.Height);
+            this.Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
 
         }
 
@@ -34,8 +34,8 @@ namespace deneme
         private void button7_Click(object sender, EventArgs e)
         {
             //şifre arayüzünü aç
-            Hosseven sifre  = new Hosseven();
-          
+            Hosseven sifre = new Hosseven();
+
             if (sifre.ShowDialog() == DialogResult.Yes)
             {
                 //şifre doğru ise
@@ -52,6 +52,6 @@ namespace deneme
             comPortForm.ShowDialog();
 
         }
-       
+
     }
 }

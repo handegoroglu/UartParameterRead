@@ -1,4 +1,6 @@
-﻿using System;
+﻿using deneme.Models;
+using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,24 +13,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Application = System.Windows.Forms.Application;
 
 namespace deneme
 {
     public partial class ComPortForm : Form
     {
         //Port Numaralarını ports isimli diziye atıyoruz.
-        string[] ports = SerialPort.GetPortNames(); 
-        
+        string[] ports = SerialPort.GetPortNames();
+
+        SerialPort port;
 
         public ComPortForm(SerialPort SP)
         {
             InitializeComponent();
 
+            port = SP;
         }
 
         private void ComPortForm_Load(object sender, EventArgs e)
         {
-            
+
+
             foreach (string port in ports)
             {
                 // Port isimlerini combobox1'de gösteriyoruz.
@@ -44,7 +50,18 @@ namespace deneme
             comboBox2.SelectedIndex = 2;
 
             //Bu esnada bağlantı yok.
-            label1.Text = "Bağlantı Kapalı";   
+            label1.Text = "Bağlantı Kapalı";
+
+
+            try
+            {
+                var serialSettings = Program.readObjectJson<SerialPortSettings>(Program.defaulserialPortSettings);
+                comboBox1.Text = serialSettings.port;
+                comboBox2.Text = serialSettings.baudrate.ToString();
+            }
+            catch (Exception)
+            {
+            }
         }
         
         private void ComPortForm_Load(object sender, FormClosingEventArgs e)
@@ -60,7 +77,7 @@ namespace deneme
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
 
 
@@ -83,6 +100,7 @@ namespace deneme
                     label1.ForeColor = Color.Green;
                     label1.Text = "Bağlantı Açık.";
 
+                   
 
                 }
                 catch (Exception hata)
@@ -112,6 +130,12 @@ namespace deneme
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SerialPortSettings portSettings = new SerialPortSettings();
+            portSettings.baudrate = Convert.ToInt32(comboBox2.Text);
+            portSettings.port = comboBox1.Text.ToString();
+
+            Program.saveObjectJson<SerialPortSettings>(portSettings, Program.defaulserialPortSettings);
+
             //kaydet butonuyla Form2'yi kapatıyoruz.
             this.Close();
         }
@@ -120,11 +144,6 @@ namespace deneme
         {
             //resim kutusuna dokununca url ye gidecek.
             System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/");
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

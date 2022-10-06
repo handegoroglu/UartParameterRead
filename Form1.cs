@@ -25,8 +25,7 @@ namespace deneme
             InitializeComponent();
 
             //dosyadan parametre okuyor
-            parameters = readParameters(Application.StartupPath + @"Files\\paramaters.json");
-
+            parameters = Program.readObjectJson<List<Parameter>>(Program.defaultParametersPath);
 
             //Eski modelde oluşturduklarımız otomatik gelmesin diye 
             dataGridView1.AutoGenerateColumns = false;
@@ -41,6 +40,8 @@ namespace deneme
 
             Program.serial.DataReceived += SerialPort_DataReceived;
             Program.serial.ReadTimeout = 1000;
+
+
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -78,79 +79,6 @@ namespace deneme
 
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
-        }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        public static string readFile(string path)
-        {
-            string dosya_yolu = path;
-            //Okuma işlem yapacağımız dosyanın yolunu belirtiyoruz.
-            FileStream fs = new FileStream(dosya_yolu, FileMode.Open, FileAccess.Read);
-            //Bir file stream nesnesi oluşturuyoruz. 1.parametre dosya yolunu,
-            //2.parametre dosyanın açılacağını,
-            //3.parametre dosyaya erişimin veri okumak için olacağını gösterir.
-            StreamReader sw = new StreamReader(fs);
-            //Okuma işlemi için bir StreamReader nesnesi oluşturduk.
-            string yazi = sw.ReadToEnd();
-            //Satır satır okuma işlemini gerçekleştirdik 
-            //Son satır okunduktan sonra okuma işlemini bitirdik
-            sw.Close();
-            fs.Close();
-            //İşimiz bitince kullandığımız nesneleri iade ettik.
-
-            return yazi;
-        }
-        private static void saveFile(string path, string value)
-        {
-            string dosya_yolu = path;
-            //İşlem yapacağımız dosyanın yolunu belirtiyoruz.
-            FileStream fs = new FileStream(dosya_yolu, FileMode.OpenOrCreate, FileAccess.Write);
-            //Bir file stream nesnesi oluşturuyoruz. 1.parametre dosya yolunu,
-            //2.parametre dosya varsa açılacağını yoksa oluşturulacağını belirtir,
-            //3.parametre dosyaya erişimin veri yazmak için olacağını gösterir.
-            StreamWriter sw = new StreamWriter(fs);
-            //Yazma işlemi için bir StreamWriter nesnesi oluşturduk.
-            sw.Write(value);
-            //Dosyaya ekleyeceğimiz iki satırlık yazıyı WriteLine() metodu ile yazacağız.
-            sw.Flush();
-            //Veriyi tampon bölgeden dosyaya aktardık.
-            sw.Close();
-            fs.Close();
-            //İşimiz bitince kullandığımız nesneleri iade ettik..
-        }
-
-        private List<Parameter> readParameters(string path)
-        {
-            try
-            {
-                return JsonConvert.DeserializeObject<List<Parameter>>(readFile(path));
-            }
-            catch (Exception)
-            {
-                return new List<Parameter>();
-            }
-
-        }
-
-        private bool saveParameters(string path, List<Parameter> new_parameters)
-        {
-            try
-            {
-                string json = JsonConvert.SerializeObject(new_parameters);
-                saveFile(path, json);
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
         }
 
 
@@ -231,7 +159,7 @@ namespace deneme
             }
             catch (Exception)
             {
-
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "";
             }
 
         }
@@ -280,7 +208,8 @@ namespace deneme
                     row++;
                 }
 
-                if(saveParameters(sysSave.FileName, parameters) == false)
+                // if(saveParameters(sysSave.FileName, parameters) == false)
+                if (Program.saveObjectJson<List<Parameter>>(parameters, Program.defaultParametersPath) == false)
                 {
                     MessageBox.Show("Dosya kaydedilirken bir hata oluştu.");
                 }
@@ -329,10 +258,10 @@ namespace deneme
 
             if (sysSave.ShowDialog() == DialogResult.OK)
             {
-                parameters = readParameters(sysSave.FileName);
+                parameters = Program.readObjectJson<List<Parameter>>(Program.defaultParametersPath);
                 tablefill(parameters);
             }
-               
+
 
             /*
             string file = "";   // Excel Dosya Konumu için değişken
