@@ -75,3 +75,6 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\refint\deneme.dll
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.pdb
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.genruntimeconfig.cache
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\ref\deneme.dll
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.SifreDegistir.resources
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\SendGrid.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\StarkbankEcdsa.dll

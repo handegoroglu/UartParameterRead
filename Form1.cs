@@ -10,6 +10,9 @@ using System.Windows.Forms.Design;
 using System.Runtime.InteropServices;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
+using Windows.ApplicationModel.Store.Preview;
 
 namespace deneme
 {
@@ -92,9 +95,15 @@ namespace deneme
 
         }
 
-
+        
+        
         private void pictureBox1_LoadCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
+
+            //pictureBox1.Image = Image.FromFile();
+            //pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            
+           
 
         }
 
@@ -121,15 +130,15 @@ namespace deneme
         }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //Bir değişiklik algılandıktan sonrası ..
+            //Bir değişiklik algılandıktan  sonrası ..
             //değişkeni valuenin içine attık
 
             try
             {
                 var value = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
                 var minValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
                 var maxValue = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+
                 //null veya boş mu diye kontrol ettik
                 if (String.IsNullOrEmpty(value) == false)
                 {
@@ -171,6 +180,7 @@ namespace deneme
 
         private void button6_Click(object sender, EventArgs e)
         {
+
             ComPortForm comPortForm = new ComPortForm(Program.serial);
             comPortForm.ShowDialog();
         }
@@ -178,7 +188,7 @@ namespace deneme
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            //fabrika ayarlarını kullanıcı girişine yerleştir
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 row.Cells[6].Value = row.Cells[4].Value;
@@ -209,15 +219,85 @@ namespace deneme
                 }
 
                 // if(saveParameters(sysSave.FileName, parameters) == false)
-                if (Program.saveObjectJson<List<Parameter>>(parameters, Program.defaultParametersPath) == false)
+                if (Program.saveObjectJson<List<Parameter>>(parameters, sysSave.FileName) == false)
                 {
                     MessageBox.Show("Dosya kaydedilirken bir hata oluştu.");
                 }
             }
 
 
+        }
 
-            /*
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //json sys dosyasına import
+            OpenFileDialog sysSave = new OpenFileDialog();
+            sysSave.Filter = "sys files (*.sys)|*.sys";
+
+            if (sysSave.ShowDialog() == DialogResult.OK)
+            {
+                parameters = Program.readObjectJson<List<Parameter>>(sysSave.FileName);
+                tablefill(parameters);
+            }
+
+
+
+
+        }
+
+        private void şifreDeğiştirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SifreDegistir sifreDegistir = new SifreDegistir();
+            sifreDegistir.ShowDialog();
+        }
+
+        private void temayıDeğiştirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void darkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.Black;
+            menuStrip1.BackColor = Color.Black;
+            dataGridView1.BackgroundColor = Color.DarkGray;
+            uygulamaAyarlarıToolStripMenuItem.BackColor = Color.Black;
+            uygulamaAyarlarıToolStripMenuItem.ForeColor = Color.Gray;
+            düzenleToolStripMenuItem.BackColor = Color.Black;
+            düzenleToolStripMenuItem.ForeColor = Color.Gray;
+            yardımToolStripMenuItem.BackColor = Color.Black;
+            yardımToolStripMenuItem.ForeColor = Color.Gray;
+            pictureBox1.BackColor = Color.Black;
+            tableLayoutPanel1.BackColor = Color.Black;
+
+        }
+
+        private void lightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.DarkGray;
+            menuStrip1.BackColor = Color.DarkGray;
+            menuStrip1.ForeColor = Color.Black;
+            uygulamaAyarlarıToolStripMenuItem.BackColor = Color.DarkGray;
+            uygulamaAyarlarıToolStripMenuItem.ForeColor = Color.Black;
+            düzenleToolStripMenuItem.BackColor = Color.DarkGray;
+            düzenleToolStripMenuItem.ForeColor = Color.Black;
+            yardımToolStripMenuItem.BackColor = Color.DarkGray;
+            yardımToolStripMenuItem.ForeColor = Color.Black;
+            dataGridView1.BackgroundColor = Color.DarkGray;
+            pictureBox1.BackColor = Color.DarkGray;
+            tableLayoutPanel1.BackColor = Color.DarkGray;
+
+        }
+
+        private void wwwmysiaxwarecomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //resim kutusuna dokununca url ye gidecek.
+            System.Diagnostics.Process.Start("explorer.exe", @"https://www.mysiaxware.com/");
+        }
+
+        private void exceleAktarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
             // Excel Uygulaması oluşturma  
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             // Excel uygulaması içinde yeni Çalışma Kitabı oluşturma  
@@ -245,25 +325,12 @@ namespace deneme
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
-            */
-
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void exceldenTabloyaAktarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //json sys dosyasına import
-            OpenFileDialog sysSave = new OpenFileDialog();
-            sysSave.Filter = "sys files (*.sys)|*.sys";
 
-            if (sysSave.ShowDialog() == DialogResult.OK)
-            {
-                parameters = Program.readObjectJson<List<Parameter>>(Program.defaultParametersPath);
-                tablefill(parameters);
-            }
-
-
-            /*
             string file = "";   // Excel Dosya Konumu için değişken
             DataTable dt = new DataTable();   //excel verilerimiz için kapsayıcı
             DataRow row;
@@ -298,13 +365,13 @@ namespace deneme
                         for (int j = 7; j <= colCount; j++)
                         {
                             try
-                            { 
+                            {
                                 dataGridView1.Rows[i - 2].Cells[j - 1].Value = excelRange.Cells[i, j].Value2.ToString();
                             }
                             catch (Exception ex)
                             {
                                 dataGridView1.Rows[i - 2].Cells[j - 1].Value = "";
-                                                             
+
                             }
 
                         }
@@ -316,11 +383,73 @@ namespace deneme
                 {
                     MessageBox.Show(ex.Message);
                 }
-            */
 
 
+
+            }
         }
+
+        private void ayarlarıYükleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //json sys dosyasına import
+            OpenFileDialog sysSave = new OpenFileDialog();
+            sysSave.Filter = "sys files (*.sys)|*.sys";
+
+            if (sysSave.ShowDialog() == DialogResult.OK)
+            {
+                parameters = Program.readObjectJson<List<Parameter>>(sysSave.FileName);
+                tablefill(parameters);
+            }
+        }
+
+        private void ayarlarıKaydetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //json sys dosyasına kaydetme
+            SaveFileDialog sysSave = new SaveFileDialog();
+            sysSave.Filter = "sys files (*.sys)|*.sys";
+            sysSave.OverwritePrompt = true;
+            if (sysSave.ShowDialog() == DialogResult.OK)
+            {
+                int row = 0;
+                foreach (var parameter in parameters)
+                {
+                    parameter.Code = dataGridView1.Rows[row].Cells[0].Value.ToString();
+                    parameter.Description = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                    parameter.MinValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[2].Value);
+                    parameter.MaxValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[3].Value);
+                    parameter.DefaultValue = dataGridView1.Rows[row].Cells[4].Value.ToString();
+                    parameter.Unit = dataGridView1.Rows[row].Cells[5].Value.ToString();
+                    parameter.Value = dataGridView1.Rows[row].Cells[6].Value.ToString();
+                    row++;
+                }
+
+                // if(saveParameters(sysSave.FileName, parameters) == false)
+                if (Program.saveObjectJson<List<Parameter>>(parameters, sysSave.FileName) == false)
+                {
+                    MessageBox.Show("Dosya kaydedilirken bir hata oluştu.");
+                }
+            }
+        }
+
+        private void bağlantıToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComPortForm comPortForm = new ComPortForm(Program.serial);
+            comPortForm.ShowDialog();
+        }
+
+        private void fabrikaAyarlarıToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //fabrika ayarlarını kullanıcı girişine yerleştir
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Cells[6].Value = row.Cells[4].Value;
+            }
+        }
+        
+        private void kullanımKılavuzuToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
+        }
+        
     }
-
-
 }

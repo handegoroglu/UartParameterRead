@@ -12,13 +12,15 @@ namespace deneme
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main() 
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
             //Application.Run(new Form1());
             Application.Run(new Form2());
 
@@ -26,8 +28,11 @@ namespace deneme
         }
 
         public static string basePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Mysia\\Hosseven\\";
-        public static string defaultParametersPath = basePath + @"Files\\paramaters.json";
+        public static string defaultParametersPath = basePath + @"Files\\default_paramaters.json";
         public static string defaulserialPortSettings = basePath + @"Files\\serialPortSettings.json";
+
+        public static string logoLocation = basePath + @"Files\\logo.png";
+
 
         public static SerialPort serial = new SerialPort();
 

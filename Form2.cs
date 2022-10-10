@@ -33,16 +33,19 @@ namespace deneme
 
         private void button7_Click(object sender, EventArgs e)
         {
+           
             //şifre arayüzünü aç
             Hosseven sifre = new Hosseven();
 
             if (sifre.ShowDialog() == DialogResult.Yes)
             {
+
                 //şifre doğru ise
                 Form1 parametrearayüz = new Form1();
                 parametrearayüz.ShowDialog();
-
+                
             }
+            
         }
 
         private void button6_Click(object sender, EventArgs e)

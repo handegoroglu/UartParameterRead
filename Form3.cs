@@ -24,7 +24,7 @@ namespace deneme
         
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text == "123")
+            if (textBox1.Text == Properties.Settings.Default.sifre|| textBox1.Text==Properties.Settings.Default.defaultsifre) 
             {
                 //şifre doğru ise
 

@@ -22,5 +22,29 @@ namespace deneme.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123")]
+        public string sifre {
+            get {
+                return ((string)(this["sifre"]));
+            }
+            set {
+                this["sifre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("hande")]
+        public string defaultsifre {
+            get {
+                return ((string)(this["defaultsifre"]));
+            }
+            set {
+                this["defaultsifre"] = value;
+            }
+        }
     }
 }
