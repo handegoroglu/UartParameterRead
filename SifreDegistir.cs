@@ -21,7 +21,7 @@ namespace deneme
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
 
-            labelTimer.Interval = 1000;
+            labelTimer.Interval = 1500;
             labelTimer.Tick += LabelTimer_Tick;
         }
 
@@ -208,6 +208,11 @@ namespace deneme
         }
 
         private void SifreDegistir_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

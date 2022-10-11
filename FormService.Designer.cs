@@ -69,12 +69,12 @@
             this.temayıDeğiştirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.windowsTemasıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.yardımToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iletişimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.kullanımKılavuzuToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowsTemasıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -458,14 +458,14 @@
             // şifreDeğiştirToolStripMenuItem1
             // 
             this.şifreDeğiştirToolStripMenuItem1.Name = "şifreDeğiştirToolStripMenuItem1";
-            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
             this.şifreDeğiştirToolStripMenuItem1.Text = "Şifre Değiştir";
             this.şifreDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.şifreDeğiştirToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(151, 6);
             // 
             // temayıDeğiştirToolStripMenuItem1
             // 
@@ -474,28 +474,35 @@
             this.lightToolStripMenuItem,
             this.windowsTemasıToolStripMenuItem});
             this.temayıDeğiştirToolStripMenuItem1.Name = "temayıDeğiştirToolStripMenuItem1";
-            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
             this.temayıDeğiştirToolStripMenuItem1.Text = "Temayı Değiştir";
             this.temayıDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.temayıDeğiştirToolStripMenuItem1_Click);
             // 
             // darkToolStripMenuItem
             // 
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
             // lightToolStripMenuItem
             // 
             this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.lightToolStripMenuItem.Text = "Light";
             this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
+            // 
+            // windowsTemasıToolStripMenuItem
+            // 
+            this.windowsTemasıToolStripMenuItem.Name = "windowsTemasıToolStripMenuItem";
+            this.windowsTemasıToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.windowsTemasıToolStripMenuItem.Text = "Windows teması";
+            this.windowsTemasıToolStripMenuItem.Click += new System.EventHandler(this.windowsTemasıToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(151, 6);
             // 
             // yardımToolStripMenuItem
             // 
@@ -513,7 +520,7 @@
             this.iletişimToolStripMenuItem.Name = "iletişimToolStripMenuItem";
             this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.iletişimToolStripMenuItem.Text = "Hakkında";
-            this.iletişimToolStripMenuItem.Click += new System.EventHandler(this.iletişimToolStripMenuItem_Click);
+            this.iletişimToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -527,13 +534,6 @@
             this.kullanımKılavuzuToolStripMenuItem1.Text = "Kullanım Kılavuzu";
             this.kullanımKılavuzuToolStripMenuItem1.Click += new System.EventHandler(this.kullanımKılavuzuToolStripMenuItem1_Click);
             // 
-            // windowsTemasıToolStripMenuItem
-            // 
-            this.windowsTemasıToolStripMenuItem.Name = "windowsTemasıToolStripMenuItem";
-            this.windowsTemasıToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.windowsTemasıToolStripMenuItem.Text = "Windows teması";
-            this.windowsTemasıToolStripMenuItem.Click += new System.EventHandler(this.windowsTemasıToolStripMenuItem_Click);
-            // 
             // FormService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -545,7 +545,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormService";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hoşseven";
+            this.Text = "Parametre Ayarları";
             this.Load += new System.EventHandler(this.FormService_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

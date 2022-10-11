@@ -424,50 +424,17 @@ namespace deneme
 
         private void ayarlarıYükleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //json sys dosyasına import
-            OpenFileDialog sysSave = new OpenFileDialog();
-            sysSave.Filter = "sys files (*.sys)|*.sys";
-
-            if (sysSave.ShowDialog() == DialogResult.OK)
-            {
-                parameters = Program.readObjectJson<List<Parameter>>(sysSave.FileName);
-                tablefill(parameters);
-            }
+            button4_Click(button3, null);
         }
 
         private void ayarlarıKaydetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //json sys dosyasına kaydetme
-            SaveFileDialog sysSave = new SaveFileDialog();
-            sysSave.Filter = "sys files (*.sys)|*.sys";
-            sysSave.OverwritePrompt = true;
-            if (sysSave.ShowDialog() == DialogResult.OK)
-            {
-                int row = 0;
-                foreach (var parameter in parameters)
-                {
-                    parameter.Code = dataGridView1.Rows[row].Cells[0].Value.ToString();
-                    parameter.Description = dataGridView1.Rows[row].Cells[1].Value.ToString();
-                    parameter.MinValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[2].Value);
-                    parameter.MaxValue = Convert.ToDouble(dataGridView1.Rows[row].Cells[3].Value);
-                    parameter.DefaultValue = dataGridView1.Rows[row].Cells[4].Value.ToString();
-                    parameter.Unit = dataGridView1.Rows[row].Cells[5].Value.ToString();
-                    parameter.Value = dataGridView1.Rows[row].Cells[6].Value.ToString();
-                    row++;
-                }
-
-                // if(saveParameters(sysSave.FileName, parameters) == false)
-                if (Program.saveObjectJson<List<Parameter>>(parameters, sysSave.FileName) == false)
-                {
-                    MessageBox.Show("Dosya kaydedilirken bir hata oluştu.");
-                }
-            }
+            button5_Click(button5, null);
         }
 
         private void bağlantıToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ComPortForm comPortForm = new ComPortForm(Program.serial);
-            comPortForm.ShowDialog();
+            button6_Click(button6, null);
         }
 
         private void fabrikaAyarlarıToolStripMenuItem_Click(object sender, EventArgs e)
@@ -494,7 +461,7 @@ namespace deneme
 
         }
 
-        private void iletişimToolStripMenuItem_Click(object sender, EventArgs e)
+        private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
             formAbout.ShowDialog();

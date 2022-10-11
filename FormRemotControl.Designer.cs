@@ -192,7 +192,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormRemotControl";
-            this.Text = "Hoşseven";
+            this.Text = "Parametre";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -79,3 +79,7 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormRemotControl.r
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormPassword.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormService.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormAbout.resources
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\MailKit.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\MimeKit.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\Microsoft.Office.Interop.Outlook.dll
