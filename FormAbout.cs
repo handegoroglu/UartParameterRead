@@ -25,14 +25,14 @@ namespace deneme
         {
             InitializeComponent();
 
-           /* //picturebox logoyu çek
+            //picturebox logoyu çek
             pictureBox1.Image = Program.manufactureLogo;
 
             //Versiyon yazdırdığımız label
             label1.Text = "Yazılım Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             label10.Text = "Donanım Version: 1.0.0.0";
             label11.Text = "Gömülü Version: 1.0.0.0";
-           */
+           
         }
 
         private void FormAbout_Load(object sender, EventArgs e)
