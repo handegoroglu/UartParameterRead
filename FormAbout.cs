@@ -27,7 +27,7 @@ namespace deneme
 
             //picturebox logoyu çek
             pictureBox1.Image = Program.manufactureLogo;
-
+            themaSet(Program.appSettings.thema);
             //Versiyon yazdırdığımız label
             label1.Text = "Yazılım Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             label10.Text = "Donanım Version: 1.0.0.0";
@@ -38,6 +38,34 @@ namespace deneme
         private void FormAbout_Load(object sender, EventArgs e)
         {
 
+        }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.WhiteSmoke;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+                label5.ForeColor = Color.Black;
+                label6.ForeColor = Color.Black;
+                label8.ForeColor = Color.Black;
+                label9.ForeColor = Color.Black;
+                label10.ForeColor = Color.Black;
+                label11.ForeColor = Color.Black;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

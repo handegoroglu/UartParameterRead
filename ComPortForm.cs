@@ -34,6 +34,8 @@ namespace deneme
             //picturebox logo.png isimli dosyayı çek
             pictureBox1.Image = Program.imgLogo;
 
+            themaSet(Program.appSettings.thema);
+
             port = SP;
         }
 
@@ -74,6 +76,24 @@ namespace deneme
                 label1.Text = "Bağlantı açık "+ port.PortName;
                 label1.ForeColor = Color.Green;
                 
+            }
+        }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.WhiteSmoke;
             }
         }
 

@@ -20,6 +20,7 @@ namespace deneme
 
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
+            themaSet(Program.appSettings.thema);
 
             labelTimer.Interval = 1500;
             labelTimer.Tick += LabelTimer_Tick;
@@ -210,6 +211,28 @@ namespace deneme
         private void SifreDegistir_Load(object sender, EventArgs e)
         {
 
+        }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.WhiteSmoke;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)

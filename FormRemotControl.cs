@@ -24,7 +24,7 @@ namespace deneme
             this.Icon = Program.iconLogo;
 
             formEnable(Program.serial.IsOpen);
-
+            themaSet(Program.appSettings.thema);
 
         }
 
@@ -44,6 +44,24 @@ namespace deneme
             Rectangle workingArea = Screen.GetWorkingArea(this);
             this.Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
 
+        }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.WhiteSmoke;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

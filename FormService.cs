@@ -300,21 +300,25 @@ namespace deneme
                 yardımToolStripMenuItem.ForeColor = Color.Gray;
                 pictureBox1.BackColor = Color.Black;
                 tableLayoutPanel1.BackColor = Color.Black;
+                this.BackColor = Color.Black;
             }
             else
             {
-                panel1.BackColor = Color.DarkGray;
-                menuStrip1.BackColor = Color.DarkGray;
+                
+                panel1.BackColor = Color.WhiteSmoke;
+                menuStrip1.BackColor = Color.WhiteSmoke;
                 menuStrip1.ForeColor = Color.Black;
-                uygulamaAyarlarıToolStripMenuItem.BackColor = Color.DarkGray;
+                uygulamaAyarlarıToolStripMenuItem.BackColor = Color.WhiteSmoke;
                 uygulamaAyarlarıToolStripMenuItem.ForeColor = Color.Black;
-                düzenleToolStripMenuItem.BackColor = Color.DarkGray;
+                düzenleToolStripMenuItem.BackColor = Color.WhiteSmoke;
                 düzenleToolStripMenuItem.ForeColor = Color.Black;
-                yardımToolStripMenuItem.BackColor = Color.DarkGray;
+                yardımToolStripMenuItem.BackColor = Color.WhiteSmoke;
                 yardımToolStripMenuItem.ForeColor = Color.Black;
-                dataGridView1.BackgroundColor = Color.DarkGray;
-                pictureBox1.BackColor = Color.DarkGray;
-                tableLayoutPanel1.BackColor = Color.DarkGray;
+                dataGridView1.BackgroundColor = Color.WhiteSmoke;
+                pictureBox1.BackColor = Color.WhiteSmoke;
+                tableLayoutPanel1.BackColor = Color.WhiteSmoke;
+                
+                this.BackColor = Color.WhiteSmoke;
             }
         }
 

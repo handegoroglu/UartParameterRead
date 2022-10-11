@@ -22,6 +22,7 @@ namespace deneme
             InitializeComponent();
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
+            themaSet(Program.appSettings.thema);
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -65,6 +66,28 @@ namespace deneme
 
             }
             
+        }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.WhiteSmoke;
+                label2.ForeColor = Color.Black;
+                label1.ForeColor = Color.Black;
+                textBox1.BackColor = Color.White;
+                textBox1.ForeColor = Color.Black;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
