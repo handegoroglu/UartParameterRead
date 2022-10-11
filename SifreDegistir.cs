@@ -18,6 +18,9 @@ namespace deneme
         {
             InitializeComponent();
 
+            //icon'u icon.ico isimli dosyadan çek
+            this.Icon = Program.iconLogo;
+
             labelTimer.Interval = 1000;
             labelTimer.Tick += LabelTimer_Tick;
         }
@@ -60,50 +63,111 @@ namespace deneme
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();
+                    int PagePositionX = this.Left;
+                    Task t = Task.Run(() =>
+                    {
+
+
+
+                        for (int i = 0; i < 15; i++)
+                        {
+                            Thread.Sleep(20);
+                            this.Invoke(() => this.Left = this.Left == PagePositionX ? PagePositionX - 5 : PagePositionX);
+
+                        }
+
+
+                        this.Invoke(() => this.Left = PagePositionX);
+
+                    });
 
                 }
 
                 else if (textBox2.Text == "" || textBox3.Text == "")
                 {
 
-                    label4.Text = "Lütfen şifre giriniz!";
+                    label4.Text = "Lütfen yeni şifreyi giriniz!";
                     label4.ForeColor = Color.Red;
 
                     textBox1.Clear();
                     textBox2.Clear();
                     textBox3.Clear();
+                    int PagePositionX = this.Left;
+                    Task t = Task.Run(() =>
+                    {
+
+
+
+                        for (int i = 0; i < 15; i++)
+                        {
+                            Thread.Sleep(20);
+                            this.Invoke(() => this.Left = this.Left == PagePositionX ? PagePositionX - 5 : PagePositionX);
+
+                        }
+
+
+                        this.Invoke(() => this.Left = PagePositionX);
+
+                    });
 
 
                 }
 
             }
-            else
+            else if (textBox1.Text != Properties.Settings.Default.sifre && textBox1.Text !="")
             {
-                if (textBox1.Text != Properties.Settings.Default.sifre && textBox1.Text != "")
-                {
-                    label4.Text = "Eski şifre doğru değil!";
-                    label4.ForeColor = Color.Red;
+                label4.Text = "Eski şifre doğru değil!";
+                label4.ForeColor = Color.Red;
 
-                    textBox1.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-
-                }
-                else if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                int PagePositionX = this.Left;
+                Task t = Task.Run(() =>
                 {
 
-                    label4.Text = "Lütfen şifre giriniz!";
-                    label4.ForeColor = Color.Red;
-
-                    textBox1.Clear();
-                    textBox2.Clear();
-                    textBox3.Clear();
-
-                }
 
 
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Thread.Sleep(20);
+                        this.Invoke(() => this.Left = this.Left == PagePositionX ? PagePositionX - 5 : PagePositionX);
 
+                    }
+
+
+                    this.Invoke(() => this.Left = PagePositionX);
+
+                });
             }
+            else if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+            {
+
+                label4.Text = "Lütfen şifreyi giriniz!";
+                label4.ForeColor = Color.Red;
+
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                int PagePositionX = this.Left;
+                Task t = Task.Run(() =>
+                {
+
+
+
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Thread.Sleep(20);
+                        this.Invoke(() => this.Left = this.Left == PagePositionX ? PagePositionX - 5 : PagePositionX);
+
+                    }
+
+
+                    this.Invoke(() => this.Left = PagePositionX);
+
+                });
+            }
+
             labelTimer.Start();
 /*
             Task t = Task.Run(() =>
@@ -111,6 +175,7 @@ namespace deneme
                 Thread.Sleep(1000);
                 label4.Invoke(() => label4.Text = String.Empty);
             });
+
 */
         }
 
@@ -139,7 +204,12 @@ namespace deneme
 
         private void textBox1_MouseEnter(object sender, EventArgs e)
         {
-            label4.Text = "";
+            
+        }
+
+        private void SifreDegistir_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

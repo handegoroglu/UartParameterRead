@@ -85,11 +85,6 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth4Bit;
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "logo-h(1).png");
-            this.imageList1.Images.SetKeyName(1, "nok.png");
-            this.imageList1.Images.SetKeyName(2, "ok.png");
-            this.imageList1.Images.SetKeyName(3, "nokk.png");
-            this.imageList1.Images.SetKeyName(4, "okk.png");
             // 
             // button2
             // 
@@ -107,7 +102,6 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::deneme.Properties.Resources.logo_h_1_;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(127, 43);

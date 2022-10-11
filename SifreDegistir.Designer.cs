@@ -155,6 +155,7 @@
             this.Name = "SifreDegistir";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Şifre Yenile";
+            this.Load += new System.EventHandler(this.SifreDegistir_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SifreDegistir_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();

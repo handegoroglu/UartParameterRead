@@ -1,5 +1,6 @@
 ﻿using deneme.Models;
 using Microsoft.Office.Interop.Excel;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,13 +29,17 @@ namespace deneme
         {
             InitializeComponent();
 
+            //icon'u icon.ico isimli dosyadan çek
+            this.Icon = Program.iconLogo;
+            //picturebox logo.png isimli dosyayı çek
+            pictureBox1.Image = Program.imgLogo;
+
             port = SP;
         }
 
         private void ComPortForm_Load(object sender, EventArgs e)
         {
-
-
+            
             foreach (string port in ports)
             {
                 // Port isimlerini combobox1'de gösteriyoruz.
@@ -55,7 +60,7 @@ namespace deneme
 
             try
             {
-                var serialSettings = Program.readObjectJson<SerialPortSettings>(Program.defaulserialPortSettings);
+                var serialSettings = Program.readObjectJson<SerialPortSettings>(Program.serialPortSettingsPath);
                 comboBox1.Text = serialSettings.port;
                 comboBox2.Text = serialSettings.baudrate.ToString();
 
@@ -63,10 +68,18 @@ namespace deneme
             catch (Exception)
             {
             }
+
+            if (Program.serial.IsOpen == true)
+            {
+                label1.Text = "Bağlantı açık "+ port.PortName;
+                label1.ForeColor = Color.Green;
+                
+            }
         }
 
         private void ComPortForm_Load(object sender, FormClosingEventArgs e)
         {
+            
 
 
             // Form kapandığında Seri Port Kapatılmış Olacak.
@@ -80,6 +93,7 @@ namespace deneme
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            
             timer1.Start();
             if (Program.serial.IsOpen)
             {
@@ -100,7 +114,7 @@ namespace deneme
                 //Haberleşme için port açılıyor
                 Program.serial.Open();
                 label1.ForeColor = Color.Green;
-                label1.Text = "Bağlantı Açık.";
+                label1.Text = "Bağlantı açık " + port.PortName;
 
 
                 try
@@ -108,7 +122,7 @@ namespace deneme
                     var serialSettings = new SerialPortSettings();
                     serialSettings.port = comboBox1.Text;
                     serialSettings.baudrate = Convert.ToInt32(comboBox2.Text);
-                    Program.saveObjectJson<SerialPortSettings>(serialSettings, Program.defaulserialPortSettings);
+                    Program.saveObjectJson<SerialPortSettings>(serialSettings, Program.serialPortSettingsPath);
                 }
                 catch (Exception)
                 {
@@ -120,7 +134,7 @@ namespace deneme
             {
                 MessageBox.Show("Hata:" + hata.Message);
             }
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -136,15 +150,10 @@ namespace deneme
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //resim kutusuna dokununca url ye gidecek.
-            System.Diagnostics.Process.Start("explorer.exe", @"https://hosseven.com.tr/");
+            System.Diagnostics.Process.Start("explorer.exe", Program.appSettings.webSite);
         }
     }
 }

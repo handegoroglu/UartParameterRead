@@ -60,9 +60,6 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.AssemblyRef
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.ResolveComReference.cache
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.ComPortForm.resources
-C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Form1.resources
-C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Form2.resources
-C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Hosseven.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.Properties.Resources.resources
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.csproj.GenerateResource.cache
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.d-bfalse.GeneratedMSBuildEditorConfig.editorconfig
@@ -78,3 +75,7 @@ C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\ref\deneme.dll
 C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.SifreDegistir.resources
 C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\SendGrid.dll
 C:\Projects\UartParameterRead\bin\Debug\net6.0-windows\StarkbankEcdsa.dll
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormRemotControl.resources
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormPassword.resources
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormService.resources
+C:\Projects\UartParameterRead\obj\Debug\net6.0-windows\deneme.FormAbout.resources
