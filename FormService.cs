@@ -26,6 +26,7 @@ namespace deneme
         public FormService()
         {
             InitializeComponent();
+            this.Text = Program.appSettings.ServiceFormTitle;
 
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
@@ -41,10 +42,13 @@ namespace deneme
             tablefill(parameters);
 
 
-            //VERİ ALACAĞIN YER BURASI
+            /*VERİ ALACAĞIN YER BURASI
             //göndereceğin veriyi bytlara çevir. (TAMAMLA)
-            int i = 0x010003;
-            byte[] array = BitConverter.GetBytes(i);
+            string sonuc = Program.serial.ReadExisting(); // veriyş string türünde sonuca at
+            byte[] array = Program.serial.Encoding.GetBytes(sonuc); //sonucu array'e at
+            var hexString= BitConverter.ToString(array); //string türünden hex e çevir array'i
+            */
+
 
 
             Program.serial.DataReceived += SerialPort_DataReceived;
@@ -58,7 +62,7 @@ namespace deneme
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
-            //Veri okuduğun alan
+            /*Veri okuduğun alan
             string data = "";
             while (true)
             {
@@ -72,9 +76,41 @@ namespace deneme
                 }
             }
 
+
             MessageBox.Show(data);
 
             Program.serial.DiscardInBuffer();
+            */
+            const int DATA_PACKET_LEN = 15;
+            byte[] data = new byte[DATA_PACKET_LEN];
+            for (int i = 0; i < DATA_PACKET_LEN; i++)
+            {
+                data[i] = Convert.ToByte(Program.serial.ReadByte());
+
+
+            }
+            if (data != null)
+            {
+                if (data[0] == 0xFF)
+                {
+                    Console.WriteLine(data);
+
+                }
+                else
+                {
+                    Console.WriteLine("yanlış");
+                }
+            }
+            else
+            {
+                Console.WriteLine("nulll be nullllll");
+            }
+
+
+
+
+
+
         }
 
         void tablefill(List<Parameter> parameters)
@@ -121,10 +157,10 @@ namespace deneme
         private async void button1_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
-             ToggleChangeState();
+            ToggleChangeState();
         }
 
-        private void button3_Click(object sender, EventArgs e) 
+        private void button3_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
 
@@ -285,7 +321,7 @@ namespace deneme
                 thema = themaIsDark ? "dark" : "light";
             }
 
-            if(thema == "dark")
+            if (thema == "dark")
             {
                 panel1.BackColor = Color.Black;
                 menuStrip1.BackColor = Color.Black;
@@ -305,7 +341,7 @@ namespace deneme
             }
             else
             {
-                
+
                 panel1.BackColor = Color.WhiteSmoke;
                 menuStrip1.BackColor = Color.WhiteSmoke;
                 menuStrip1.ForeColor = Color.Black;
@@ -321,10 +357,10 @@ namespace deneme
                 this.BackColor = Color.WhiteSmoke;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
-                frm.BackColor= Color.WhiteSmoke;
+                frm.BackColor = Color.WhiteSmoke;
 
             }
-           
+
         }
 
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -479,6 +515,11 @@ namespace deneme
         private void windowsTemasıToolStripMenuItem_Click(object sender, EventArgs e)
         {
             themaSet("windows_thema");
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

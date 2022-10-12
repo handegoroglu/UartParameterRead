@@ -11,6 +11,7 @@ namespace deneme.Models
         public string webSite { get; set; }
         public string manufactureWebSite { get; set; }
         public string thema { get; set; }
+        public string ServiceFormTitle { get; set; }
 
     }
 }

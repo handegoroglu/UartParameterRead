@@ -67,11 +67,11 @@ namespace deneme
         public static string serialPortSettingsPath = appDataBasePath + @"Files\\serialPortSettings.json";
         public static string userManuelPath = appDataBasePath + @"Files\user_manuel.pdf";
         public static string AppSettingsPath = appDataBasePath + @"Files\app_settings.json";
+        public static string formNameItem = appDataBasePath + @"Files\app_settings.json";
 
         public static string pathLogo = basePath + @"images\logo.png";
         public static string pathIconLogo = basePath + @"images\icon.ico";
         public static string pathManufactureLogo = basePath + @"images\manufacture.png";
-
 
 
 
