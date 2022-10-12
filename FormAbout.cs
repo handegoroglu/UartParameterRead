@@ -30,8 +30,6 @@ namespace deneme
             themaSet(Program.appSettings.thema);
             //Versiyon yazdırdığımız label
             label1.Text = "Yazılım Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            label10.Text = "Donanım Version: 1.0.0.0";
-            label11.Text = "Gömülü Version: 1.0.0.0";
            
         }
 
@@ -63,8 +61,6 @@ namespace deneme
                 label6.ForeColor = Color.Black;
                 label8.ForeColor = Color.Black;
                 label9.ForeColor = Color.Black;
-                label10.ForeColor = Color.Black;
-                label11.ForeColor = Color.Black;
             }
         }
 
