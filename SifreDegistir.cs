@@ -214,6 +214,7 @@ namespace deneme
         }
         void themaSet(string thema)
         {
+            
             Program.themaSave(thema);
             if (thema == "windows_thema")
             {

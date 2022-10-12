@@ -98,9 +98,8 @@ namespace deneme
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void ToggleChangeState(string prefix = "", bool delay = true)
         {
-            //fabrika ayarlarını kullanıcı girişine yerleştir
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 try
@@ -108,12 +107,29 @@ namespace deneme
 
                     row.Cells[6].Value = row.Cells[4].Value;
                     //fabrika ayarları butonuna tıklandığında hem fabrika değerleri çekilir hemde PR başına # işareti getirilir.
-                    row.Cells[0].Value = row.Cells[0].Value.ToString().TrimStart('#').TrimStart('*'); //trim # ve * butona birkaç kez basıldığında kırpar
+                    row.Cells[0].Value = prefix + row.Cells[0].Value.ToString()?.TrimStart('#').TrimStart('*') ?? String.Empty; //trim # ve * butona birkaç kez basıldığında kırpar
                 }
                 catch (Exception)
                 {
                 }
+
+                if (delay) await Task.Delay(100);
             }
+        }
+
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            //fabrika ayarlarını kullanıcı girişine yerleştir
+             ToggleChangeState();
+        }
+
+        private void button3_Click(object sender, EventArgs e) 
+        {
+            //fabrika ayarlarını kullanıcı girişine yerleştir
+
+            ToggleChangeState("#", false);
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -197,25 +213,7 @@ namespace deneme
         }
 
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //fabrika ayarlarını kullanıcı girişine yerleştir
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                try
-                {
 
-                    row.Cells[6].Value = row.Cells[4].Value;
-                    //fabrika ayarları butonuna tıklandığında hem fabrika değerleri çekilir hemde PR başına # işareti getirilir.
-                    row.Cells[0].Value = "#" + row.Cells[0].Value.ToString().TrimStart('#').TrimStart('*'); //trim # ve * butona birkaç kez basıldığında kırpar
-                }
-                catch (Exception)
-                {
-                }
-            }
-
-
-        }
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -291,7 +289,7 @@ namespace deneme
             {
                 panel1.BackColor = Color.Black;
                 menuStrip1.BackColor = Color.Black;
-                dataGridView1.BackgroundColor = Color.DarkGray;
+                dataGridView1.BackgroundColor = Color.Black;
                 uygulamaAyarlarıToolStripMenuItem.BackColor = Color.Black;
                 uygulamaAyarlarıToolStripMenuItem.ForeColor = Color.Gray;
                 düzenleToolStripMenuItem.BackColor = Color.Black;
@@ -301,6 +299,9 @@ namespace deneme
                 pictureBox1.BackColor = Color.Black;
                 tableLayoutPanel1.BackColor = Color.Black;
                 this.BackColor = Color.Black;
+                //kumanda formunada anında tema değişimi
+                FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
+                frm.BackColor = Color.Black;
             }
             else
             {
@@ -317,9 +318,13 @@ namespace deneme
                 dataGridView1.BackgroundColor = Color.WhiteSmoke;
                 pictureBox1.BackColor = Color.WhiteSmoke;
                 tableLayoutPanel1.BackColor = Color.WhiteSmoke;
-                
                 this.BackColor = Color.WhiteSmoke;
+                //kumanda formunada anında tema değişimi
+                FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
+                frm.BackColor= Color.WhiteSmoke;
+
             }
+           
         }
 
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
