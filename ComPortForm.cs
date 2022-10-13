@@ -162,7 +162,7 @@ namespace deneme
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //BAĞLANTIYI KES BUTONU
+            /*BAĞLANTIYI KES BUTONU
             timer1.Stop();
             if (Program.serial.IsOpen == true)
             {
@@ -171,12 +171,19 @@ namespace deneme
                 label1.ForeColor = Color.Red;
                 label1.Text = "Bağlantı Kapalı.";
             }
+            */
+            this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //resim kutusuna dokununca url ye gidecek.
             System.Diagnostics.Process.Start("explorer.exe", Program.appSettings.webSite);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

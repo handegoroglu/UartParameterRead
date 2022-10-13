@@ -14,6 +14,7 @@ using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.ApplicationModel.Store.Preview;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace deneme
 {
@@ -61,6 +62,24 @@ namespace deneme
 
         }
 
+        private byte checksum_calculate(byte[] array, int len)
+        {
+            int checksum_total = 0;
+
+            for (int i = 0; i < len; i++)
+            {
+                checksum_total += array[i];
+            }
+
+            checksum_total = ((checksum_total ^ 255) + 1);
+
+
+            if (BitConverter.IsLittleEndian)//Big endian
+                return BitConverter.GetBytes(checksum_total)[0];
+            else
+                return BitConverter.GetBytes(checksum_total)[3];
+        }
+
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
@@ -83,29 +102,33 @@ namespace deneme
 
             Program.serial.DiscardInBuffer();
             */
-            const int DATA_PACKET_LEN = 15;
+            const int DATA_PACKET_LEN = 13;
             byte[] data = new byte[DATA_PACKET_LEN];
             for (int i = 0; i < DATA_PACKET_LEN; i++)
             {
                 data[i] = Convert.ToByte(Program.serial.ReadByte());
-
-
             }
+
+            /*'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U', 'T', 'K*/
+
             if (data != null)
             {
-                if (data[0] == 255)
+                if (data[0] == 'H' && data[1] == 'N' && data[2] == 'D')
                 {
-                    Console.WriteLine(data);
+                    if (data[10] == 'U' && data[11] == 'T' && data[12] == 'K')
+                    {
+                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 1);  
 
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("yanlış");
+                    MessageBox.Show("hata");
                 }
             }
             else
             {
-                Console.WriteLine("nulll be nullllll");
+                MessageBox.Show("nulll be nullllll");
             }
 
 
