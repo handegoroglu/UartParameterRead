@@ -13,5 +13,11 @@ namespace deneme.Models
         public string thema { get; set; }
         public string ServiceFormTitle { get; set; }
 
+        public string ComPortFormTitle { get; set; }
+        public string FormAboutTitle { get; set; }
+        public string FormPasswordTitle { get; set; }
+        public string FormRemoteControlTitle { get; set; }
+        public string FormSifreDegistir { get; set; }
+
     }
 }

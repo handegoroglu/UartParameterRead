@@ -26,6 +26,8 @@ namespace deneme
         public FormService()
         {
             InitializeComponent();
+
+            //Form ismini aldığımız yer
             this.Text = Program.appSettings.ServiceFormTitle;
 
             //icon'u icon.ico isimli dosyadan çek
@@ -91,7 +93,7 @@ namespace deneme
             }
             if (data != null)
             {
-                if (data[0] == 0xFF)
+                if (data[0] == 255)
                 {
                     Console.WriteLine(data);
 

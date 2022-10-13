@@ -28,6 +28,7 @@ namespace deneme
             //picturebox logoyu çek
             pictureBox1.Image = Program.manufactureLogo;
             themaSet(Program.appSettings.thema);
+            this.Text = Program.appSettings.FormAboutTitle;
             //Versiyon yazdırdığımız label
             label1.Text = "Yazılım Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
            

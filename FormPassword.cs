@@ -23,8 +23,11 @@ namespace deneme
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
             themaSet(Program.appSettings.thema);
+            //Form ismini aldığımız yer
+            this.Text = Program.appSettings.FormPasswordTitle;
+
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == Properties.Settings.Default.sifre|| textBox1.Text==Properties.Settings.Default.defaultsifre) 

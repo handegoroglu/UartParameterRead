@@ -22,6 +22,9 @@ namespace deneme
             this.Icon = Program.iconLogo;
             themaSet(Program.appSettings.thema);
 
+            //Form ismini aldığımız yer
+            this.Text = Program.appSettings.FormSifreDegistir;
+
             labelTimer.Interval = 1500;
             labelTimer.Tick += LabelTimer_Tick;
         }

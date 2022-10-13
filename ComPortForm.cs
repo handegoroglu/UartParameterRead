@@ -33,6 +33,9 @@ namespace deneme
             this.Icon = Program.iconLogo;
             //picturebox logo.png isimli dosyayı çek
             pictureBox1.Image = Program.imgLogo;
+            //Form ismini aldığımız yer
+            this.Text = Program.appSettings.ComPortFormTitle;
+
 
             themaSet(Program.appSettings.thema);
 

@@ -26,6 +26,11 @@ namespace deneme
             formEnable(Program.serial.IsOpen);
             themaSet(Program.appSettings.thema);
 
+            //Form ismini aldığımız yer
+            this.Text = Program.appSettings.FormRemoteControlTitle;
+
+
+
         }
 
         void formEnable(bool enable)
