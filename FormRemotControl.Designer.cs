@@ -40,6 +40,9 @@
             this.kapat_button = new System.Windows.Forms.Button();
             this.ayar_button = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +50,9 @@
             // 
             this.ac_button.ImageIndex = 6;
             this.ac_button.ImageList = this.imageList1;
-            this.ac_button.Location = new System.Drawing.Point(1, 131);
+            this.ac_button.Location = new System.Drawing.Point(3, 93);
             this.ac_button.Name = "ac_button";
-            this.ac_button.Size = new System.Drawing.Size(178, 28);
+            this.ac_button.Size = new System.Drawing.Size(45, 30);
             this.ac_button.TabIndex = 0;
             this.ac_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ac_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -78,14 +81,20 @@
             this.imageList1.Images.SetKeyName(14, "calendar (2).png");
             this.imageList1.Images.SetKeyName(15, "calendar.png");
             this.imageList1.Images.SetKeyName(16, "schedule.png");
+            this.imageList1.Images.SetKeyName(17, "thermometer.png");
+            this.imageList1.Images.SetKeyName(18, "a.png");
+            this.imageList1.Images.SetKeyName(19, "b.png");
+            this.imageList1.Images.SetKeyName(20, "c.png");
+            this.imageList1.Images.SetKeyName(21, "d.png");
+            this.imageList1.Images.SetKeyName(22, "e.png");
             // 
             // kademe1_button
             // 
-            this.kademe1_button.ImageIndex = 9;
+            this.kademe1_button.ImageIndex = 22;
             this.kademe1_button.ImageList = this.imageList1;
-            this.kademe1_button.Location = new System.Drawing.Point(1, 197);
+            this.kademe1_button.Location = new System.Drawing.Point(3, 129);
             this.kademe1_button.Name = "kademe1_button";
-            this.kademe1_button.Size = new System.Drawing.Size(178, 28);
+            this.kademe1_button.Size = new System.Drawing.Size(45, 30);
             this.kademe1_button.TabIndex = 2;
             this.kademe1_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe1_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -93,11 +102,11 @@
             // 
             // kademe2_button
             // 
-            this.kademe2_button.ImageIndex = 10;
+            this.kademe2_button.ImageIndex = 18;
             this.kademe2_button.ImageList = this.imageList1;
-            this.kademe2_button.Location = new System.Drawing.Point(1, 230);
+            this.kademe2_button.Location = new System.Drawing.Point(3, 261);
             this.kademe2_button.Name = "kademe2_button";
-            this.kademe2_button.Size = new System.Drawing.Size(178, 28);
+            this.kademe2_button.Size = new System.Drawing.Size(45, 30);
             this.kademe2_button.TabIndex = 3;
             this.kademe2_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe2_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -105,11 +114,11 @@
             // 
             // kademe3_button
             // 
-            this.kademe3_button.ImageIndex = 11;
+            this.kademe3_button.ImageIndex = 20;
             this.kademe3_button.ImageList = this.imageList1;
-            this.kademe3_button.Location = new System.Drawing.Point(1, 263);
+            this.kademe3_button.Location = new System.Drawing.Point(3, 195);
             this.kademe3_button.Name = "kademe3_button";
-            this.kademe3_button.Size = new System.Drawing.Size(178, 28);
+            this.kademe3_button.Size = new System.Drawing.Size(45, 30);
             this.kademe3_button.TabIndex = 4;
             this.kademe3_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe3_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -119,7 +128,7 @@
             // 
             this.baglantı_ayarbutton.ImageIndex = 12;
             this.baglantı_ayarbutton.ImageList = this.imageList1;
-            this.baglantı_ayarbutton.Location = new System.Drawing.Point(6, 94);
+            this.baglantı_ayarbutton.Location = new System.Drawing.Point(128, 129);
             this.baglantı_ayarbutton.Name = "baglantı_ayarbutton";
             this.baglantı_ayarbutton.Size = new System.Drawing.Size(45, 30);
             this.baglantı_ayarbutton.TabIndex = 5;
@@ -141,9 +150,9 @@
             // 
             this.kapat_button.ImageIndex = 7;
             this.kapat_button.ImageList = this.imageList1;
-            this.kapat_button.Location = new System.Drawing.Point(1, 164);
+            this.kapat_button.Location = new System.Drawing.Point(128, 93);
             this.kapat_button.Name = "kapat_button";
-            this.kapat_button.Size = new System.Drawing.Size(178, 28);
+            this.kapat_button.Size = new System.Drawing.Size(45, 30);
             this.kapat_button.TabIndex = 1;
             this.kapat_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kapat_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -153,7 +162,7 @@
             // 
             this.ayar_button.ImageIndex = 5;
             this.ayar_button.ImageList = this.imageList1;
-            this.ayar_button.Location = new System.Drawing.Point(128, 94);
+            this.ayar_button.Location = new System.Drawing.Point(128, 165);
             this.ayar_button.Name = "ayar_button";
             this.ayar_button.Size = new System.Drawing.Size(45, 30);
             this.ayar_button.TabIndex = 7;
@@ -164,7 +173,7 @@
             // 
             this.button1.ImageIndex = 14;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(67, 94);
+            this.button1.Location = new System.Drawing.Point(128, 228);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 30);
             this.button1.TabIndex = 8;
@@ -172,12 +181,51 @@
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.ImageIndex = 19;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(3, 228);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 30);
+            this.button2.TabIndex = 9;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.ImageIndex = 17;
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(128, 261);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 30);
+            this.button3.TabIndex = 10;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.ImageKey = "d.png";
+            this.button4.ImageList = this.imageList1;
+            this.button4.Location = new System.Drawing.Point(3, 162);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(45, 30);
+            this.button4.TabIndex = 11;
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // FormRemotControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(180, 297);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ayar_button);
             this.Controls.Add(this.pictureBox1);
@@ -211,5 +259,8 @@
         private Button kapat_button;
         private Button ayar_button;
         private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }
