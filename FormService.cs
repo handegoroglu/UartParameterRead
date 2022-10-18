@@ -86,26 +86,6 @@ namespace deneme
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-
-            /*Veri okuduğun alan
-            string data = "";
-            while (true) 
-            {
-                try
-                {
-                    data += Program.serial.ReadByte().ToString("X") + " ";
-                }
-                catch (Exception)
-                {
-                    break;
-                }
-            }
-
-
-            MessageBox.Show(data);
-
-            Program.serial.DiscardInBuffer();
-            */
             const int DATA_PACKET_LEN = 13;
             byte[] data = new byte[DATA_PACKET_LEN];
             for (int i = 0; i < DATA_PACKET_LEN; i++)
