@@ -45,6 +45,7 @@ namespace deneme
             tablefill(parameters);
 
 
+
             /*VERİ ALACAĞIN YER BURASI
             //göndereceğin veriyi bytlara çevir. (TAMAMLA)
             string sonuc = Program.serial.ReadExisting(); // veriyş string türünde sonuca at
@@ -59,6 +60,9 @@ namespace deneme
 
             themaSet(Program.appSettings.thema);
 
+
+            //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03 };
+            //byte checksum = checksum_calculate(array, array.Length);
 
         }
 
@@ -85,7 +89,7 @@ namespace deneme
 
             /*Veri okuduğun alan
             string data = "";
-            while (true)
+            while (true) 
             {
                 try
                 {
@@ -109,7 +113,13 @@ namespace deneme
                 data[i] = Convert.ToByte(Program.serial.ReadByte());
             }
 
-            /*'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U', 'T', 'K*/
+            /*
+              
+             
+                'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U', 'T', 'K
+                
+             
+             */
 
             if (data != null)
             {
@@ -117,25 +127,86 @@ namespace deneme
                 {
                     if (data[10] == 'U' && data[11] == 'T' && data[12] == 'K')
                     {
-                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 1);  
+                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 4);
 
+                        if(calculated_checksum == data[9])
+                        {
+                            byte[] newData = new byte[DATA_PACKET_LEN - 7];
+                            Array.Copy(data, 3, newData, 0, DATA_PACKET_LEN - 7);
+                            dataProcess(newData);
+                        }
+                        else
+                        {
+                            MessageBox.Show("error data checksum");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("error data stop");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("hata");
+                    MessageBox.Show("error data start");
                 }
             }
             else
             {
                 MessageBox.Show("nulll be nullllll");
             }
-             
+        }
+
+        enum COMMUNICATION_INFO_BYTES
+        {
+            PING = 49,
+            PONG = 50
+        }
 
 
+        const byte TABLE_MAX_PARAMATER_NUMBER = 48;
+
+        void dataProcess(byte[] data)
+        {
+            if (data[1] >= 1 && data[1] <= TABLE_MAX_PARAMATER_NUMBER)
+            {
+                if (data[1] == 4 || data[1] == 5 || data[1] == 6 || data[1] == 7)
+                {
+                    float floatData = (float)Convert.ToDouble(data[2]);
+                }
+                else
+                {
+                    int intData = (int)Convert.ToInt32(data[2]);
+                }
+                tableSetUSerValueByCode(data[1], data[3].ToString());
+            }
+            else
+            {
+
+            }
+        }
+
+        void tableSetUSerValueByCode(byte code, object value)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) //son satır boşya ona hata veriyormuş. dataGridView1.Rows.Count -> dataGridView1.Rows.Count - 1 yaptım
+            {
+                try
+                {
+                    string codeStr = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    codeStr = codeStr.Trim('#').Trim('*');
+                    int paramaterCode = Convert.ToInt32(codeStr.Substring(2, codeStr.Length - 2));
+                    if (paramaterCode == code)
+                    {
+
+                        dataGridView1.Rows[i].Cells[6].Value = value;
+                    }
 
 
-
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         void tablefill(List<Parameter> parameters)

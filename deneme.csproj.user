@@ -19,6 +19,9 @@
     <Compile Update="SifreDegistir.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="WeeklyPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

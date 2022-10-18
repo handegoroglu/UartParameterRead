@@ -101,5 +101,10 @@ namespace deneme
 
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            WeeklyPlan weeklyPlan = new WeeklyPlan();
+            weeklyPlan.ShowDialog();
+        }
     }
 }
