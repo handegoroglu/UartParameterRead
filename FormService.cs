@@ -46,15 +46,6 @@ namespace deneme
 
 
 
-            /*VERİ ALACAĞIN YER BURASI
-            //göndereceğin veriyi bytlara çevir. (TAMAMLA)
-            string sonuc = Program.serial.ReadExisting(); // veriyş string türünde sonuca at
-            byte[] array = Program.serial.Encoding.GetBytes(sonuc); //sonucu array'e at
-            var hexString= BitConverter.ToString(array); //string türünden hex e çevir array'i
-            */
-
-
-
             Program.serial.DataReceived += SerialPort_DataReceived;
             Program.serial.ReadTimeout = 1000;
 
@@ -95,7 +86,7 @@ namespace deneme
 
             /*
               
-             
+                Haberleşme Paketi
                 'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U', 'T', 'K
                 
              
