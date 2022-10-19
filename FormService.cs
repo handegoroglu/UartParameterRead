@@ -149,7 +149,7 @@ namespace deneme
                 {
                     int intData = (int)Convert.ToInt32(data[2]);
                 }
-                tableSetUSerValueByCode(data[1], data[3].ToString());
+                //tableSetUSerValueByCode(data[1], data[3].ToString());
             }
             else
             {
