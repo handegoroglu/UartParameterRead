@@ -94,6 +94,7 @@ namespace deneme
 
             if (data != null)
             {
+
                 if (data[0] == 'H' && data[1] == 'N' && data[2] == 'D')
                 {
                     if (data[10] == 'U' && data[11] == 'T' && data[12] == 'K')
