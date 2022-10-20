@@ -74,10 +74,10 @@ namespace deneme
             else
                 return BitConverter.GetBytes(checksum_total)[3];
         }
-
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
+            
             const int DATA_PACKET_LEN = 11;
             byte[] data = new byte[DATA_PACKET_LEN];
             for (int i = 0; i < DATA_PACKET_LEN; i++) 
