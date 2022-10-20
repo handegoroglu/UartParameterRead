@@ -77,17 +77,18 @@ namespace deneme
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            const int DATA_PACKET_LEN = 13;
-            byte[] data = new byte[DATA_PACKET_LEN];
-            for (int i = 0; i < DATA_PACKET_LEN; i++)
-            {
-                data[i] = Convert.ToByte(Program.serial.ReadByte());
-            }
 
+            const int DATA_PACKET_LEN = 11;
+            byte[] data = new byte[DATA_PACKET_LEN];
+            for (int i = 0; i < DATA_PACKET_LEN; i++) 
+             {
+                 data[i] = Convert.ToByte(Program.serial.ReadByte());
+             }
+           
             /*
               
                 Haberleşme Paketi
-                'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U', 'T', 'K
+                'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U'
                 
              
              */
@@ -97,9 +98,9 @@ namespace deneme
 
                 if (data[0] == 'H' && data[1] == 'N' && data[2] == 'D')
                 {
-                    if (data[10] == 'U' && data[11] == 'T' && data[12] == 'K')
+                    if (data[10] == 'U')
                     {
-                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 4);
+                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 4); 
 
                         if(calculated_checksum == data[9])
                         {
