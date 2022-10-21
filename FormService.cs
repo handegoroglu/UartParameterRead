@@ -102,6 +102,7 @@ namespace deneme
         }
 
         // 0x01, 0x03, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U', 0x01, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U'
+       
         byte[] packetFinder(byte[] buffer)
         {
             byte[]? packet = null;
@@ -124,8 +125,9 @@ namespace deneme
                         bufferShiftLeft(buffer, shiftIndex, DATA_PACKET_LEN + 1);
                     }
                 }
+            
             }
-
+           
             return packet;
         }
 
