@@ -15,6 +15,10 @@ using Windows.Storage;
 using Windows.ApplicationModel.Store.Preview;
 using System.Diagnostics;
 using System.ComponentModel;
+using Microsoft.Office.Interop.Outlook;
+using Application = System.Windows.Forms.Application;
+using Exception = System.Exception;
+using System;
 
 namespace deneme
 {
@@ -22,6 +26,10 @@ namespace deneme
     {
         List<Parameter> parameters = new List<Parameter>();
 
+
+        const int DATA_PACKET_LEN = 11;
+        byte[] serialBuffer = new byte[DATA_PACKET_LEN * 10];
+        int serialBufferCounter = 0;
 
 
         public FormService()
@@ -47,12 +55,11 @@ namespace deneme
 
 
             Program.serial.DataReceived += SerialPort_DataReceived;
-            Program.serial.ReadTimeout = 1000;
+            Program.serial.ReadTimeout = 10;
 
             themaSet(Program.appSettings.thema);
 
-
-            //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03 };
+            //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x30, 0x30, 0x00, 0x00, 0x00 };
             //byte checksum = checksum_calculate(array, array.Length);
 
         }
@@ -74,25 +81,100 @@ namespace deneme
             else
                 return BitConverter.GetBytes(checksum_total)[3];
         }
+        
+        //sola kaydırma
+        void bufferShiftLeft(byte[] buffer, int index/*5*/, int shiftCount/*2*/)
+        {
+            //kaydırılacak ilk byte: index , kaydırma sayısı:shiftCount 
+            if (buffer.Length >= index)
+            {
+                for (int i = index - shiftCount; i < buffer.Length; i++)
+                {
+                    buffer[i] = 0;
+                }
+            }
+
+            for (int i = index; i < buffer.Length; i++)//5, 6
+            {
+                buffer[i - shiftCount] = buffer[i];
+                buffer[i] = 0;
+            }
+        }
+
+        // 0x01, 0x03, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U', 0x01, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U'
+        byte[] packetFinder(byte[] buffer)
+        {
+            byte[]? packet = null;
+
+            for (int i = 0; i < buffer.Length - DATA_PACKET_LEN; i++)
+            {//H N D İle başlayan paketi bul
+                if (buffer[i] == (byte)'H' && buffer[i + 1] == (byte)'N' && buffer[i + 2] == (byte)'D')
+                {//paket u ile mi bitiyor?
+                    if (buffer[i + (DATA_PACKET_LEN - 1)] == (byte)'U')
+                    {   //paketin içine bufferdaki bulunan paketi kopyala
+                        packet = new byte[DATA_PACKET_LEN];
+
+                        Array.Copy(buffer, i, packet, 0, DATA_PACKET_LEN);
+                        int shiftIndex = i + DATA_PACKET_LEN + 1;
+                        if (buffer.Length == shiftIndex)
+                        {
+                            serialBufferCounter = 0;
+                        }
+                        //bulunan paketi silmek için sağ tarafı sola kaydır 
+                        bufferShiftLeft(buffer, shiftIndex, DATA_PACKET_LEN + 1);
+                    }
+                }
+            }
+
+            return packet;
+        }
+
+        int receiveCounter = 0;
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            while (true)
+            {
+                try
+                {
 
-            
-            const int DATA_PACKET_LEN = 11;
-            byte[] data = new byte[DATA_PACKET_LEN];
-            for (int i = 0; i < DATA_PACKET_LEN; i++) 
-             {
-                 data[i] = Convert.ToByte(Program.serial.ReadByte());
-             }
-           
+                    serialBuffer[serialBufferCounter] = Convert.ToByte(Program.serial.ReadByte());
+                    serialBufferCounter++;
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+            }
+
+            byte[]? value;
+            do
+            {
+                value = packetFinder(serialBuffer);
+                if (value != null)
+                {
+                    if (serialBufferCounter >= value.Length)
+                    {
+                        serialBufferCounter -= value.Length;//bufferda alan boşaldığı için serialbuffercounter'ı ilk boş indexe at 
+                    }
+                    receiveCounter++;
+                    dataReceived(value);
+                }
+            } while (value != null);
+
+
             /*
               
+
                 Haberleşme Paketi
-                'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U'
+                'H', 'N', 'D', 0X01(DeviceId), 0x01(FunctionId), 0x00, 0x01, 0x02, 0x03, [checksum], 'U' 01 02 03 04 05 60 07 08
                 
              
              */
 
+        }
+
+        void dataReceived(byte[] data)
+        {
             if (data != null)
             {
 
@@ -100,40 +182,44 @@ namespace deneme
                 {
                     if (data[10] == 'U')
                     {
-                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 4); 
+                        byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 2);
 
-                        if(calculated_checksum == data[9])
+                        if (calculated_checksum == data[9])
                         {
-                            byte[] newData = new byte[DATA_PACKET_LEN - 7];
-                            Array.Copy(data, 3, newData, 0, DATA_PACKET_LEN - 7);
+                            byte[] newData = new byte[DATA_PACKET_LEN - 5];
+                            Array.Copy(data, 3, newData, 0, DATA_PACKET_LEN - 5);
                             dataProcess(newData);
+
+                            sendAck();
                         }
                         else
                         {
-                            MessageBox.Show("error data checksum");
+                            Console.WriteLine("error data checksum");
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show("error data stop");
+                        Console.WriteLine("error data stop");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("error data start");
+                    Console.WriteLine("error data start");
                 }
             }
             else
             {
-                MessageBox.Show("nulll be nullllll");
+                Console.WriteLine("nulll be nullllll");
             }
         }
 
         enum COMMUNICATION_INFO_BYTES
         {
             PING = 49,
-            PONG = 50
+            PONG,
+            PARAMATERS_READ,
+            SEND_ACK
         }
 
 
@@ -143,15 +229,25 @@ namespace deneme
         {
             if (data[1] >= 1 && data[1] <= TABLE_MAX_PARAMATER_NUMBER)
             {
+                object? value = null;
+
+                byte[] valueArray = new byte[4];
+                Array.Copy(data, 2, valueArray, 0, 4);
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    Array.Reverse(valueArray);
+                }
+
                 if (data[1] == 4 || data[1] == 5 || data[1] == 6 || data[1] == 7)
                 {
-                    float floatData = (float)Convert.ToDouble(data[2]);
+                    value = BitConverter.ToSingle(valueArray);
                 }
                 else
                 {
-                    int intData = (int)Convert.ToInt32(data[2]);
+                    value = BitConverter.ToInt32(valueArray);
                 }
-                //tableSetUSerValueByCode(data[1], data[3].ToString());
+
+                tableSetUSerValueByCode(data[1], value);
             }
             else
             {
@@ -165,7 +261,7 @@ namespace deneme
             {
                 try
                 {
-                    string codeStr = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    string? codeStr = dataGridView1.Rows[i].Cells[0].Value.ToString();
                     codeStr = codeStr.Trim('#').Trim('*');
                     int paramaterCode = Convert.ToInt32(codeStr.Substring(2, codeStr.Length - 2));
                     if (paramaterCode == code)
@@ -243,9 +339,45 @@ namespace deneme
             System.Diagnostics.Process.Start("explorer.exe", Program.appSettings.webSite);
         }
 
+
+        bool sendData(byte deviceId, byte parameterCode, byte[] content)
+        {
+            try
+            {
+                byte[] data = new byte[] { (byte)'H', (byte)'N', (byte)'D', deviceId, parameterCode, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)'U' };
+
+                Array.Copy(content, 0, data, 5, content.Length);
+                data[9] = checksum_calculate(data, 9);
+
+                if (Program.serial.IsOpen)
+                {
+                    Program.serial.Write(data, 0, data.Length);
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        void sendAck()
+        {
+            sendData(1, (byte)COMMUNICATION_INFO_BYTES.SEND_ACK, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                sendData(1, (byte)COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public static bool IsAllDigits(string s)
