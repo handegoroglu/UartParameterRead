@@ -324,7 +324,9 @@ namespace deneme
         private async void button1_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
-            ToggleChangeState();
+            
+                ToggleChangeState();
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -332,7 +334,6 @@ namespace deneme
             //fabrika ayarlarını kullanıcı girişine yerleştir
 
             ToggleChangeState("#", false);
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
