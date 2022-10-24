@@ -91,6 +91,16 @@
         #endregion
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private CheckedListBox checkedListBox1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Saat;
+        private DataGridViewTextBoxColumn Pazartesi;
+        private DataGridViewTextBoxColumn Çarşamba;
+        private DataGridViewTextBoxColumn Perşembe;
+        private DataGridViewTextBoxColumn Salı;
+        private DataGridViewTextBoxColumn Cuma;
+        private DataGridViewTextBoxColumn Cumartesi;
+        private DataGridViewTextBoxColumn Pazar;
     }
 }
