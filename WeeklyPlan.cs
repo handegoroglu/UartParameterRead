@@ -1,4 +1,6 @@
-﻿using System;
+﻿using deneme.Models;
+using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,35 +14,49 @@ namespace deneme
 {
     public partial class WeeklyPlan : Form
     {
+        List<WeeklyPlanDays> weeklyPlanDays = new List<WeeklyPlanDays>();
         public WeeklyPlan()
         {
             InitializeComponent();
-            string günler = "Günler ";
-            TabPage myTabPage1 = new TabPage(günler);
-            tabControl1.TabPages.Add(myTabPage1);
+            /*
+            tabPage1.BackColor = Color.Black;
+            tabPage2.BackColor= Color.Black;
+            tabPage3.BackColor= Color.Black;
+            */
 
-            string haftaIçi = "Hafta İçi ";
-            TabPage myTabPage2 = new TabPage(haftaIçi);
-            tabControl1.TabPages.Add(myTabPage2);
+            //dosyadan parametre okuyor
+            weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
 
-            string haftaSonu = "Hafta Sonu ";
-            TabPage myTabPage3 = new TabPage(haftaSonu);
-            tabControl1.TabPages.Add(myTabPage3);
-
-            myTabPage1.BackColor = Color.Black;
-            myTabPage2.BackColor = Color.Black;
-            myTabPage3.BackColor = Color.Black;
+            tablefill(weeklyPlanDays);
+            
 
 
+        }
+        void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
+        {
+            dataGridView1.Rows.Clear();
 
-                
+            foreach (var weeklyPlanDay in weeklyPlanDays)
+            {
+                object[] values = new object[] { weeklyPlanDay.Saat, weeklyPlanDay.Pazartesi, weeklyPlanDay.Salı, weeklyPlanDay.Çarşamba, weeklyPlanDay.Perşembe, weeklyPlanDay.Cuma, weeklyPlanDay.Cumartesi, weeklyPlanDay.Pazar };
+                dataGridView1.Rows.Add(values);
+            }
 
+
+            dataGridView1.Refresh();
+            dataGridView1.RefreshEdit();
         }
 
         private void WeeklyPlan_Load(object sender, EventArgs e)
         {
 
             
+        }
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

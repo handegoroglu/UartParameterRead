@@ -324,8 +324,10 @@ namespace deneme
         private async void button1_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
-            
-                ToggleChangeState();
+
+            //BURASI BOZULDUU AHHH CEMİL BEY YA
+
+                //ToggleChangeState();
             
         }
 
@@ -452,9 +454,6 @@ namespace deneme
             comPortForm.ShowDialog();
         }
 
-
-
-
         private void button5_Click(object sender, EventArgs e)
         {
             //json sys dosyasına kaydetme
@@ -513,8 +512,6 @@ namespace deneme
         {
 
         }
-
-
 
         void themaSet(string thema)
         {

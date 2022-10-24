@@ -28,77 +28,178 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pazartesi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Salı = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Çarşamba = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Perşembe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cumartesi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pazar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabControl2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControl2
             // 
-            this.tabControl1.Location = new System.Drawing.Point(-3, -2);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(760, 527);
-            this.tabControl1.TabIndex = 1;
+            this.tabControl2.Controls.Add(this.tabPage1);
+            this.tabControl2.Controls.Add(this.tabPage2);
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(847, 891);
+            this.tabControl2.TabIndex = 0;
             // 
-            // checkedListBox1
+            // tabPage1
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "00:00 / 01:00",
-            "01:00 / 02:00",
-            "02:00 / 03:00",
-            "03:00 / 04:00",
-            "04:00 / 05:00",
-            "05:00 / 06:00",
-            "06:00 / 07:00",
-            "07:00 / 08:00",
-            "08:00 / 09:00",
-            "09:00 / 10:00",
-            "10:00 / 11:00",
-            "11:00 / 12:00",
-            "12:00 / 13:00",
-            "13:00 / 14:00",
-            "14:00 / 15:00",
-            "15:00 / 16:00",
-            "16:00 / 17:00",
-            "17:00 / 18:00",
-            "18:00 / 19:00",
-            "19:00 / 20:00",
-            "20:00 / 21:00",
-            "21:00 / 22:00",
-            "22:00 / 23:00",
-            "23:00 / 24:00"});
-            this.checkedListBox1.Location = new System.Drawing.Point(28, 76);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 436);
-            this.checkedListBox1.TabIndex = 2;
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(839, 863);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Günler";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Saat,
+            this.Pazartesi,
+            this.Salı,
+            this.Çarşamba,
+            this.Perşembe,
+            this.Cuma,
+            this.Cumartesi,
+            this.Pazar});
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(839, 863);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Saat
+            // 
+            this.Saat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Saat.HeaderText = "Saat";
+            this.Saat.Name = "Saat";
+            this.Saat.ReadOnly = true;
+            this.Saat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Pazartesi
+            // 
+            this.Pazartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Pazartesi.HeaderText = "Pazartesi";
+            this.Pazartesi.Name = "Pazartesi";
+            this.Pazartesi.ReadOnly = true;
+            this.Pazartesi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Salı
+            // 
+            this.Salı.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Salı.HeaderText = "Salı";
+            this.Salı.Name = "Salı";
+            this.Salı.ReadOnly = true;
+            this.Salı.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Çarşamba
+            // 
+            this.Çarşamba.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Çarşamba.HeaderText = "Çarşamba";
+            this.Çarşamba.Name = "Çarşamba";
+            this.Çarşamba.ReadOnly = true;
+            this.Çarşamba.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Perşembe
+            // 
+            this.Perşembe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Perşembe.HeaderText = "Perşembe";
+            this.Perşembe.Name = "Perşembe";
+            this.Perşembe.ReadOnly = true;
+            this.Perşembe.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cuma
+            // 
+            this.Cuma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cuma.HeaderText = "Cuma";
+            this.Cuma.Name = "Cuma";
+            this.Cuma.ReadOnly = true;
+            this.Cuma.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cumartesi
+            // 
+            this.Cumartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cumartesi.HeaderText = "Cumartesi";
+            this.Cumartesi.Name = "Cumartesi";
+            this.Cumartesi.ReadOnly = true;
+            this.Cumartesi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Pazar
+            // 
+            this.Pazar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Pazar.HeaderText = "Pazar";
+            this.Pazar.Name = "Pazar";
+            this.Pazar.ReadOnly = true;
+            this.Pazar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(839, 863);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Hafta İçi";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(839, 863);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Hafta Sonu";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // WeeklyPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 524);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(846, 889);
+            this.Controls.Add(this.tabControl2);
             this.Name = "WeeklyPlan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WeeklyPlan";
             this.Load += new System.EventHandler(this.WeeklyPlan_Load);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private TabControl tabControl1;
+
+        private TabControl tabControl2;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Saat;
         private DataGridViewTextBoxColumn Pazartesi;
+        private DataGridViewTextBoxColumn Salı;
         private DataGridViewTextBoxColumn Çarşamba;
         private DataGridViewTextBoxColumn Perşembe;
-        private DataGridViewTextBoxColumn Salı;
         private DataGridViewTextBoxColumn Cuma;
         private DataGridViewTextBoxColumn Cumartesi;
         private DataGridViewTextBoxColumn Pazar;
