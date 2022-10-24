@@ -40,6 +40,7 @@ namespace deneme
             {
                 object[] values = new object[] { weeklyPlanDay.Saat, weeklyPlanDay.Pazartesi, weeklyPlanDay.Salı, weeklyPlanDay.Çarşamba, weeklyPlanDay.Perşembe, weeklyPlanDay.Cuma, weeklyPlanDay.Cumartesi, weeklyPlanDay.Pazar };
                 dataGridView1.Rows.Add(values);
+               
             }
 
 

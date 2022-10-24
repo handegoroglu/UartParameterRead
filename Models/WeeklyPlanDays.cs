@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,12 +10,12 @@ namespace deneme.Models
     internal class WeeklyPlanDays
     {
         public string? Saat { get; set; }
-        public string? Pazartesi { get; set; }
-        public string? Salı { get; set; }
-        public string? Çarşamba { get; set; }
-        public string? Perşembe { get; set; }
-        public string? Cuma { get; set; }
-        public string? Cumartesi { get; set; }
-        public string? Pazar { get; set; }
+        public bool? Pazartesi { get; set; }
+        public bool? Salı { get; set; }
+        public bool? Çarşamba { get; set; }
+        public bool? Perşembe { get; set; }
+        public bool? Cuma { get; set; }
+        public bool? Cumartesi { get; set; }
+        public bool? Pazar { get; set; }
     }
 }
