@@ -58,18 +58,18 @@ namespace deneme
         }
         void tablefill(List<WeeklyPlanMidWeek> weeklyPlanMidWeek)
         {
-            dataGridView2.Rows.Clear();
+            dataGridView4.Rows.Clear();
 
             foreach (var weeklyPlanMidWek in weeklyPlanMidWeek)
             {
-                object[] values = new object[] { weeklyPlanMidWek.Saat, weeklyPlanMidWek.Pazartesi, weeklyPlanMidWek.Salı, weeklyPlanMidWek.Çarşamba, weeklyPlanMidWek.Perşembe, weeklyPlanMidWek.Cuma };
-                dataGridView2.Rows.Add(values);
+                object[] values = new object[] { weeklyPlanMidWek.Saat, weeklyPlanMidWek.Pazartesi};
+                dataGridView4.Rows.Add(values);
 
             }
 
 
-            dataGridView2.Refresh();
-            dataGridView2.RefreshEdit();
+            dataGridView4.Refresh();
+            dataGridView4.RefreshEdit();
         }
         void tablefill(List<WeeklyPlanWeekEnd> weeklyPlanWeekEnd)
         {
@@ -77,7 +77,7 @@ namespace deneme
 
             foreach (var weeklyPlanWekEnd in weeklyPlanWeekEnd)
             {
-                object[] values = new object[] { weeklyPlanWekEnd.Saat, weeklyPlanWekEnd.Cumartesi, weeklyPlanWekEnd.Pazar };
+                object[] values = new object[] { weeklyPlanWekEnd.Saat, weeklyPlanWekEnd.Cumartesi};
                 dataGridView3.Rows.Add(values);
 
             }

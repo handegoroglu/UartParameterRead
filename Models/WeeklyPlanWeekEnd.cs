@@ -11,6 +11,5 @@ namespace deneme.Models
 
         public string? Saat { get; set; } 
         public bool? Cumartesi { get; set; }
-        public bool? Pazar { get; set; }
     }
 }
