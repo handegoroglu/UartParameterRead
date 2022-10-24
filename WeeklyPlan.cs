@@ -15,6 +15,9 @@ namespace deneme
     public partial class WeeklyPlan : Form
     {
         List<WeeklyPlanDays> weeklyPlanDays = new List<WeeklyPlanDays>();
+        List<WeeklyPlanMidWeek> weeklyPlanMidWeek = new List<WeeklyPlanMidWeek>();
+        List<WeeklyPlanWeekEnd> weeklyPlanWeekEnd = new List<WeeklyPlanWeekEnd>();
+
         public WeeklyPlan()
         {
             InitializeComponent();
@@ -26,9 +29,15 @@ namespace deneme
 
             //dosyadan parametre okuyor
             weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
-
             tablefill(weeklyPlanDays);
-            
+
+            weeklyPlanMidWeek = Program.readObjectJson<List<WeeklyPlanMidWeek>>(Program.weeklyPlanMidWeekPath);
+            tablefill(weeklyPlanMidWeek);
+
+            weeklyPlanWeekEnd = Program.readObjectJson<List<WeeklyPlanWeekEnd>>(Program.weeklyPlanWeekEndPath);
+            tablefill(weeklyPlanWeekEnd);
+
+
 
 
         }
@@ -46,6 +55,36 @@ namespace deneme
 
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
+        }
+        void tablefill(List<WeeklyPlanMidWeek> weeklyPlanMidWeek)
+        {
+            dataGridView2.Rows.Clear();
+
+            foreach (var weeklyPlanMidWek in weeklyPlanMidWeek)
+            {
+                object[] values = new object[] { weeklyPlanMidWek.Saat, weeklyPlanMidWek.Pazartesi, weeklyPlanMidWek.Salı, weeklyPlanMidWek.Çarşamba, weeklyPlanMidWek.Perşembe, weeklyPlanMidWek.Cuma };
+                dataGridView2.Rows.Add(values);
+
+            }
+
+
+            dataGridView2.Refresh();
+            dataGridView2.RefreshEdit();
+        }
+        void tablefill(List<WeeklyPlanWeekEnd> weeklyPlanWeekEnd)
+        {
+            dataGridView3.Rows.Clear();
+
+            foreach (var weeklyPlanWekEnd in weeklyPlanWeekEnd)
+            {
+                object[] values = new object[] { weeklyPlanWekEnd.Saat, weeklyPlanWekEnd.Cumartesi, weeklyPlanWekEnd.Pazar };
+                dataGridView3.Rows.Add(values);
+
+            }
+
+
+            dataGridView3.Refresh();
+            dataGridView3.RefreshEdit();
         }
 
         private void WeeklyPlan_Load(object sender, EventArgs e)

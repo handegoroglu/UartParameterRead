@@ -69,6 +69,8 @@ namespace deneme
         public static string AppSettingsPath = appDataBasePath + @"Files\app_settings.json";
         public static string formNameItem = appDataBasePath + @"Files\app_settings.json";
         public static string weeklyPlanDaysPath = appDataBasePath + @"Files\\weeklyPlanDays.json";
+        public static string weeklyPlanMidWeekPath = appDataBasePath + @"Files\\weeklyPlanMidWeek.json";
+        public static string weeklyPlanWeekEndPath = appDataBasePath + @"Files\\weeklyPlanWeekEnd.json";
 
         public static string pathLogo = basePath + @"images\logo.png";
         public static string pathIconLogo = basePath + @"images\icon.ico";
@@ -76,10 +78,10 @@ namespace deneme
 
 
 
-        public static Image imgLogo;
-        public static Icon iconLogo;
-        public static AppSettings appSettings;
-        public static Image manufactureLogo;
+        public static Image ?imgLogo;
+        public static Icon ?iconLogo;
+        public static AppSettings ?appSettings;
+        public static Image ?manufactureLogo;
 
 
         public static SerialPort serial = new SerialPort();
