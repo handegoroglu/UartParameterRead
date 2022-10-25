@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.UI.Notifications;
+using Windows.UI.Xaml;
+using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace deneme
 {
@@ -30,11 +32,15 @@ namespace deneme
             weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
             tablefill(weeklyPlanDays);
 
-           
+
 
         }
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
+            dataGridView1.Columns[0].DefaultCellStyle.BackColor=Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor= Color.LightGray;
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor= Color.LightGray;
             dataGridView1.Rows.Clear();
 
             foreach (var weeklyPlanDay in weeklyPlanDays)
@@ -43,11 +49,12 @@ namespace deneme
                 dataGridView1.Rows.Add(values);
                 dataGridView1.AllowUserToAddRows = false; //son satırı kaldır
 
-            }
-             
 
+            }
+            
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
+            
         }
         
    
@@ -58,7 +65,16 @@ namespace deneme
             
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
-       
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            DependencyProperty p;
+            var checBox = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]);
+
+        }
     }
 }
