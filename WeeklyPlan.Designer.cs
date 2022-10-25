@@ -35,16 +35,16 @@
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pazartesi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Salı = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Çarşamba = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Perşembe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cuma = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Cumartesi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Pazar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Haftaici = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Haftasonu = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Haftaici = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Pazar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Cumartesi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Cuma = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Perşembe = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Çarşamba = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Salı = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Pazartesi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,8 +112,67 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 45;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(846, 308);
+            this.dataGridView1.Size = new System.Drawing.Size(846, 409);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // Haftasonu
+            // 
+            this.Haftasonu.HeaderText = "Hafta Sonu";
+            this.Haftasonu.Name = "Haftasonu";
+            // 
+            // Haftaici
+            // 
+            this.Haftaici.HeaderText = "Hafta İçi";
+            this.Haftaici.Name = "Haftaici";
+            // 
+            // Pazar
+            // 
+            this.Pazar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Pazar.HeaderText = "Pazar";
+            this.Pazar.Name = "Pazar";
+            this.Pazar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Cumartesi
+            // 
+            this.Cumartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cumartesi.HeaderText = "Cumartesi";
+            this.Cumartesi.Name = "Cumartesi";
+            this.Cumartesi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Cuma
+            // 
+            this.Cuma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cuma.HeaderText = "Cuma";
+            this.Cuma.Name = "Cuma";
+            this.Cuma.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Perşembe
+            // 
+            this.Perşembe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Perşembe.HeaderText = "Perşembe";
+            this.Perşembe.Name = "Perşembe";
+            this.Perşembe.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Çarşamba
+            // 
+            this.Çarşamba.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Çarşamba.HeaderText = "Çarşamba";
+            this.Çarşamba.Name = "Çarşamba";
+            this.Çarşamba.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Salı
+            // 
+            this.Salı.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Salı.HeaderText = "Salı";
+            this.Salı.Name = "Salı";
+            this.Salı.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Pazartesi
+            // 
+            this.Pazartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Pazartesi.HeaderText = "Pazartesi";
+            this.Pazartesi.Name = "Pazartesi";
+            this.Pazartesi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Saat
             // 
@@ -123,70 +182,11 @@
             this.Saat.ReadOnly = true;
             this.Saat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Pazartesi
-            // 
-            this.Pazartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Pazartesi.HeaderText = "Pazartesi";
-            this.Pazartesi.Name = "Pazartesi";
-            this.Pazartesi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Salı
-            // 
-            this.Salı.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Salı.HeaderText = "Salı";
-            this.Salı.Name = "Salı";
-            this.Salı.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Çarşamba
-            // 
-            this.Çarşamba.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Çarşamba.HeaderText = "Çarşamba";
-            this.Çarşamba.Name = "Çarşamba";
-            this.Çarşamba.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Perşembe
-            // 
-            this.Perşembe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Perşembe.HeaderText = "Perşembe";
-            this.Perşembe.Name = "Perşembe";
-            this.Perşembe.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Cuma
-            // 
-            this.Cuma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cuma.HeaderText = "Cuma";
-            this.Cuma.Name = "Cuma";
-            this.Cuma.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Cumartesi
-            // 
-            this.Cumartesi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cumartesi.HeaderText = "Cumartesi";
-            this.Cumartesi.Name = "Cumartesi";
-            this.Cumartesi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Pazar
-            // 
-            this.Pazar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Pazar.HeaderText = "Pazar";
-            this.Pazar.Name = "Pazar";
-            this.Pazar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Haftaici
-            // 
-            this.Haftaici.HeaderText = "Hafta İçi";
-            this.Haftaici.Name = "Haftaici";
-            // 
-            // Haftasonu
-            // 
-            this.Haftasonu.HeaderText = "Hafta Sonu";
-            this.Haftasonu.Name = "Haftasonu";
-            // 
             // WeeklyPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 308);
+            this.ClientSize = new System.Drawing.Size(846, 409);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WeeklyPlan";
