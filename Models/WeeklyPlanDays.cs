@@ -17,5 +17,7 @@ namespace deneme.Models
         public bool? Cuma { get; set; }
         public bool? Cumartesi { get; set; }
         public bool? Pazar { get; set; }
+        public bool? Haftaiçi { get; set; }
+        public bool? Haftasonu { get; set; }
     }
 }
