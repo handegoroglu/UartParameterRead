@@ -282,9 +282,11 @@ namespace deneme
 
         void tablefill(List<Parameter> parameters)
         {
+            /*
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            */
             dataGridView1.Rows.Clear();
 
             foreach (var parameter in parameters)
@@ -330,7 +332,7 @@ namespace deneme
 
             //BURASI BOZULDUU AHHH CEMİL BEY YA
 
-                //ToggleChangeState();
+                ToggleChangeState();
             
         }
 

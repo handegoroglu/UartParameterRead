@@ -23,11 +23,6 @@ namespace deneme
         public WeeklyPlan()
         {
             InitializeComponent();
-            /*
-            tabPage1.BackColor = Color.Black;
-            tabPage2.BackColor= Color.Black;
-            tabPage3.BackColor= Color.Black;
-            */
 
             //dosyadan parametre okuyor
             weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
@@ -38,11 +33,14 @@ namespace deneme
         }
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
+            /*
             dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            */
             dataGridView1.Rows.Clear();
+
 
             foreach (var weeklyPlanDay in weeklyPlanDays)
             {
