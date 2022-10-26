@@ -1,5 +1,6 @@
 ﻿using deneme.Models;
 using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Outlook;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,10 +38,10 @@ namespace deneme
         }
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
-            dataGridView1.Columns[0].DefaultCellStyle.BackColor=Color.LightGray;
+            dataGridView1.Columns[0].DefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor= Color.LightGray;
-            dataGridView1.RowHeadersDefaultCellStyle.BackColor= Color.LightGray;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.Rows.Clear();
 
             foreach (var weeklyPlanDay in weeklyPlanDays)
@@ -51,18 +52,10 @@ namespace deneme
 
 
             }
-            
+
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
-            
-        }
-        
-   
 
-        private void WeeklyPlan_Load(object sender, EventArgs e)
-        {
-
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -70,11 +63,44 @@ namespace deneme
             Close();
         }
 
-        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            DependencyProperty p;
-            var checBox = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]);
 
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 9)
+            {
+                bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                if (a == true)
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[6].Value = true;
+                    dataGridView1.Rows[e.RowIndex].Cells[7].Value = true;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[6].Value = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[7].Value = false;
+                }
+            }
+            if (e.ColumnIndex == 8)
+            {
+                bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                if (a == true)
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[5].Value = true;
+                    dataGridView1.Rows[e.RowIndex].Cells[4].Value = true;
+                    dataGridView1.Rows[e.RowIndex].Cells[3].Value = true;
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = true;
+                    dataGridView1.Rows[e.RowIndex].Cells[1].Value = true;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[5].Value = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[4].Value = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[3].Value = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = false;
+                    dataGridView1.Rows[e.RowIndex].Cells[1].Value = false;
+                }
+            }
         }
+
     }
 }
