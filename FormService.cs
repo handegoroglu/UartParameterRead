@@ -24,10 +24,48 @@ namespace deneme
 {
     public partial class FormService : Form
     {
+        private int receiveCounter1;
+
+        public int GetreceiveCounter()
+        {
+            return receiveCounter1;
+        }
+        const int TABLE_MAX_PARAMATER_INDEX = 32;
+        public void SetreceiveCounter(int value)
+        {
+            receiveCounter1 = value;
+
+            lbl_communicationCounter.Invoke(() =>
+            {
+                lbl_communicationCounter.Text = value.ToString() + "/" + TABLE_MAX_PARAMATER_INDEX;
+            });
+        }
+
+        private int transmitCounter1;
+
+        public int GettransmitCounter()
+        {
+            return transmitCounter1;
+        }
+
+        public void SettransmitCounter(int value)
+        {
+            transmitCounter1 = value;
+
+            lbl_communicationCounter.Invoke(() =>
+            {
+                lbl_communicationCounter.Text = value.ToString() + "/" + TABLE_MAX_PARAMATER_INDEX;
+            });
+        }
+
         List<Parameter> parameters = new List<Parameter>();
 
 
         const int DATA_PACKET_LEN = 11;
+        const int ACK_WAIT_TIMEOUT = 2000;
+        const int MAX_ERROR_COUNT_PER_DATA = 3;
+
+
         byte[] serialBuffer = new byte[DATA_PACKET_LEN * 10];
         int serialBufferCounter = 0;
 
@@ -35,6 +73,7 @@ namespace deneme
         public FormService()
         {
             InitializeComponent();
+
 
             //Form ismini aldığımız yer
             this.Text = Program.appSettings.ServiceFormTitle;
@@ -59,8 +98,8 @@ namespace deneme
 
             themaSet(Program.appSettings.thema);
 
-            //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x30, 0x30, 0x00, 0x00, 0x00 };
-            //byte checksum = checksum_calculate(array, array.Length);
+            // byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x34, 0x00, 0x00, 0x00, 0x00 };
+            // byte checksum = checksum_calculate(array, array.Length);
 
         }
 
@@ -81,7 +120,7 @@ namespace deneme
             else
                 return BitConverter.GetBytes(checksum_total)[3];
         }
-        
+
         //sola kaydırma
         void bufferShiftLeft(byte[] buffer, int index/*5*/, int shiftCount/*2*/)
         {
@@ -102,7 +141,7 @@ namespace deneme
         }
 
         // 0x01, 0x03, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U', 0x01, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U'
-       
+
         byte[] packetFinder(byte[] buffer)
         {
             byte[]? packet = null;
@@ -125,9 +164,9 @@ namespace deneme
                         bufferShiftLeft(buffer, shiftIndex, DATA_PACKET_LEN + 1);
                     }
                 }
-            
+
             }
-           
+
             return packet;
         }
 
@@ -158,7 +197,7 @@ namespace deneme
                     {
                         serialBufferCounter -= value.Length;//bufferda alan boşaldığı için serialbuffercounter'ı ilk boş indexe at 
                     }
-                    receiveCounter++;
+                    SetreceiveCounter(GetreceiveCounter() + 1);
                     dataReceived(value);
                 }
             } while (value != null);
@@ -190,9 +229,10 @@ namespace deneme
                         {
                             byte[] newData = new byte[DATA_PACKET_LEN - 5];
                             Array.Copy(data, 3, newData, 0, DATA_PACKET_LEN - 5);
-                            dataProcess(newData);
-
-                            sendAck();
+                            if (dataProcess(newData))
+                            {
+                                sendAck();
+                            }
                         }
                         else
                         {
@@ -221,13 +261,14 @@ namespace deneme
             PING = 49,
             PONG,
             PARAMATERS_READ,
-            SEND_ACK
+            ACK
         }
 
 
         const byte TABLE_MAX_PARAMATER_NUMBER = 48;
+        bool isReceiveAck = false;
 
-        void dataProcess(byte[] data)
+        bool dataProcess(byte[] data)
         {
             if (data[1] >= 1 && data[1] <= TABLE_MAX_PARAMATER_NUMBER)
             {
@@ -240,7 +281,7 @@ namespace deneme
                     Array.Reverse(valueArray);
                 }
 
-                if (data[1] == 4 || data[1] == 5 || data[1] == 6 || data[1] == 7)
+                if (data[1] == 4 || data[1] == 5 || data[1] == 6 || data[1] == 7 || data[1] == 9 || data[1] == 43)
                 {
                     value = BitConverter.ToSingle(valueArray);
                 }
@@ -250,11 +291,24 @@ namespace deneme
                 }
 
                 tableSetUSerValueByCode(data[1], value);
-            }
-            else
-            {
 
+                SetreceiveCounter(GetreceiveCounter() + 1);
             }
+            else if (data[1] == Convert.ToByte(COMMUNICATION_INFO_BYTES.ACK))
+            {
+                isReceiveAck = true;
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private byte getParameterCode(int rowNo)
+        {
+            string? codeStr = dataGridView1.Rows[rowNo].Cells[0].Value.ToString();
+            codeStr = codeStr.Trim('#').Trim('*');
+            return Convert.ToByte(codeStr.Substring(2, codeStr.Length - 2));
         }
 
         void tableSetUSerValueByCode(byte code, object value)
@@ -263,9 +317,7 @@ namespace deneme
             {
                 try
                 {
-                    string? codeStr = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    codeStr = codeStr.Trim('#').Trim('*');
-                    int paramaterCode = Convert.ToInt32(codeStr.Substring(2, codeStr.Length - 2));
+                    byte paramaterCode = getParameterCode(i);
                     if (paramaterCode == code)
                     {
 
@@ -306,54 +358,139 @@ namespace deneme
 
         }
 
-        private async void ToggleChangeState(string prefix = "", bool delay = true)
+        private async void ToggleChangeState(string prefix = "", bool delay = true, int rowNo = -1)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (rowNo == -1)
             {
-                try
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
+                    try
+                    {
+                        //fabrika ayarları butonuna tıklandığında hem fabrika değerleri çekilir hemde PR başına # işareti getirilir.
+                        row.Cells[0].Value = prefix + row.Cells[0].Value.ToString()?.TrimStart('#').TrimStart('*') ?? String.Empty; //trim # ve * butona birkaç kez basıldığında kırpar
+                    }
+                    catch (Exception)
+                    {
+                    }
 
-                    row.Cells[6].Value = row.Cells[4].Value;
-                    //fabrika ayarları butonuna tıklandığında hem fabrika değerleri çekilir hemde PR başına # işareti getirilir.
-                    row.Cells[0].Value = prefix + row.Cells[0].Value.ToString()?.TrimStart('#').TrimStart('*') ?? String.Empty; //trim # ve * butona birkaç kez basıldığında kırpar
+                    if (delay) await Task.Delay(100);
                 }
-                catch (Exception)
+
+            }
+            else
+            {
+                //fabrika ayarları butonuna tıklandığında hem fabrika değerleri çekilir hemde PR başına # işareti getirilir.
+                dataGridView1.Rows[rowNo].Cells[0].Value = prefix + dataGridView1.Rows[rowNo].Cells[0].Value.ToString()?.TrimStart('#').TrimStart('*') ?? String.Empty; //trim # ve * butona birkaç kez basıldığında kırpar
+            }
+
+        }
+
+        private async Task<bool> parameterSend(int rowNo)
+        {
+            try
+            {
+                byte parameterCode = getParameterCode(rowNo);
+                object parameterValue = dataGridView1.Rows[rowNo].Cells[6].Value;
+
+                byte[] content = new byte[4];
+
+                if (parameterCode == 4 || parameterCode == 5 || parameterCode == 6 || parameterCode == 7 || parameterCode == 9 || parameterCode == 43)
                 {
+                    content = BitConverter.GetBytes(Convert.ToSingle(parameterValue));
+                }
+                else
+                {
+                    content = BitConverter.GetBytes(Convert.ToInt32(parameterValue));
                 }
 
-                if (delay) await Task.Delay(100);
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    Array.Reverse(content);
+                }
+
+                var result = await sendData(1, parameterCode, content, isWaitAnswer: true);
+                if (result)
+                {
+                    ToggleChangeState(delay: false, rowNo: rowNo);
+                }
+
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
-
         private async void button1_Click(object sender, EventArgs e)
         {
-            //fabrika ayarlarını kullanıcı girişine yerleştir
+            Task t = Task.Run(async () =>
+            {
+                SettransmitCounter(0);
+                // ToggleChangeState();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    try
+                    {
+                        if (row.Cells[0].Value.ToString()?[0] == '*' || row.Cells[0].Value.ToString()?[0] == '#')
+                        {
+                            bool result = true;
+                            int errorCounter = 0;
+                            do
+                            {
+                                result = await parameterSend(row.Index);
+                                if (result)
+                                {
+                                    ToggleChangeState(delay: false, rowNo: row.Index);
+                                    SettransmitCounter(GettransmitCounter() + 1);
+                                }
+                                else
+                                {
+                                    errorCounter++;
+                                }
+                            } while (result == false && errorCounter < MAX_ERROR_COUNT_PER_DATA);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
 
-            //BURASI BOZULDUU AHHH CEMİL BEY YA
 
-                ToggleChangeState();
-            
+                }
+            });
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                try
+                {
+                    row.Cells[6].Value = row.Cells[4].Value;
+                }
+                catch (Exception)
+                {
+                }
+            }
+
             ToggleChangeState("#", false);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //resim kutusuna dokununca url ye gidecek.
             System.Diagnostics.Process.Start("explorer.exe", Program.appSettings.webSite);
         }
 
 
-        bool sendData(byte deviceId, byte parameterCode, byte[] content)
+        private async Task<bool> sendData(byte deviceId, byte parameterCode, byte[] content, bool isWaitAnswer = false)
         {
             try
             {
+                isReceiveAck = false;
+
                 byte[] data = new byte[] { (byte)'H', (byte)'N', (byte)'D', deviceId, parameterCode, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)'U' };
 
                 Array.Copy(content, 0, data, 5, content.Length);
@@ -362,6 +499,22 @@ namespace deneme
                 if (Program.serial.IsOpen)
                 {
                     Program.serial.Write(data, 0, data.Length);
+                }
+
+
+                if (isWaitAnswer)
+                {
+                    DateTime sendTime = DateTime.Now;
+
+                    while ((DateTime.Now - sendTime) <= new TimeSpan(0, 0, 0, 0, ACK_WAIT_TIMEOUT))
+                    {
+                        if (isReceiveAck == true)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
                 }
 
                 return true;
@@ -374,15 +527,17 @@ namespace deneme
 
         void sendAck()
         {
-            sendData(1, (byte)COMMUNICATION_INFO_BYTES.SEND_ACK, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+            sendData(1, (byte)COMMUNICATION_INFO_BYTES.ACK, new byte[] { 0x00, 0x00, 0x00, 0x00 }).Wait();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
+            SetreceiveCounter(0);
             try
             {
                 sendData(1, (byte)COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+
             }
             catch (Exception)
             {

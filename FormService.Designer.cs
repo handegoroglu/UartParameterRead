@@ -42,6 +42,7 @@
             this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_communicationCounter = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -226,12 +227,24 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 6);
+            this.panel1.Controls.Add(this.lbl_communicationCounter);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1162, 54);
             this.panel1.TabIndex = 1;
+            // 
+            // lbl_communicationCounter
+            // 
+            this.lbl_communicationCounter.AutoSize = true;
+            this.lbl_communicationCounter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
+            this.lbl_communicationCounter.Location = new System.Drawing.Point(1138, 0);
+            this.lbl_communicationCounter.Name = "lbl_communicationCounter";
+            this.lbl_communicationCounter.Size = new System.Drawing.Size(24, 15);
+            this.lbl_communicationCounter.TabIndex = 3;
+            this.lbl_communicationCounter.Text = "0/0";
             // 
             // pictureBox1
             // 
@@ -531,6 +544,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -582,5 +596,6 @@
         private ToolStripSeparator toolStripMenuItem5;
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem windowsTemasıToolStripMenuItem;
+        private Label lbl_communicationCounter;
     }
 }
