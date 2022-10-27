@@ -31,7 +31,7 @@ namespace deneme
                 {
                     serial.PortName = serialPortSettings.port;
                     serial.BaudRate = serialPortSettings.baudrate;
-                }
+                } 
             }
             catch (Exception)
             {

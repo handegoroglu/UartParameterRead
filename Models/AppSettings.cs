@@ -17,6 +17,7 @@ namespace deneme.Models
         public string FormPasswordTitle { get; set; }
         public string FormRemoteControlTitle { get; set; }
         public string FormSifreDegistir { get; set; }
+        public string WeeklyPlanTitle { get; set; }
 
     }
 }

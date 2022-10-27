@@ -23,6 +23,11 @@ namespace deneme
         public WeeklyPlan()
         {
             InitializeComponent();
+            //Form ismini aldığımız yer
+            this.Text = Program.appSettings.WeeklyPlanTitle;
+
+            //icon'u icon.ico isimli dosyadan çek
+            this.Icon = Program.iconLogo;
 
             //dosyadan parametre okuyor
             weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
@@ -47,7 +52,6 @@ namespace deneme
                 object[] values = new object[] { weeklyPlanDay.Saat, weeklyPlanDay.Pazartesi, weeklyPlanDay.Salı, weeklyPlanDay.Çarşamba, weeklyPlanDay.Perşembe, weeklyPlanDay.Cuma, weeklyPlanDay.Cumartesi, weeklyPlanDay.Pazar, weeklyPlanDay.Haftaiçi, weeklyPlanDay.Haftasonu };
                 dataGridView1.Rows.Add(values);
                 dataGridView1.AllowUserToAddRows = false; //son satırı kaldır
-
 
             }
 
@@ -100,5 +104,9 @@ namespace deneme
             }
         }
 
+        private void WeeklyPlan_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -238,9 +238,8 @@
             // lbl_communicationCounter
             // 
             this.lbl_communicationCounter.AutoSize = true;
-            this.lbl_communicationCounter.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
-            this.lbl_communicationCounter.Location = new System.Drawing.Point(1138, 0);
+            this.lbl_communicationCounter.Location = new System.Drawing.Point(1129, 20);
             this.lbl_communicationCounter.Name = "lbl_communicationCounter";
             this.lbl_communicationCounter.Size = new System.Drawing.Size(24, 15);
             this.lbl_communicationCounter.TabIndex = 3;
