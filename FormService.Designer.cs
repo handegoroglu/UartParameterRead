@@ -106,7 +106,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1168, 614);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // button3
             // 
@@ -171,7 +170,6 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(1162, 498);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -477,26 +475,25 @@
             this.temayıDeğiştirToolStripMenuItem1.Name = "temayıDeğiştirToolStripMenuItem1";
             this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.temayıDeğiştirToolStripMenuItem1.Text = "Temayı Değiştir";
-            this.temayıDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.temayıDeğiştirToolStripMenuItem1_Click);
             // 
             // darkToolStripMenuItem
             // 
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.darkToolStripMenuItem.Text = "Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
             // lightToolStripMenuItem
             // 
             this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
-            this.lightToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lightToolStripMenuItem.Text = "Light";
             this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightToolStripMenuItem_Click);
             // 
             // windowsTemasıToolStripMenuItem
             // 
             this.windowsTemasıToolStripMenuItem.Name = "windowsTemasıToolStripMenuItem";
-            this.windowsTemasıToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.windowsTemasıToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.windowsTemasıToolStripMenuItem.Text = "Windows teması";
             this.windowsTemasıToolStripMenuItem.Click += new System.EventHandler(this.windowsTemasıToolStripMenuItem_Click);
             // 
@@ -514,19 +511,19 @@
             // iletişimToolStripMenuItem
             // 
             this.iletişimToolStripMenuItem.Name = "iletişimToolStripMenuItem";
-            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iletişimToolStripMenuItem.Text = "Hakkında";
             this.iletişimToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(165, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // kullanımKılavuzuToolStripMenuItem1
             // 
             this.kullanımKılavuzuToolStripMenuItem1.Name = "kullanımKılavuzuToolStripMenuItem1";
-            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
+            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.kullanımKılavuzuToolStripMenuItem1.Text = "Kullanım Kılavuzu";
             this.kullanımKılavuzuToolStripMenuItem1.Click += new System.EventHandler(this.kullanımKılavuzuToolStripMenuItem1_Click);
             // 
@@ -542,7 +539,6 @@
             this.Name = "FormService";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Parametre Ayarları";
-            this.Load += new System.EventHandler(this.FormService_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -354,11 +354,6 @@ namespace deneme
         }
 
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private async void ToggleChangeState(string prefix = "", bool delay = true, int rowNo = -1)
         {
             if (rowNo == -1)
@@ -427,39 +422,38 @@ namespace deneme
         private async void button1_Click(object sender, EventArgs e)
         {
             Task t = Task.Run(async () =>
-            {
-                SettransmitCounter(0);
-                // ToggleChangeState();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    try
-                    {
-                        if (row.Cells[0].Value.ToString()?[0] == '*' || row.Cells[0].Value.ToString()?[0] == '#')
-                        {
-                            bool result = true;
-                            int errorCounter = 0;
-                            do
-                            {
-                                result = await parameterSend(row.Index);
-                                if (result)
-                                {
-                                    ToggleChangeState(delay: false, rowNo: row.Index);
-                                    SettransmitCounter(GettransmitCounter() + 1);
-                                }
-                                else
-                                {
-                                    errorCounter++;
-                                }
-                            } while (result == false && errorCounter < MAX_ERROR_COUNT_PER_DATA);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                    }
+           {
+               SettransmitCounter(0);
+               foreach (DataGridViewRow row in dataGridView1.Rows)
+               {
+                   try
+                   {
+                       if (row.Cells[0].Value.ToString()?[0] == '*' || row.Cells[0].Value.ToString()?[0] == '#')
+                       {
+                           bool result = true;
+                           int errorCounter = 0;
+                           do
+                           {
+                               result = await parameterSend(row.Index);
+                               if (result)
+                               {
+                                   ToggleChangeState(delay: false, rowNo: row.Index);
+                                   SettransmitCounter(GettransmitCounter() + 1);
+                               }
+                               else
+                               {
+                                   errorCounter++;
+                               }
+                           } while (result == false && errorCounter < MAX_ERROR_COUNT_PER_DATA);
+                       }
+                   }
+                   catch (Exception)
+                   {
+                   }
 
 
-                }
-            });
+               }
+           });
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -556,6 +550,7 @@ namespace deneme
             }
             return true;
         }
+
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //Bir değişiklik algılandıktan  sonrası ..
@@ -600,11 +595,6 @@ namespace deneme
             }
             //elle değiştirilen satırlarda * işareti göstermek için
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = "*" + dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString().TrimStart('#').TrimStart('*'); //trim # ve * butona birkaç kez basıldığında kırpar
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
 
@@ -664,11 +654,6 @@ namespace deneme
         {
             SifreDegistir sifreDegistir = new SifreDegistir();
             sifreDegistir.ShowDialog();
-        }
-
-        private void temayıDeğiştirToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
         }
 
         void themaSet(string thema)
@@ -860,11 +845,6 @@ namespace deneme
 
         }
 
-        private void FormService_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAbout formAbout = new FormAbout();
@@ -874,11 +854,6 @@ namespace deneme
         private void windowsTemasıToolStripMenuItem_Click(object sender, EventArgs e)
         {
             themaSet("windows_thema");
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
 
         }
 

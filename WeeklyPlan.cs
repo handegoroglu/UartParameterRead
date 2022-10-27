@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using CheckBox = System.Windows.Forms.CheckBox;
+using Exception = System.Exception;
 
 namespace deneme
 {
@@ -36,11 +37,12 @@ namespace deneme
             tablefill(weeklyPlanDays);
 
             themaSet(Program.appSettings?.thema);
-
-
-
-
         }
+        const int DATA_PACKET_LEN = 11;
+        const int ACK_WAIT_TIMEOUT = 2000;
+        const int MAX_ERROR_COUNT_PER_DATA = 3;
+        bool isReceiveAck = false;
+
         void themaSet(string thema)
         {
             Program.themaSave(thema);
@@ -96,7 +98,7 @@ namespace deneme
         }
 
 
-         
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -154,7 +156,7 @@ namespace deneme
                 bool c = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
                 bool d = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
                 bool f = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[5].Value);
-                if (a==false || b==false || c==false || d==false || f==false)
+                if (a == false || b == false || c == false || d == false || f == false)
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[8].Value = false;
                 }
@@ -189,5 +191,30 @@ namespace deneme
             dataGridView1.ClearSelection();
 
         }
+
+
+        private byte checksum_calculate(byte[] array, int len)
+        {
+            int checksum_total = 0;
+
+            for (int i = 0; i < len; i++)
+            {
+                checksum_total += array[i];
+            }
+
+            checksum_total = ((checksum_total ^ 255) + 1);
+
+
+            if (BitConverter.IsLittleEndian)//Big endian
+                return BitConverter.GetBytes(checksum_total)[0];
+            else
+                return BitConverter.GetBytes(checksum_total)[3];
+        }
+
+
     }
+
+
+
 }
+
