@@ -61,7 +61,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.ayarlarıYükleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayarlarıKaydetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.şifreDeğiştirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
@@ -69,7 +68,6 @@
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsTemasıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.yardımToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iletişimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -106,7 +104,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1168, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1168, 614);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -123,6 +121,7 @@
             this.button3.Size = new System.Drawing.Size(188, 44);
             this.button3.TabIndex = 3;
             this.button3.Text = "Fabrika Ayarları";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -170,10 +169,11 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 113);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1162, 310);
+            this.dataGridView1.Size = new System.Drawing.Size(1162, 498);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // Code
             // 
@@ -282,6 +282,7 @@
             this.button1.Size = new System.Drawing.Size(188, 44);
             this.button1.TabIndex = 2;
             this.button1.Text = "Parametreleri Yükle";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -299,6 +300,7 @@
             this.button2.Size = new System.Drawing.Size(188, 44);
             this.button2.TabIndex = 3;
             this.button2.Text = "Parametreleri Oku";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -315,6 +317,7 @@
             this.button4.Size = new System.Drawing.Size(188, 44);
             this.button4.TabIndex = 4;
             this.button4.Text = "Ayarları Yükle";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -331,6 +334,7 @@
             this.button5.Size = new System.Drawing.Size(188, 44);
             this.button5.TabIndex = 5;
             this.button5.Text = "Ayarları Kaydet";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -347,6 +351,7 @@
             this.button6.Size = new System.Drawing.Size(192, 44);
             this.button6.TabIndex = 6;
             this.button6.Text = "Bağlantı Ayarları";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -381,8 +386,7 @@
             this.bağlantıToolStripMenuItem,
             this.toolStripMenuItem2,
             this.ayarlarıYükleToolStripMenuItem,
-            this.ayarlarıKaydetToolStripMenuItem,
-            this.toolStripMenuItem8});
+            this.ayarlarıKaydetToolStripMenuItem});
             this.uygulamaAyarlarıToolStripMenuItem.ForeColor = System.Drawing.Color.DarkGray;
             this.uygulamaAyarlarıToolStripMenuItem.Name = "uygulamaAyarlarıToolStripMenuItem";
             this.uygulamaAyarlarıToolStripMenuItem.Padding = new System.Windows.Forms.Padding(3, 0, 4, 0);
@@ -441,18 +445,12 @@
             this.ayarlarıKaydetToolStripMenuItem.Text = "Ayarları Kaydet";
             this.ayarlarıKaydetToolStripMenuItem.Click += new System.EventHandler(this.ayarlarıKaydetToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(192, 6);
-            // 
             // düzenleToolStripMenuItem
             // 
             this.düzenleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.şifreDeğiştirToolStripMenuItem1,
             this.toolStripMenuItem4,
-            this.temayıDeğiştirToolStripMenuItem1,
-            this.toolStripMenuItem5});
+            this.temayıDeğiştirToolStripMenuItem1});
             this.düzenleToolStripMenuItem.ForeColor = System.Drawing.Color.DarkGray;
             this.düzenleToolStripMenuItem.Name = "düzenleToolStripMenuItem";
             this.düzenleToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
@@ -461,14 +459,14 @@
             // şifreDeğiştirToolStripMenuItem1
             // 
             this.şifreDeğiştirToolStripMenuItem1.Name = "şifreDeğiştirToolStripMenuItem1";
-            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.şifreDeğiştirToolStripMenuItem1.Text = "Şifre Değiştir";
             this.şifreDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.şifreDeğiştirToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
             // 
             // temayıDeğiştirToolStripMenuItem1
             // 
@@ -477,7 +475,7 @@
             this.lightToolStripMenuItem,
             this.windowsTemasıToolStripMenuItem});
             this.temayıDeğiştirToolStripMenuItem1.Name = "temayıDeğiştirToolStripMenuItem1";
-            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.temayıDeğiştirToolStripMenuItem1.Text = "Temayı Değiştir";
             this.temayıDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.temayıDeğiştirToolStripMenuItem1_Click);
             // 
@@ -501,11 +499,6 @@
             this.windowsTemasıToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.windowsTemasıToolStripMenuItem.Text = "Windows teması";
             this.windowsTemasıToolStripMenuItem.Click += new System.EventHandler(this.windowsTemasıToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(151, 6);
             // 
             // yardımToolStripMenuItem
             // 
@@ -541,7 +534,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 450);
+            this.ClientSize = new System.Drawing.Size(1168, 638);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -597,12 +590,10 @@
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripMenuItem ayarlarıYükleToolStripMenuItem;
         private ToolStripMenuItem ayarlarıKaydetToolStripMenuItem;
-        private ToolStripSeparator toolStripMenuItem8;
         private ToolStripMenuItem bağlantıToolStripMenuItem;
         private ToolStripMenuItem fabrikaAyarlarıToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem2;
         private ToolStripSeparator toolStripMenuItem4;
-        private ToolStripSeparator toolStripMenuItem5;
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem windowsTemasıToolStripMenuItem;
         private Label lbl_communicationCounter;

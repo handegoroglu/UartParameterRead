@@ -23,6 +23,7 @@ namespace deneme
         public WeeklyPlan()
         {
             InitializeComponent();
+
             //Form ismini aldığımız yer
             this.Text = Program.appSettings.WeeklyPlanTitle;
 
@@ -31,10 +32,11 @@ namespace deneme
 
             //dosyadan parametre okuyor
             weeklyPlanDays = Program.readObjectJson<List<WeeklyPlanDays>>(Program.weeklyPlanDaysPath);
+
             tablefill(weeklyPlanDays);
 
-
             themaSet(Program.appSettings.thema);
+
 
 
 
@@ -50,7 +52,7 @@ namespace deneme
 
             if (thema == "dark")
             {
-                dataGridView1.BackgroundColor = Color.Black; dataGridView1.BorderStyle= BorderStyle.None;
+                dataGridView1.BackgroundColor = Color.Black; dataGridView1.BorderStyle = BorderStyle.None;
                 tableLayoutPanel1.BackColor = Color.Black;
                 this.BackColor = Color.Black;
             }
@@ -65,6 +67,7 @@ namespace deneme
             }
 
         }
+
 
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
@@ -83,12 +86,15 @@ namespace deneme
                 dataGridView1.Rows.Add(values);
                 dataGridView1.AllowUserToAddRows = false; //son satırı kaldır
 
+
             }
 
             dataGridView1.Refresh();
             dataGridView1.RefreshEdit();
 
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -98,6 +104,7 @@ namespace deneme
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            //haftasonunu seçince diğer checkboxlarıda işaretle
             if (e.ColumnIndex == 9)
             {
                 bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
@@ -112,6 +119,8 @@ namespace deneme
                     dataGridView1.Rows[e.RowIndex].Cells[7].Value = false;
                 }
             }
+
+            //haftaiçini seçince diğer checkboxlarıda işaretle
             if (e.ColumnIndex == 8)
             {
                 bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
@@ -122,6 +131,8 @@ namespace deneme
                     dataGridView1.Rows[e.RowIndex].Cells[3].Value = true;
                     dataGridView1.Rows[e.RowIndex].Cells[2].Value = true;
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = true;
+
+
                 }
                 else
                 {
@@ -132,15 +143,47 @@ namespace deneme
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = false;
                 }
             }
+            //haftaiçini seçtikten sonra günlerden birinin tik işaretini kaldırırsak haftaiçi seçimi silinsin
+
+            if (e.ColumnIndex == 1 || e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+            {
+                bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+                bool b = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[2].Value);
+                bool c = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[3].Value);
+                bool d = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
+                bool f = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[5].Value);
+                if (a==false || b==false || c==false || d==false || f==false)
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[8].Value = false;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[8].Value = true;
+                }
+
+            }
+            //haftasonu seçtikten sonra günlerden birinin tik işaretini kaldırırsak haftasonu seçimi silinsin
+            if (e.ColumnIndex == 6 || e.ColumnIndex == 7)
+            {
+                bool a = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[6].Value);
+                bool b = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[7].Value);
+                if (a == false || b == false)
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[9].Value = false;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[9].Value = true;
+                }
+
+            }
         }
 
-        private void WeeklyPlan_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
         {
+            //datagrid ilk açılışta hücre seçimini kapat
+            dataGridView1.ClearSelection();
 
         }
     }

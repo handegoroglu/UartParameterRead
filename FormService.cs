@@ -658,9 +658,6 @@ namespace deneme
                 tablefill(parameters);
             }
 
-
-
-
         }
 
         private void şifreDeğiştirToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -883,6 +880,12 @@ namespace deneme
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            //datagrid ilk açılışta hücre seçimini kapat
+            dataGridView1.ClearSelection();
         }
     }
 }
