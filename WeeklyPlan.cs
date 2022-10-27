@@ -25,7 +25,7 @@ namespace deneme
             InitializeComponent();
 
             //Form ismini aldığımız yer
-            this.Text = Program.appSettings.WeeklyPlanTitle;
+            this.Text = Program.appSettings?.WeeklyPlanTitle;
 
             //icon'u icon.ico isimli dosyadan çek
             this.Icon = Program.iconLogo;
@@ -35,7 +35,7 @@ namespace deneme
 
             tablefill(weeklyPlanDays);
 
-            themaSet(Program.appSettings.thema);
+            themaSet(Program.appSettings?.thema);
 
 
 
@@ -69,6 +69,7 @@ namespace deneme
         }
 
 
+
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
             /*
@@ -95,11 +96,12 @@ namespace deneme
         }
 
 
-
+         
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
         }
+
 
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -178,6 +180,7 @@ namespace deneme
 
             }
         }
+
 
 
         private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
