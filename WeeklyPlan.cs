@@ -34,8 +34,38 @@ namespace deneme
             tablefill(weeklyPlanDays);
 
 
+            themaSet(Program.appSettings.thema);
+
+
 
         }
+        void themaSet(string thema)
+        {
+            Program.themaSave(thema);
+            if (thema == "windows_thema")
+            {
+                var themaIsDark = Program.ShouldSystemUseDarkMode();
+                thema = themaIsDark ? "dark" : "light";
+            }
+
+            if (thema == "dark")
+            {
+                dataGridView1.BackgroundColor = Color.Black; dataGridView1.BorderStyle= BorderStyle.None;
+                tableLayoutPanel1.BackColor = Color.Black;
+                this.BackColor = Color.Black;
+            }
+            else
+            {
+
+
+                dataGridView1.BackgroundColor = Color.WhiteSmoke; dataGridView1.BorderStyle = BorderStyle.None;
+                tableLayoutPanel1.BackColor = Color.WhiteSmoke;
+                this.BackColor = Color.WhiteSmoke;
+
+            }
+
+        }
+
         void tablefill(List<WeeklyPlanDays> weeklyPlanDays)
         {
             /*
@@ -105,6 +135,11 @@ namespace deneme
         }
 
         private void WeeklyPlan_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

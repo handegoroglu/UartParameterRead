@@ -345,6 +345,7 @@ namespace deneme
             {
                 object[] values = new object[] { parameter.Code, parameter.Description, parameter.MinValue, parameter.MaxValue, parameter.DefaultValue, parameter.Unit, parameter.Value };
                 dataGridView1.Rows.Add(values);
+                dataGridView1.AllowUserToAddRows = false; //son satırı kaldır
             }
 
 
@@ -702,7 +703,7 @@ namespace deneme
             }
             else
             {
-
+                lbl_communicationCounter.ForeColor = Color.Black;
                 panel1.BackColor = Color.WhiteSmoke;
                 menuStrip1.BackColor = Color.WhiteSmoke;
                 menuStrip1.ForeColor = Color.Black;
