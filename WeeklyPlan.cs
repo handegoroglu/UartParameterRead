@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Outlook;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,11 +38,53 @@ namespace deneme
             tablefill(weeklyPlanDays);
 
             themaSet(Program.appSettings?.thema);
+
+            Program.serial.DataReceived += Serial_DataReceived;
         }
-        const int DATA_PACKET_LEN = 11;
-        const int ACK_WAIT_TIMEOUT = 2000;
-        const int MAX_ERROR_COUNT_PER_DATA = 3;
-        bool isReceiveAck = false;
+
+        private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            Program.dataReceived();
+
+            byte[]? value;
+            do
+            {
+                value = Program.findData();
+                if (value != null)
+                {
+                    dataProcess(value);
+                }
+            } while (value != null);
+        }
+        bool dataProcess(byte[] data)
+        {
+            byte[] content = new byte[4];
+            Array.Copy(data, 2, content, 0, 4);
+
+            if (data[1] >= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1 && data[1] <= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN6)
+            {
+                BitArray Bitarray = new BitArray(content);
+
+                int BitarrayIndex = 0;
+                for (int i = data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int x = 0; x < 7; x++)
+                    {
+                        dataGridView1.Rows[i].Cells[x+1].Value = Bitarray[BitarrayIndex];
+                        BitarrayIndex++;
+                        if(BitarrayIndex >= Bitarray.Length)
+                        {
+                            break;
+                        }
+                    }
+                    if (BitarrayIndex >= Bitarray.Length)
+                    {
+                        break;
+                    }
+                }
+            }
+            return true;
+        }
 
         void themaSet(string thema)
         {
@@ -211,7 +254,63 @@ namespace deneme
                 return BitConverter.GetBytes(checksum_total)[3];
         }
 
+        private void WeeklyPlan_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void WeeklyPlan_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.serial.DataReceived -= Serial_DataReceived;
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            Task t = Task.Run(async () =>
+            {
+                int arrayCount = Convert.ToInt32(Math.Ceiling(decimal.Parse(((7 * dataGridView1.Rows.Count) / 8).ToString())));
+                byte[] weeklyPlan = new byte[arrayCount];
+                BitArray weeklyPlanBits = new BitArray(weeklyPlan); //baytları bitlerine böldük 
+
+                int contentBitsIndex = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    try
+                    {
+                        for (int x = 0; x < 7; x++)
+                        {
+
+                            weeklyPlanBits[contentBitsIndex] = Convert.ToBoolean(dataGridView1.Rows[i].Cells[x + 1].Value);
+                            contentBitsIndex++;
+                        }
+
+
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+
+                weeklyPlanBits.CopyTo(weeklyPlan, 0);
+
+                bool result = true;
+                int errorCounter = 0;
+
+                for (int i = 0; i < weeklyPlan.Length + (weeklyPlan.Length / 4); i += 4)
+                {
+                    do
+                    {
+                        byte[] content = new byte[4];
+                        Array.Copy(weeklyPlan, i, content, 0, (i + 4) >= weeklyPlan.Length ? weeklyPlan.Length - i : 4);
+
+                        result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1, content, true);
+
+                    } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
+                }
+
+
+            });
+        }
     }
 
 
