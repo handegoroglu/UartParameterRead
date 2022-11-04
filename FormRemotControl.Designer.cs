@@ -118,6 +118,7 @@
             this.kademe1_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe1_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.kademe1_button.UseVisualStyleBackColor = false;
+            this.kademe1_button.Click += new System.EventHandler(this.kademe1_button_Click);
             // 
             // kademe2_button
             // 
@@ -131,6 +132,7 @@
             this.kademe2_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe2_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.kademe2_button.UseVisualStyleBackColor = false;
+            this.kademe2_button.Click += new System.EventHandler(this.kademe2_button_Click);
             // 
             // kademe3_button
             // 
@@ -144,6 +146,7 @@
             this.kademe3_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kademe3_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.kademe3_button.UseVisualStyleBackColor = false;
+            this.kademe3_button.Click += new System.EventHandler(this.kademe3_button_Click);
             // 
             // baglantı_ayarbutton
             // 
@@ -180,6 +183,7 @@
             this.kapat_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.kapat_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.kapat_button.UseVisualStyleBackColor = false;
+            this.kapat_button.Click += new System.EventHandler(this.kapat_button_Click);
             // 
             // ayar_button
             // 
@@ -219,6 +223,7 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -245,6 +250,7 @@
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FormRemotControl
             // 

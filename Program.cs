@@ -86,7 +86,7 @@ namespace deneme
         public static SerialPort serial = new SerialPort();
 
         static public bool isReceiveAck = false;
-        const int ACK_WAIT_TIMEOUT = 200000;
+        const int ACK_WAIT_TIMEOUT = 500;
         public const int MAX_ERROR_COUNT_PER_DATA = 3;
 
         private static string readFile(string path)
@@ -347,7 +347,13 @@ namespace deneme
             EXHAUST_FAN_SPEED,
             DURATION,
             IGNITION_PHASE_NAME,
-            ERROR_STATUS
+            ERROR_STATUS,
+            LEVEL0,
+            LEVEL1,
+            LEVEL2,
+            LEVEL3,
+            LEVEL4,
+            LEVEL5
         }
         /*
         * 1. Kritik ve akış olmayan veriler
