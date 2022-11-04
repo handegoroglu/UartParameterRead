@@ -40,6 +40,9 @@ namespace deneme
             themaSet(Program.appSettings?.thema);
 
             Program.serial.DataReceived += Serial_DataReceived;
+
+            byte[] data = new byte[6] { 0x00, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, 0xff, 0xff, 0xff, 0xff };
+            dataProcess(data);
         }
 
         private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -56,33 +59,40 @@ namespace deneme
                 }
             } while (value != null);
         }
+
         bool dataProcess(byte[] data)
         {
-            byte[] content = new byte[4];
-            Array.Copy(data, 2, content, 0, 4);
-
             if (data[1] >= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1 && data[1] <= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN6)
             {
-                BitArray Bitarray = new BitArray(content);
-
-                int BitarrayIndex = 0;
-                for (int i = data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1; i < dataGridView1.Rows.Count; i++)
+                DataGridViewCell[] cells = new DataGridViewCell[7 * dataGridView1.RowCount];
+                int cellIndex = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     for (int x = 0; x < 7; x++)
                     {
-                        dataGridView1.Rows[i].Cells[x+1].Value = Bitarray[BitarrayIndex];
-                        BitarrayIndex++;
-                        if(BitarrayIndex >= Bitarray.Length)
-                        {
-                            break;
-                        }
+                        cells[cellIndex] = dataGridView1.Rows[i].Cells[x + 1];
+                        //dataGridView1.Rows[i].Cells[x + 1].Value = true;
+                        cellIndex++;
                     }
-                    if (BitarrayIndex >= Bitarray.Length)
+                }
+
+                byte[] content = new byte[4];
+                Array.Copy(data, 2, content, 0, 4);
+
+                BitArray Bitarray = new BitArray(content);
+                int bitArrayIndex = 0;
+                for (int i = 32 * (data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1); i < Bitarray.Length + 32 * (data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1); i++)
+                {
+                    try
                     {
-                        break;
+                        cells[i].Value = Bitarray[bitArrayIndex];
+                    }
+                    catch (Exception)
+                    {
                     }
                 }
             }
+
             return true;
         }
 

@@ -24,6 +24,8 @@ namespace deneme
 {
     public partial class FormService : Form
     {
+        System.Windows.Forms.Timer updateRuntimeParametersTimer = new System.Windows.Forms.Timer();
+
         private int receiveCounter1;
 
         public int GetreceiveCounter()
@@ -72,6 +74,9 @@ namespace deneme
         {
             InitializeComponent();
 
+            updateRuntimeParametersTimer.Tick += UpdateRuntimeParametersTimer_Tick;
+            updateRuntimeParametersTimer.Interval = 1000;
+            updateRuntimeParametersTimer.Start();
 
             //Form ismini aldığımız yer
             this.Text = Program.appSettings.ServiceFormTitle;
@@ -101,8 +106,13 @@ namespace deneme
 
         }
 
+        private void UpdateRuntimeParametersTimer_Tick(object? sender, EventArgs e)
+        {
+            UpdateRuntimeValues();
+        }
 
- 
+
+
 
         // 0x01, 0x03, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U', 0x01, 0x48, 0x4E, 0x44, 0x01, 0x30, 0x00, 0x01, 0x02, 0x03, 'U'
 
@@ -117,7 +127,7 @@ namespace deneme
             do
             {
                 value = Program.findData();
-                if(value != null)
+                if (value != null)
                 {
                     dataProcess(value);
                 }
@@ -125,7 +135,7 @@ namespace deneme
         }
 
         const byte TABLE_MAX_PARAMATER_NUMBER = 48;
-        
+
 
         bool dataProcess(byte[] data)
         {
@@ -153,7 +163,7 @@ namespace deneme
 
                 SetreceiveCounter(GetreceiveCounter() + 1);
             }
-            
+
 
             return true;
         }
@@ -678,6 +688,30 @@ namespace deneme
         private void FormService_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.serial.DataReceived -= SerialPort_DataReceived;
+        }
+
+        private void FormService_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        void UpdateRuntimeValues()
+        {
+            string errorStatus = "";
+            if(RunTimeParamaters.ErrorStatus == 1)
+            {
+                errorStatus = "Yanma hatası";
+            }
+            else if(RunTimeParamaters.ErrorStatus == 2)
+            {
+                errorStatus = "Gaz yok";
+            }
+
+            label1.Text = RunTimeParamaters.AmbientTemperature + " - " + RunTimeParamaters.ExhaustGasTemperature + " - " + RunTimeParamaters.RoomFanSpeed +
+         " - " + RunTimeParamaters.ExhaustFanSpeed + " - " + RunTimeParamaters.Duration +
+         " - " + RunTimeParamaters.IgnitionPhaseName + " - " + errorStatus;
+
+
         }
     }
 }

@@ -72,6 +72,7 @@
             this.iletişimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.kullanımKılavuzuToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -234,6 +235,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 6);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbl_communicationCounter);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -511,21 +513,31 @@
             // iletişimToolStripMenuItem
             // 
             this.iletişimToolStripMenuItem.Name = "iletişimToolStripMenuItem";
-            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iletişimToolStripMenuItem.Text = "Hakkında";
             this.iletişimToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(165, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // kullanımKılavuzuToolStripMenuItem1
             // 
             this.kullanımKılavuzuToolStripMenuItem1.Name = "kullanımKılavuzuToolStripMenuItem1";
-            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
+            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.kullanımKılavuzuToolStripMenuItem1.Text = "Kullanım Kılavuzu";
             this.kullanımKılavuzuToolStripMenuItem1.Click += new System.EventHandler(this.kullanımKılavuzuToolStripMenuItem1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(441, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
             // 
             // FormService
             // 
@@ -540,6 +552,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Parametre Ayarları";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormService_FormClosed);
+            this.Load += new System.EventHandler(this.FormService_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -594,5 +607,6 @@
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem windowsTemasıToolStripMenuItem;
         private Label lbl_communicationCounter;
+        private Label label1;
     }
 }

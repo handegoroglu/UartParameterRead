@@ -189,12 +189,7 @@ namespace deneme
                     byte[] newData = new byte[DATA_PACKET_LEN - 5];
                     Array.Copy(value, 3, newData, 0, DATA_PACKET_LEN - 5);
 
-                    if (newData[1] == Convert.ToByte(Program.COMMUNICATION_INFO_BYTES.ACK))
-                    {
-                        Program.isReceiveAck = true;
-
-                    }
-                    else
+                    if (commonDataProcess(newData) == false)
                     {
                         return newData;
                     }
@@ -345,9 +340,22 @@ namespace deneme
             WEEKLY_PLAN3,
             WEEKLY_PLAN4,
             WEEKLY_PLAN5,
-            WEEKLY_PLAN6
+            WEEKLY_PLAN6,
+            AMBIENT_TEMPERATURE,
+            EXHAUST_GAS_TEMPERATURE,
+            ROOM_FAN_SPEED,
+            EXHAUST_FAN_SPEED,
+            DURATION,
+            IGNITION_PHASE_NAME,
+            ERROR_STATUS
         }
-
+        /*
+        * 1. Kritik ve akış olmayan veriler
+        * 2. Kritik ve akış olan veriler
+        * 3. kritik olmayan ve akış olan veriler
+        * 4. kritik olmayan ve akış olmayan veriler
+        * 
+        */
         static private byte checksum_calculate(byte[] array, int len)
         {
             int checksum_total = 0;
@@ -364,6 +372,68 @@ namespace deneme
                 return BitConverter.GetBytes(checksum_total)[0];
             else
                 return BitConverter.GetBytes(checksum_total)[3];
+        }
+        static bool commonDataProcess(byte[] data)
+        {
+
+            byte[] valueArray = new byte[4];
+            Array.Copy(data, 2, valueArray, 0, 4);
+            if (BitConverter.IsLittleEndian)//Big endian
+            {
+                Array.Reverse(valueArray);
+            }
+            if (data[1] == Convert.ToByte(Program.COMMUNICATION_INFO_BYTES.ACK))
+            {
+                Program.isReceiveAck = true;
+
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.AMBIENT_TEMPERATURE)
+            {
+                RunTimeParamaters.AmbientTemperature = BitConverter.ToSingle(valueArray);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_GAS_TEMPERATURE)
+            {
+                RunTimeParamaters.ExhaustGasTemperature = BitConverter.ToSingle(valueArray);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ROOM_FAN_SPEED)
+            {
+                RunTimeParamaters.RoomFanSpeed = BitConverter.ToUInt16(valueArray);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_FAN_SPEED)
+            {
+                RunTimeParamaters.ExhaustFanSpeed = BitConverter.ToUInt16(valueArray);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.DURATION)
+            {
+                RunTimeParamaters.Duration = BitConverter.ToUInt16(valueArray);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.IGNITION_PHASE_NAME)
+            {
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    RunTimeParamaters.IgnitionPhaseName = valueArray[0];
+                }
+                else
+                {
+                    RunTimeParamaters.IgnitionPhaseName = valueArray[1];
+                }
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ERROR_STATUS)
+            {
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    RunTimeParamaters.ErrorStatus = valueArray[0];
+                }
+                else
+                {
+                    RunTimeParamaters.ErrorStatus = valueArray[3];
+                }
+            }
+            else
+            {
+                return false;
+            }
+            return true;
         }
     }
 

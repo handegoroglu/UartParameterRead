@@ -58,4 +58,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <SourceGeneratorInput Remove="Models\RunTimeParamaters.cs" />
+  </ItemGroup>
+
 </Project>
