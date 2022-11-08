@@ -133,7 +133,7 @@ namespace deneme
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sendLevelAsync(COMMUNICATION_INFO_BYTES.LEVELOPEN);
+            sendLevelAsync(COMMUNICATION_INFO_BYTES.LEVELOPEN); 
         }
 
         private void kademe1_button_Click(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace deneme
 
         private void kapat_button_Click(object sender, EventArgs e)
         {
-            sendLevelAsync(COMMUNICATION_INFO_BYTES.LEVEL0);
+            sendLevelAsync(COMMUNICATION_INFO_BYTES.LEVEL_CLOSE);
         }
     }
 }

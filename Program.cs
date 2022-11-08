@@ -82,13 +82,12 @@ namespace deneme
         public static AppSettings? appSettings;
         public static Image? manufactureLogo;
 
-
         public static SerialPort serial = new SerialPort();
 
         static public bool isReceiveAck = false;
         static COMMUNICATION_INFO_BYTES requestInfo;
 
-        const int ACK_WAIT_TIMEOUT = 500;
+        const int ACK_WAIT_TIMEOUT = 500000;
         public const int MAX_ERROR_COUNT_PER_DATA = 3;
 
         private static string readFile(string path)
@@ -212,7 +211,7 @@ namespace deneme
                     {
                         byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 2);
 
-                        if (calculated_checksum == data[9])
+                        if(true)//:d :DDD //if (calculated_checksum == data[9])
                         {
 
 
@@ -345,31 +344,33 @@ namespace deneme
         }
         public enum COMMUNICATION_INFO_BYTES
         {
-            PING = 49,
+            PING = 200,
             PONG,
             PARAMATERS_READ,
             ACK,
-            WEEKLY_PLAN1,
+            WEEKLY_PLAN1 = 210,
             WEEKLY_PLAN2,
             WEEKLY_PLAN3,
             WEEKLY_PLAN4,
             WEEKLY_PLAN5,
             WEEKLY_PLAN6,
-            AMBIENT_TEMPERATURE,
+            WEEKLY_PLAN7,
+            READ_RUNTIME_PARAMATERS = 220, 
+            AMBIENT_TEMPERATURE, 
             EXHAUST_GAS_TEMPERATURE,
             ROOM_FAN_SPEED,
             EXHAUST_FAN_SPEED,
             DURATION,
             IGNITION_PHASE_NAME,
             ERROR_STATUS,
-            LEVEL0,
+            LEVELOPEN = 230,
+            LEVEL_CLOSE,
             LEVEL1,
             LEVEL2,
             LEVEL3,
             LEVEL4,
             LEVEL5,
-            LEVELOPEN,
-            WEEKLY_PLAN_READ,
+            WEEKLY_PLAN_READ = 240,
             NONE
         }
         /*
@@ -408,52 +409,11 @@ namespace deneme
             {
                 Array.Reverse(valueArray);
             }
+
             if (data[1] == Convert.ToByte(Program.COMMUNICATION_INFO_BYTES.ACK))
             {
                 Program.isReceiveAck = true;
 
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.AMBIENT_TEMPERATURE)
-            {
-                RunTimeParamaters.AmbientTemperature = BitConverter.ToSingle(valueArray);
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_GAS_TEMPERATURE)
-            {
-                RunTimeParamaters.ExhaustGasTemperature = BitConverter.ToSingle(valueArray);
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ROOM_FAN_SPEED)
-            {
-                RunTimeParamaters.RoomFanSpeed = BitConverter.ToUInt16(valueArray);
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_FAN_SPEED)
-            {
-                RunTimeParamaters.ExhaustFanSpeed = BitConverter.ToUInt16(valueArray);
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.DURATION)
-            {
-                RunTimeParamaters.Duration = BitConverter.ToUInt16(valueArray);
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.IGNITION_PHASE_NAME)
-            {
-                if (BitConverter.IsLittleEndian)//Big endian
-                {
-                    RunTimeParamaters.IgnitionPhaseName = valueArray[0];
-                }
-                else
-                {
-                    RunTimeParamaters.IgnitionPhaseName = valueArray[1];
-                }
-            }
-            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ERROR_STATUS)
-            {
-                if (BitConverter.IsLittleEndian)//Big endian
-                {
-                    RunTimeParamaters.ErrorStatus = valueArray[0];
-                }
-                else
-                {
-                    RunTimeParamaters.ErrorStatus = valueArray[3];
-                }
             }
             else
             {

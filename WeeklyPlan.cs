@@ -61,34 +61,17 @@ namespace deneme
 
         bool dataProcess(byte[] data)
         {
-            if (data[1] >= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1 && data[1] <= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN6)
-            {
-                DataGridViewCell[] cells = new DataGridViewCell[7 * dataGridView1.RowCount];
-                int cellIndex = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    for (int x = 0; x < 7; x++)
-                    {
-                        cells[cellIndex] = dataGridView1.Rows[i].Cells[x + 1];
-                        //dataGridView1.Rows[i].Cells[x + 1].Value = true;
-                        cellIndex++;
-                    }
-                }
+            if (data[1] >= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1 && data[1] <= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN7)
+            {//haftalık plan bir sayı olmadığı için onu sola dayalı yaptık he tama her 32 bit te 24 tane gönderiyoruz ya sen sonuncuyu 01 yapınca o yüzden birşey olmadı son 8 bit boş okii son byte boş 32tımımm
 
                 byte[] content = new byte[4];
                 Array.Copy(data, 2, content, 0, 4);
 
                 BitArray Bitarray = new BitArray(content);
-                int bitArrayIndex = 0;
-                for (int i = 32 * (data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1); i < Bitarray.Length + 32 * (data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1); i++)
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    try
-                    {
-                        cells[i].Value = Bitarray[bitArrayIndex];
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    dataGridView1.Rows[i].Cells[(data[1] - (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1) + 1].Value = Bitarray[i];//bittiii hadi dene
                 }
             }
 
@@ -265,7 +248,13 @@ namespace deneme
 
         private void WeeklyPlan_Load(object sender, EventArgs e)
         {
-
+            /* dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1, 0x01,0x00,0x00,0x00});
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, 0x01,0x00,0x00,0x00});//Göndermeye de bakalım mı yaz coolterm e
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN3, 0x01,0x00,0x00,0x00});
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN4, 0x01,0x00,0x00,0x00});
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN5, 0x01,0x00,0x00,0x00});
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN6, 0x01,0x00,0x00,0x00});
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN7, 0x01,0x00,0x00,0x00});*/
         }
 
         private void WeeklyPlan_FormClosed(object sender, FormClosedEventArgs e)
@@ -277,44 +266,38 @@ namespace deneme
         {
             Task t = Task.Run(async () =>
             {
-                int arrayCount = Convert.ToInt32(Math.Ceiling(decimal.Parse(((7 * dataGridView1.Rows.Count) / 8).ToString())));
-                byte[] weeklyPlan = new byte[arrayCount];
+
+                byte[] weeklyPlan = new byte[4];
                 BitArray weeklyPlanBits = new BitArray(weeklyPlan); //baytları bitlerine böldük 
 
-                int contentBitsIndex = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+
+                for (byte x = 0; x < 7; x++)
                 {
                     try
                     {
-                        for (int x = 0; x < 7; x++)
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
                         {
 
-                            weeklyPlanBits[contentBitsIndex] = Convert.ToBoolean(dataGridView1.Rows[i].Cells[x + 1].Value);
-                            contentBitsIndex++;
+                            try
+                            {
+                                weeklyPlanBits[i] = Convert.ToBoolean(dataGridView1.Rows[i].Cells[x + 1].Value);
+                            }
+                            catch (Exception)
+                            {
+                            }
                         }
+                        weeklyPlanBits.CopyTo(weeklyPlan, 0);
+                        bool result = true;//okuma kısmını düzenlemedik
+                        int errorCounter = 0;
+                        do
+                        {
+                            result = await Program.sendData(1, Convert.ToByte(((byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1) + x), weeklyPlan, true);
 
-
+                        } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
                     }
                     catch (Exception)
                     {
                     }
-                }
-
-                weeklyPlanBits.CopyTo(weeklyPlan, 0);
-
-                bool result = true;
-                int errorCounter = 0;
-
-                for (int i = 0; i < weeklyPlan.Length + (weeklyPlan.Length / 4); i += 4)
-                {
-                    do
-                    {
-                        byte[] content = new byte[4];
-                        Array.Copy(weeklyPlan, i, content, 0, (i + 4) >= weeklyPlan.Length ? weeklyPlan.Length - i : 4);
-
-                        result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1, content, true);
-
-                    } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
                 }
             });
         }

@@ -25,7 +25,7 @@ namespace deneme
 {
     public partial class FormService : Form
     {
-        System.Windows.Forms.Timer updateRuntimeParametersTimer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer requesteRuntimeParametersTimer = new System.Windows.Forms.Timer();
 
         private int receiveCounter1;
 
@@ -75,9 +75,9 @@ namespace deneme
         {
             InitializeComponent();
 
-            updateRuntimeParametersTimer.Tick += UpdateRuntimeParametersTimer_Tick;
-            updateRuntimeParametersTimer.Interval = 1000;
-            updateRuntimeParametersTimer.Start();
+            requesteRuntimeParametersTimer.Tick += requesteRuntimeParametersTimer_Tick;
+            requesteRuntimeParametersTimer.Interval = 10000;
+            requesteRuntimeParametersTimer.Start();
 
             //Form ismini aldığımız yer
             this.Text = Program.appSettings.ServiceFormTitle;
@@ -107,9 +107,9 @@ namespace deneme
 
         }
 
-        private void UpdateRuntimeParametersTimer_Tick(object? sender, EventArgs e)
+        private void requesteRuntimeParametersTimer_Tick(object? sender, EventArgs e)
         {
-            UpdateRuntimeValues();
+            Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.READ_RUNTIME_PARAMATERS, new byte[] { });//okeyy
         }
 
 
@@ -140,12 +140,13 @@ namespace deneme
 
         bool dataProcess(byte[] data)
         {
+            byte[] valueArray = new byte[4];
+            Array.Copy(data, 2, valueArray, 0, 4);
+
             if (data[1] >= 1 && data[1] <= TABLE_MAX_PARAMATER_NUMBER)
             {
                 object? value = null;
 
-                byte[] valueArray = new byte[4];
-                Array.Copy(data, 2, valueArray, 0, 4);
                 if (BitConverter.IsLittleEndian)//Big endian
                 {
                     Array.Reverse(valueArray);
@@ -163,6 +164,55 @@ namespace deneme
                 tableSetUSerValueByCode(data[1], value);
 
                 SetreceiveCounter(GetreceiveCounter() + 1);
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.AMBIENT_TEMPERATURE)
+            {
+                RunTimeParamaters.AmbientTemperature = BitConverter.ToSingle(valueArray);
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_GAS_TEMPERATURE)
+            {
+                RunTimeParamaters.ExhaustGasTemperature = BitConverter.ToSingle(valueArray);
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ROOM_FAN_SPEED)
+            {
+                RunTimeParamaters.RoomFanSpeed = BitConverter.ToUInt16(valueArray);
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.EXHAUST_FAN_SPEED)
+            {
+                RunTimeParamaters.ExhaustFanSpeed = BitConverter.ToUInt16(valueArray);
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.DURATION)
+            {
+                RunTimeParamaters.Duration = BitConverter.ToUInt16(valueArray);
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.IGNITION_PHASE_NAME)
+            {
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    RunTimeParamaters.IgnitionPhaseName = valueArray[0];
+                }
+                else
+                {
+                    RunTimeParamaters.IgnitionPhaseName = valueArray[1];
+                }
+                UpdateRuntimeValues();
+            }
+            else if (data[1] == (byte)COMMUNICATION_INFO_BYTES.ERROR_STATUS)
+            {
+                if (BitConverter.IsLittleEndian)//Big endian
+                {
+                    RunTimeParamaters.ErrorStatus = valueArray[0];
+                }
+                else
+                {
+                    RunTimeParamaters.ErrorStatus = valueArray[3];
+                }
+                UpdateRuntimeValues();
             }
 
 
@@ -703,7 +753,7 @@ namespace deneme
 
         private void FormService_Load(object sender, EventArgs e)
         {
-
+            UpdateRuntimeValues(); 
         }
 
         void UpdateRuntimeValues()
@@ -718,11 +768,21 @@ namespace deneme
                 errorStatus = "Gaz yok";
             }
 
-            label1.Text = RunTimeParamaters.AmbientTemperature + " - " + RunTimeParamaters.ExhaustGasTemperature + " - " + RunTimeParamaters.RoomFanSpeed +
-         " - " + RunTimeParamaters.ExhaustFanSpeed + " - " + RunTimeParamaters.Duration +
-         " - " + RunTimeParamaters.IgnitionPhaseName + " - " + errorStatus;
+            label1.Invoke(() =>
+            {
+                label1.Text = RunTimeParamaters.AmbientTemperature + " - " + RunTimeParamaters.ExhaustGasTemperature + " - " + RunTimeParamaters.RoomFanSpeed +
+" - " + RunTimeParamaters.ExhaustFanSpeed + " - " + RunTimeParamaters.Duration +
+" - " + RunTimeParamaters.IgnitionPhaseName + " - " + errorStatus;
+            });
 
 
+
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            //timerla biz soracakmışuz bu dataları
         }
     }
 }
