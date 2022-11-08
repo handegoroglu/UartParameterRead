@@ -8,11 +8,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
+using static deneme.Program;
 using CheckBox = System.Windows.Forms.CheckBox;
 using Exception = System.Exception;
 
@@ -40,9 +42,6 @@ namespace deneme
             themaSet(Program.appSettings?.thema);
 
             Program.serial.DataReceived += Serial_DataReceived;
-
-            byte[] data = new byte[6] { 0x00, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, 0xff, 0xff, 0xff, 0xff };
-            dataProcess(data);
         }
 
         private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -317,9 +316,25 @@ namespace deneme
 
                     } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
                 }
-
-
             });
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            sendReadWeeklyPlanRequest();
+        }
+
+        async Task sendReadWeeklyPlanRequest()
+        {
+            byte[] results = new byte[] { (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1, (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN3, (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN4, (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN5, (byte)COMMUNICATION_INFO_BYTES.WEEKLY_PLAN6 };
+
+            bool result = true;
+            int errorCounter = 0;
+            do
+            {
+                result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
+                errorCounter++;
+            } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
         }
     }
 

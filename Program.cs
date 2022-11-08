@@ -86,6 +86,8 @@ namespace deneme
         public static SerialPort serial = new SerialPort();
 
         static public bool isReceiveAck = false;
+        static COMMUNICATION_INFO_BYTES requestInfo;
+
         const int ACK_WAIT_TIMEOUT = 500;
         public const int MAX_ERROR_COUNT_PER_DATA = 3;
 
@@ -160,7 +162,7 @@ namespace deneme
 
                     serialBuffer[serialBufferCounter] = Convert.ToByte(Program.serial.ReadByte());
                     serialBufferCounter++;
-                    if(serialBufferCounter >= serialBuffer.Length)
+                    if (serialBufferCounter >= serialBuffer.Length)
                     {
                         serialBufferCounter = 0;
                     }
@@ -212,7 +214,7 @@ namespace deneme
 
                         if (calculated_checksum == data[9])
                         {
-         
+
 
                             return true;
                         }
@@ -290,11 +292,12 @@ namespace deneme
             sendData(1, (byte)COMMUNICATION_INFO_BYTES.ACK, new byte[] { 0x00, 0x00, 0x00, 0x00 }).Wait();
         }
 
-        static public async Task<bool> sendData(byte deviceId, byte parameterCode, byte[] content, bool isWaitAnswer = false)
+        static public async Task<bool> sendData(byte deviceId, byte parameterCode, byte[] content, bool isWaitAnswer = false, byte[] ?results = null)
         {
             try
             {
                 isReceiveAck = false;
+                requestInfo = COMMUNICATION_INFO_BYTES.NONE;
 
                 byte[] data = new byte[] { (byte)'H', (byte)'N', (byte)'D', deviceId, parameterCode, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)'U' };
 
@@ -313,13 +316,24 @@ namespace deneme
 
                     while ((DateTime.Now - sendTime) <= new TimeSpan(0, 0, 0, 0, ACK_WAIT_TIMEOUT))
                     {
+                        if(results != null)
+                        {
+                            foreach (var info in results)
+                            {
+                                if (Convert.ToByte(requestInfo) == info)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+
                         if (isReceiveAck == true)
                         {
                             return true;
                         }
                     }
 
-                    return false; 
+                    return false;
                 }
 
                 return true;
@@ -353,7 +367,10 @@ namespace deneme
             LEVEL2,
             LEVEL3,
             LEVEL4,
-            LEVEL5
+            LEVEL5,
+            LEVELOPEN,
+            WEEKLY_PLAN_READ,
+            NONE
         }
         /*
         * 1. Kritik ve akış olmayan veriler
@@ -379,8 +396,11 @@ namespace deneme
             else
                 return BitConverter.GetBytes(checksum_total)[3];
         }
+
+
         static bool commonDataProcess(byte[] data)
         {
+            requestInfo = (COMMUNICATION_INFO_BYTES)data[1];
 
             byte[] valueArray = new byte[4];
             Array.Copy(data, 2, valueArray, 0, 4);

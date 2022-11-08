@@ -19,6 +19,7 @@ using Microsoft.Office.Interop.Outlook;
 using Application = System.Windows.Forms.Application;
 using Exception = System.Exception;
 using System;
+using static deneme.Program;
 
 namespace deneme
 {
@@ -351,15 +352,25 @@ namespace deneme
         {
 
             SetreceiveCounter(0);
-            try
-            {
-                Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 });
+            sendReadParametersRequest();
+        }
 
-            }
-            catch (Exception)
-            {
+        async Task sendReadParametersRequest()
+        {
+            byte[] results = new byte[49];
 
+            for (byte i = 0; i < results.Length; i++)
+            {
+                results[i] = i;
             }
+
+            bool result = true;
+            int errorCounter = 0;
+            do
+            {
+                result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
+                errorCounter++;
+            } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
         }
 
         public static bool IsAllDigits(string s)
@@ -698,11 +709,11 @@ namespace deneme
         void UpdateRuntimeValues()
         {
             string errorStatus = "";
-            if(RunTimeParamaters.ErrorStatus == 1)
+            if (RunTimeParamaters.ErrorStatus == 1)
             {
                 errorStatus = "Yanma hatası";
             }
-            else if(RunTimeParamaters.ErrorStatus == 2)
+            else if (RunTimeParamaters.ErrorStatus == 2)
             {
                 errorStatus = "Gaz yok";
             }
