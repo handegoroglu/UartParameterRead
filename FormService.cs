@@ -782,7 +782,7 @@ namespace deneme
 
         private void label1_Click(object sender, EventArgs e)
         {
-            //timerla biz soracakmışuz bu dataları
+            
         }
     }
 }

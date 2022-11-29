@@ -211,9 +211,8 @@ namespace deneme
                     {
                         byte calculated_checksum = checksum_calculate(data, DATA_PACKET_LEN - 2);
 
-                        if(true)//:d :DDD //if (calculated_checksum == data[9])
+                        if (calculated_checksum == data[9])
                         {
-
 
                             return true;
                         }
