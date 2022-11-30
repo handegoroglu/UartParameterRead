@@ -163,14 +163,7 @@ namespace deneme
         private void button2_Click(object sender, EventArgs e)
         {
             /*BAĞLANTIYI KES BUTONU
-            timer1.Stop();
-            if (Program.serial.IsOpen == true)
-            {
-                Program.serial.Close();
-                label1.BackColor = Color.Transparent;
-                label1.ForeColor = Color.Red;
-                label1.Text = "Bağlantı Kapalı.";
-            }
+            
             */
             this.Close();
         }
@@ -182,6 +175,11 @@ namespace deneme
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

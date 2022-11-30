@@ -379,7 +379,7 @@ namespace deneme
         * 4. kritik olmayan ve akış olmayan veriler
         * 
         */
-        static private byte checksum_calculate(byte[] array, int len)
+        static public byte checksum_calculate(byte[] array, int len)
         {
             int checksum_total = 0;
 

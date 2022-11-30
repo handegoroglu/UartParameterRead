@@ -102,8 +102,8 @@ namespace deneme
 
             themaSet(Program.appSettings.thema);
 
-            // byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0x34, 0x00, 0x00, 0x00, 0x00 };
-            // byte checksum = checksum_calculate(array, array.Length);
+            //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0xCB, 0x00, 0x00, 0x00, 0x00, 0x55 };
+            //byte checksum = Program.checksum_calculate(array, array.Length);
 
         }
 
@@ -402,7 +402,11 @@ namespace deneme
         {
 
             SetreceiveCounter(0);
-            sendReadParametersRequest();
+            Task t = Task.Run(() =>
+            {
+sendReadParametersRequest();
+            });
+            
         }
 
         async Task sendReadParametersRequest()
@@ -562,6 +566,8 @@ namespace deneme
                 pictureBox1.BackColor = Color.Black;
                 tableLayoutPanel1.BackColor = Color.Black;
                 this.BackColor = Color.Black;
+                lbl_communicationCounter.ForeColor= Color.Gray;
+                lbl_anlikveri.ForeColor= Color.Gray;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
                 frm.BackColor = Color.Black;
@@ -582,6 +588,8 @@ namespace deneme
                 pictureBox1.BackColor = Color.WhiteSmoke;
                 tableLayoutPanel1.BackColor = Color.WhiteSmoke;
                 this.BackColor = Color.WhiteSmoke;
+                lbl_communicationCounter.ForeColor = Color.Black;
+                lbl_anlikveri.ForeColor = Color.Black;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
                 frm.BackColor = Color.WhiteSmoke;
@@ -761,18 +769,42 @@ namespace deneme
             string errorStatus = "";
             if (RunTimeParamaters.ErrorStatus == 1)
             {
-                errorStatus = "Yanma hatası";
+                errorStatus = "Black Out Alarm";
             }
             else if (RunTimeParamaters.ErrorStatus == 2)
             {
-                errorStatus = "Gaz yok";
+                errorStatus = "Flue Gas Temperature Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 3)
+            {
+                errorStatus = "Flue Gas Over Temperature Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 4)
+            {
+                errorStatus = "Flue Encoder Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 5)
+            {
+                errorStatus = "Ignation Failure Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 6)
+            {
+                errorStatus = "Pellet Absence Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 7)
+            {
+                errorStatus = "Over Temperature Thermal Safety Alarm";
+            }
+            else if (RunTimeParamaters.ErrorStatus == 8)
+            {
+                errorStatus = "Depression Failure Alarm";
             }
 
-            label1.Invoke(() =>
+            lbl_anlikveri.Invoke(() =>
             {
-                label1.Text = RunTimeParamaters.AmbientTemperature + " - " + RunTimeParamaters.ExhaustGasTemperature + " - " + RunTimeParamaters.RoomFanSpeed +
-" - " + RunTimeParamaters.ExhaustFanSpeed + " - " + RunTimeParamaters.Duration +
-" - " + RunTimeParamaters.IgnitionPhaseName + " - " + errorStatus;
+                lbl_anlikveri.Text = "Ortam Sıcaklığı:"+RunTimeParamaters.AmbientTemperature + " / " + "Egzoz Gazı Sıcaklığı:"+RunTimeParamaters.ExhaustGasTemperature + " / " + "Oda Fan Hızı:"+RunTimeParamaters.RoomFanSpeed +
+" / " + "Egzoz Fanı Hızı:"+RunTimeParamaters.ExhaustFanSpeed + " / " + "Süre:"+RunTimeParamaters.Duration +
+" / " + "Ateşleme Aşaması:"+RunTimeParamaters.IgnitionPhaseName + " / " + "Alarm Modu:"+errorStatus;
             });
 
 
