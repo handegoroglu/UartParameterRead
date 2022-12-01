@@ -44,7 +44,7 @@ namespace deneme
 
         private void ComPortForm_Load(object sender, EventArgs e)
         {
-            
+             
             foreach (string port in ports)
             {
                 // Port isimlerini combobox1'de gösteriyoruz.
