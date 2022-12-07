@@ -87,7 +87,7 @@ namespace deneme
         static public bool isReceiveAck = false;
         static COMMUNICATION_INFO_BYTES requestInfo;
 
-        const int ACK_WAIT_TIMEOUT = 500000;
+        const int ACK_WAIT_TIMEOUT = 500;
         public const int MAX_ERROR_COUNT_PER_DATA = 3;
 
         private static string readFile(string path)
