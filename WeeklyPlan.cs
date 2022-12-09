@@ -23,10 +23,11 @@ namespace deneme
     public partial class WeeklyPlan : Form
     {
         List<WeeklyPlanDays> weeklyPlanDays = new List<WeeklyPlanDays>();
+        bool isFormClosing = false;
 
         public WeeklyPlan()
         {
-            InitializeComponent();
+            InitializeComponent();//ne yapıyoruz şimdik problem öncelikle mevcut plan görüntülemiyo paket yolluyorum ama olmadı
 
             //Form ismini aldığımız yer
             this.Text = Program.appSettings?.WeeklyPlanTitle;
@@ -42,6 +43,13 @@ namespace deneme
             themaSet(Program.appSettings?.thema);
 
             Program.serial.DataReceived += Serial_DataReceived;
+
+            this.FormClosing += WeeklyPlan_FormClosing;
+        }
+
+        private void WeeklyPlan_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            isFormClosing = true;
         }
 
         private void Serial_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -62,8 +70,7 @@ namespace deneme
         bool dataProcess(byte[] data)
         {
             if (data[1] >= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1 && data[1] <= (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN7)
-            {//haftalık plan bir sayı olmadığı için onu sola dayalı yaptık he tama her 32 bit te 24 tane gönderiyoruz ya sen sonuncuyu 01 yapınca o yüzden birşey olmadı son 8 bit boş okii son byte boş 32tımımm
-
+            {
                 byte[] content = new byte[4];
                 Array.Copy(data, 2, content, 0, 4);
 
@@ -249,7 +256,7 @@ namespace deneme
         private void WeeklyPlan_Load(object sender, EventArgs e)
         {
             /* dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1, 0x01,0x00,0x00,0x00});
-             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, 0x01,0x00,0x00,0x00});//Göndermeye de bakalım mı yaz coolterm e
+             dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN2, 0x01,0x00,0x00,0x00});
              dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN3, 0x01,0x00,0x00,0x00});
              dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN4, 0x01,0x00,0x00,0x00});
              dataProcess(new byte[]{ 0x01, (byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN5, 0x01,0x00,0x00,0x00});
@@ -287,11 +294,17 @@ namespace deneme
                             }
                         }
                         weeklyPlanBits.CopyTo(weeklyPlan, 0);
-                        bool result = true;//okuma kısmını düzenlemedik
+                        bool result = true;
                         int errorCounter = 0;
                         do
                         {
+                            if (isFormClosing == true) //form kapantığında veri göndermeyi kes
+                            {
+                                return;
+                            }
+
                             result = await Program.sendData(1, Convert.ToByte(((byte)Program.COMMUNICATION_INFO_BYTES.WEEKLY_PLAN1) + x), weeklyPlan, true);
+                            errorCounter++;
 
                         } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
                     }
@@ -304,8 +317,13 @@ namespace deneme
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sendReadWeeklyPlanRequest();
+
+            Task t = Task.Run(() =>
+          {
+              sendReadWeeklyPlanRequest();
+          });
         }
+        
 
         async Task sendReadWeeklyPlanRequest()
         {

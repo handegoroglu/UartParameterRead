@@ -305,13 +305,14 @@ namespace deneme
                 if (Program.serial.IsOpen)
                 {
                     Program.serial.Write(data, 0, data.Length);
+
                 }
 
 
                 if (isWaitAnswer)
                 {
                     DateTime sendTime = DateTime.Now;
-
+                    
                     while ((DateTime.Now - sendTime) <= new TimeSpan(0, 0, 0, 0, ACK_WAIT_TIMEOUT))
                     {
                         if(results != null)

@@ -57,7 +57,7 @@ namespace deneme
             comboBox2.Items.Add("9600");
             comboBox2.Items.Add("19200");
             comboBox2.Items.Add("115200");
-            comboBox2.SelectedIndex = 2;
+            comboBox2.SelectedIndex = 0;
 
             //Bu esnada bağlantı yok.
             label1.Text = "Bağlantı Kapalı";

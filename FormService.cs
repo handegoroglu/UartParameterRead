@@ -26,6 +26,8 @@ namespace deneme
     public partial class FormService : Form
     {
         System.Windows.Forms.Timer requesteRuntimeParametersTimer = new System.Windows.Forms.Timer();
+        bool isFormClosing = false;
+
 
         private int receiveCounter1;
 
@@ -64,13 +66,6 @@ namespace deneme
         List<Parameter> parameters = new List<Parameter>();
 
 
-
-
-
-
-
-
-
         public FormService()
         {
             InitializeComponent();
@@ -95,7 +90,7 @@ namespace deneme
             dataGridView1.AutoGenerateColumns = false;
             tablefill(parameters);
 
-
+             
 
             Program.serial.DataReceived += SerialPort_DataReceived;
 
@@ -104,6 +99,8 @@ namespace deneme
 
             //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0xCB, 0x00, 0x00, 0x00, 0x00, 0x55 };
             //byte checksum = Program.checksum_calculate(array, array.Length);
+
+            
 
         }
 
@@ -336,41 +333,50 @@ namespace deneme
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            Task t = Task.Run(async () =>
+
+            SettransmitCounter(0);
+            Task t = Task.Run(() =>
            {
-               SettransmitCounter(0);
-               foreach (DataGridViewRow row in dataGridView1.Rows)
-               {
-                   try
-                   {
-                       if (row.Cells[0].Value.ToString()?[0] == '*' || row.Cells[0].Value.ToString()?[0] == '#')
-                       {
-                           bool result = true;
-                           int errorCounter = 0;
-                           do
-                           {
-                               result = await parameterSend(row.Index);
-                               if (result)
-                               {
-                                   ToggleChangeState(delay: false, rowNo: row.Index);
-                                   SettransmitCounter(GettransmitCounter() + 1);
-                               }
-                               else
-                               {
-                                   errorCounter++;
-                               }
-                           } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
-                       }
-                   }
-                   catch (Exception)
-                   {
-                   }
-
-
-               }
+               readParametersRequest();
            });
         }
+        public async Task readParametersRequest()
+        {
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                try
+                {
+                    if (row.Cells[0].Value.ToString()?[0] == '*' || row.Cells[0].Value.ToString()?[0] == '#')
+                    {
+                        bool result = true;
+                        int errorCounter = 0;
+                        do
+                        {
+                            if (isFormClosing == true) //form kapantığında veri göndermeyi kes
+                            {
+                                return;
+                            }
+                            result = await parameterSend(row.Index);
+                            if (result)
+                            {
+                                ToggleChangeState(delay: false, rowNo: row.Index);
+                                SettransmitCounter(GettransmitCounter() + 1);
+                            }
+                            else
+                            {
+                                errorCounter++;
+                            }
+                        } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+
+
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             //fabrika ayarlarını kullanıcı girişine yerleştir
@@ -404,27 +410,32 @@ namespace deneme
             SetreceiveCounter(0);
             Task t = Task.Run(() =>
             {
-sendReadParametersRequest();
+                sendReadParametersRequest();
             });
-            
+
         }
 
         async Task sendReadParametersRequest()
         {
-            byte[] results = new byte[49];
+            
+                byte[] results = new byte[49];
 
-            for (byte i = 0; i < results.Length; i++)
-            {
-                results[i] = i;
-            }
+                for (byte i = 0; i < results.Length; i++)
+                {
+                    results[i] = i;
+                }
 
-            bool result = true;
-            int errorCounter = 0;
-            do
-            {
-                result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
-                errorCounter++;
-            } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
+                bool result = true;
+                int errorCounter = 0;
+                do
+                {
+                    
+                    result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
+                    errorCounter++;
+                    
+
+                } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
+            
         }
 
         public static bool IsAllDigits(string s)
@@ -566,8 +577,8 @@ sendReadParametersRequest();
                 pictureBox1.BackColor = Color.Black;
                 tableLayoutPanel1.BackColor = Color.Black;
                 this.BackColor = Color.Black;
-                lbl_communicationCounter.ForeColor= Color.Gray;
-                lbl_anlikveri.ForeColor= Color.Gray;
+                lbl_communicationCounter.ForeColor = Color.Gray;
+                lbl_anlikveri.ForeColor = Color.Gray;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
                 frm.BackColor = Color.Black;
@@ -754,14 +765,17 @@ sendReadParametersRequest();
             dataGridView1.ClearSelection();
         }
 
-        private void FormService_FormClosed(object sender, FormClosedEventArgs e)
+        private async void FormService_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Program.serial.DataReceived -= SerialPort_DataReceived;
+            Program.serial.DataReceived -= SerialPort_DataReceived; 
+            isFormClosing = true;
+
+
         }
 
         private void FormService_Load(object sender, EventArgs e)
         {
-            UpdateRuntimeValues(); 
+            UpdateRuntimeValues();
         }
 
         void UpdateRuntimeValues()
@@ -802,9 +816,9 @@ sendReadParametersRequest();
 
             lbl_anlikveri.Invoke(() =>
             {
-                lbl_anlikveri.Text = "Ortam Sıcaklığı:"+RunTimeParamaters.AmbientTemperature + " / " + "Egzoz Gazı Sıcaklığı:"+RunTimeParamaters.ExhaustGasTemperature + " / " + "Oda Fan Hızı:"+RunTimeParamaters.RoomFanSpeed +
-" / " + "Egzoz Fanı Hızı:"+RunTimeParamaters.ExhaustFanSpeed + " / " + "Süre:"+RunTimeParamaters.Duration +
-" / " + "Ateşleme Aşaması:"+RunTimeParamaters.IgnitionPhaseName + " / " + "Alarm Modu:"+errorStatus;
+                lbl_anlikveri.Text = "Ortam Sıcaklığı:" + RunTimeParamaters.AmbientTemperature + " / " + "Egzoz Gazı Sıcaklığı:" + RunTimeParamaters.ExhaustGasTemperature + " / " + "Oda Fan Hızı:" + RunTimeParamaters.RoomFanSpeed +
+" / " + "Egzoz Fanı Hızı:" + RunTimeParamaters.ExhaustFanSpeed + " / " + "Süre:" + RunTimeParamaters.Duration +
+" / " + "Ateşleme Aşaması:" + RunTimeParamaters.IgnitionPhaseName + " / " + "Alarm Modu:" + errorStatus;
             });
 
 
@@ -814,7 +828,7 @@ sendReadParametersRequest();
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
