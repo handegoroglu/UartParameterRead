@@ -241,7 +241,6 @@
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 6);
             this.panel1.Controls.Add(this.tableLayoutPanel3);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -250,17 +249,21 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.Controls.Add(this.lbl_communicationCounter, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lbl_anlikveri, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(171, 0);
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.5632F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.65348F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.783319F));
+            this.tableLayoutPanel3.Controls.Add(this.lbl_communicationCounter, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbl_anlikveri, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(991, 54);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1162, 54);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // lbl_communicationCounter
@@ -268,7 +271,7 @@
             this.lbl_communicationCounter.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lbl_communicationCounter.AutoSize = true;
             this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
-            this.lbl_communicationCounter.Location = new System.Drawing.Point(964, 19);
+            this.lbl_communicationCounter.Location = new System.Drawing.Point(1135, 19);
             this.lbl_communicationCounter.Name = "lbl_communicationCounter";
             this.lbl_communicationCounter.Size = new System.Drawing.Size(24, 15);
             this.lbl_communicationCounter.TabIndex = 3;
@@ -279,7 +282,7 @@
             this.lbl_anlikveri.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri.AutoSize = true;
             this.lbl_anlikveri.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri.Location = new System.Drawing.Point(3, 19);
+            this.lbl_anlikveri.Location = new System.Drawing.Point(183, 19);
             this.lbl_anlikveri.Name = "lbl_anlikveri";
             this.lbl_anlikveri.Size = new System.Drawing.Size(38, 15);
             this.lbl_anlikveri.TabIndex = 3;
@@ -288,11 +291,12 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(171, 54);
+            this.pictureBox1.Size = new System.Drawing.Size(163, 48);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
