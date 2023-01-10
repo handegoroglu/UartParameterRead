@@ -1,7 +1,9 @@
 ﻿using deneme.Models;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.IO.Ports;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -56,9 +58,17 @@ namespace deneme
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            //Application.Run(new Form1());
+         /*   if (frameworkCheck() == false)
+            {
+                if(DialogResult.Yes == MessageBox.Show(".Net Core " + frameworkVersion + " gerekli, indirmek için yönlendirilmek ister misiniz?", "Framework not found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", "https://dotnet.microsoft.com/en-us/download/dotnet");
+                }
+            }
+         */
+            //Application.Run(new Form1()); 
             Application.Run(new FormRemotControl());
-
+         
 
         }
 
@@ -75,7 +85,7 @@ namespace deneme
         public static string pathIconLogo = basePath + @"images\icon.ico";
         public static string pathManufactureLogo = basePath + @"images\manufacture.png";
 
-
+        private static string frameworkVersion = "6.0.0";
 
         public static Image? imgLogo;
         public static Icon? iconLogo;
@@ -89,6 +99,70 @@ namespace deneme
 
         const int ACK_WAIT_TIMEOUT = 500;
         public const int MAX_ERROR_COUNT_PER_DATA = 3;
+
+        private static bool frameworkCheck()
+        {
+            try
+            {
+                UInt32 itNeedsVersionInt;
+                string[] itNeedsVersionArr = (frameworkVersion).Split('.');
+                if (BitConverter.IsLittleEndian)
+                {
+                    itNeedsVersionInt = BitConverter.ToUInt32(new byte[] { 0, Convert.ToByte(itNeedsVersionArr[2]), Convert.ToByte(itNeedsVersionArr[1]), Convert.ToByte(itNeedsVersionArr[0]) }, 0);
+                }
+                else
+                {
+                    itNeedsVersionInt = BitConverter.ToUInt32(new byte[] { 0, Convert.ToByte(itNeedsVersionArr[0]), Convert.ToByte(itNeedsVersionArr[1]), Convert.ToByte(itNeedsVersionArr[2]) }, 0);
+                }
+
+
+                Process cmd = new Process();
+                cmd.StartInfo.FileName = "cmd.exe";
+                cmd.StartInfo.RedirectStandardInput = true;
+                cmd.StartInfo.RedirectStandardOutput = true;
+                cmd.StartInfo.CreateNoWindow = true;
+                cmd.StartInfo.UseShellExecute = false;
+                cmd.Start();
+
+                cmd.StandardInput.WriteLine("dotnet --list-runtimes");
+                cmd.StandardInput.Flush();
+                cmd.StandardInput.Close();
+                cmd.WaitForExit();
+                string response = cmd.StandardOutput.ReadToEnd();
+                string[] array = response.Split('\n');
+
+                foreach (var item in array)
+                {
+                    bool isContain = item.IndexOf("Microsoft.NETCore.App") == -1 ? false : true;
+                    if (isContain)
+                    {
+                        string version_str = item.Split(" ")[1];
+                        string[] version_arr = version_str.Split('.');
+                        UInt32 version;
+                        if (BitConverter.IsLittleEndian)
+                        {
+                            version = BitConverter.ToUInt32(new byte[] { 0, Convert.ToByte(version_arr[2]), Convert.ToByte(version_arr[1]), Convert.ToByte(version_arr[0]) }, 0);
+                        }
+                        else
+                        {
+                            version = BitConverter.ToUInt32(new byte[] { 0, Convert.ToByte(version_arr[0]), Convert.ToByte(version_arr[1]), Convert.ToByte(version_arr[2]) }, 0);
+                        }
+
+                        if (version >= itNeedsVersionInt)
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         private static string readFile(string path)
         {
@@ -290,7 +364,7 @@ namespace deneme
             sendData(1, (byte)COMMUNICATION_INFO_BYTES.ACK, new byte[] { 0x00, 0x00, 0x00, 0x00 }).Wait();
         }
 
-        static public async Task<bool> sendData(byte deviceId, byte parameterCode, byte[] content, bool isWaitAnswer = false, byte[] ?results = null)
+        static public async Task<bool> sendData(byte deviceId, byte parameterCode, byte[] content, bool isWaitAnswer = false, byte[]? results = null)
         {
             try
             {
@@ -312,10 +386,10 @@ namespace deneme
                 if (isWaitAnswer)
                 {
                     DateTime sendTime = DateTime.Now;
-                    
+
                     while ((DateTime.Now - sendTime) <= new TimeSpan(0, 0, 0, 0, ACK_WAIT_TIMEOUT))
                     {
-                        if(results != null)
+                        if (results != null)
                         {
                             foreach (var info in results)
                             {
@@ -355,8 +429,8 @@ namespace deneme
             WEEKLY_PLAN5,
             WEEKLY_PLAN6,
             WEEKLY_PLAN7,
-            READ_RUNTIME_PARAMATERS = 220, 
-            AMBIENT_TEMPERATURE, 
+            READ_RUNTIME_PARAMATERS = 220,
+            AMBIENT_TEMPERATURE,
             EXHAUST_GAS_TEMPERATURE,
             ROOM_FAN_SPEED,
             EXHAUST_FAN_SPEED,
