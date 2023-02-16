@@ -298,7 +298,7 @@ namespace deneme
             try
             {
                 byte parameterCode = getParameterCode(rowNo);
-                object parameterValue = dataGridView1.Rows[rowNo].Cells[6].Value;
+                object parameterValue = dataGridView1.Rows[rowNo].Cells[6].Value;//ctrl f
 
                 byte[] content = new byte[4];
 
@@ -963,7 +963,7 @@ namespace deneme
                 lbl_anlikveri5.Text = "Egzoz Fanı Hızı: " + RunTimeParamaters.ExhaustFanSpeed + " RPM";
             }));
 
-            TimeSpan durationTime = new TimeSpan(0, RunTimeParamaters.Duration, 0);
+            TimeSpan durationTime = new TimeSpan(0, 0,RunTimeParamaters.Duration);
             lbl_anlikveri6.Invoke((Delegate)(() =>
             {
                 lbl_anlikveri6.Text = "Süre: " + durationTime.Minutes + " dk " + durationTime.Seconds + " sn";
@@ -972,7 +972,7 @@ namespace deneme
             lbl_anlikveri7.Invoke((Delegate)(() =>
             {
                 lbl_anlikveri7.Text = "Alarm Modu: " + errorStatus;
-            }));
+            })); 
 
         }
 

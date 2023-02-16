@@ -465,7 +465,7 @@ namespace deneme
                 return BitConverter.GetBytes(checksum_total)[3];
         }
 
-
+        
         static bool commonDataProcess(byte[] data)
         {
             requestInfo = (COMMUNICATION_INFO_BYTES)data[1];

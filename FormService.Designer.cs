@@ -44,7 +44,6 @@
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbl_communicationCounter = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_anlikveri14 = new System.Windows.Forms.Label();
@@ -68,6 +67,7 @@
             this.lbl_anlikveri6 = new System.Windows.Forms.Label();
             this.lbl_anlikveri5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_communicationCounter = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -274,59 +274,46 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.5632F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.65348F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.783319F));
-            this.tableLayoutPanel3.Controls.Add(this.lbl_communicationCounter, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbl_communicationCounter, 2, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1165, 97);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1162, 96);
             this.tableLayoutPanel3.TabIndex = 4;
-            // 
-            // lbl_communicationCounter
-            // 
-            this.lbl_communicationCounter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_communicationCounter.AutoSize = true;
-            this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
-            this.lbl_communicationCounter.Location = new System.Drawing.Point(1130, 41);
-            this.lbl_communicationCounter.Name = "lbl_communicationCounter";
-            this.lbl_communicationCounter.Size = new System.Drawing.Size(24, 15);
-            this.lbl_communicationCounter.TabIndex = 3;
-            this.lbl_communicationCounter.Text = "0/0";
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.97836F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.80465F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.21699F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.07519F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.02041F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel2, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(184, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(183, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(933, 91);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(931, 90);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.39149F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.10837F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.63054F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.63054F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.63054F));
             this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri14, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri11, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri13, 2, 1);
@@ -338,123 +325,134 @@
             this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri16, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri17, 3, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(495, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(458, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(435, 85);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 84);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // lbl_anlikveri14
             // 
-            this.lbl_anlikveri14.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri14.AutoSize = true;
+            this.lbl_anlikveri14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri14.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri14.Location = new System.Drawing.Point(223, 63);
+            this.lbl_anlikveri14.Location = new System.Drawing.Point(240, 56);
             this.lbl_anlikveri14.Name = "lbl_anlikveri14";
-            this.lbl_anlikveri14.Size = new System.Drawing.Size(63, 15);
+            this.lbl_anlikveri14.Size = new System.Drawing.Size(59, 28);
             this.lbl_anlikveri14.TabIndex = 8;
             this.lbl_anlikveri14.Text = "Temizleme";
             // 
             // lbl_anlikveri11
             // 
-            this.lbl_anlikveri11.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri11.AutoSize = true;
+            this.lbl_anlikveri11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri11.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri11.Location = new System.Drawing.Point(117, 63);
+            this.lbl_anlikveri11.Location = new System.Drawing.Point(125, 56);
             this.lbl_anlikveri11.Name = "lbl_anlikveri11";
-            this.lbl_anlikveri11.Size = new System.Drawing.Size(92, 15);
+            this.lbl_anlikveri11.Size = new System.Drawing.Size(88, 28);
             this.lbl_anlikveri11.TabIndex = 7;
             this.lbl_anlikveri11.Text = "Pelet Yükleniyor";
             // 
             // lbl_anlikveri13
             // 
-            this.lbl_anlikveri13.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri13.AutoSize = true;
+            this.lbl_anlikveri13.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri13.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri13.Location = new System.Drawing.Point(223, 34);
+            this.lbl_anlikveri13.Location = new System.Drawing.Point(240, 28);
             this.lbl_anlikveri13.Name = "lbl_anlikveri13";
-            this.lbl_anlikveri13.Size = new System.Drawing.Size(52, 15);
+            this.lbl_anlikveri13.Size = new System.Drawing.Size(50, 28);
             this.lbl_anlikveri13.TabIndex = 5;
             this.lbl_anlikveri13.Text = "Çalışıyor";
             // 
             // lbl_anlikveri10
             // 
-            this.lbl_anlikveri10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri10.AutoSize = true;
+            this.lbl_anlikveri10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri10.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri10.Location = new System.Drawing.Point(117, 34);
+            this.lbl_anlikveri10.Location = new System.Drawing.Point(125, 28);
             this.lbl_anlikveri10.Name = "lbl_anlikveri10";
-            this.lbl_anlikveri10.Size = new System.Drawing.Size(81, 15);
+            this.lbl_anlikveri10.Size = new System.Drawing.Size(79, 28);
             this.lbl_anlikveri10.TabIndex = 4;
             this.lbl_anlikveri10.Text = "Soba Çalışıyor";
             // 
             // lbl_anlikveri12
             // 
-            this.lbl_anlikveri12.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri12.AutoSize = true;
+            this.lbl_anlikveri12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri12.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri12.Location = new System.Drawing.Point(223, 6);
+            this.lbl_anlikveri12.Location = new System.Drawing.Point(240, 0);
             this.lbl_anlikveri12.Name = "lbl_anlikveri12";
-            this.lbl_anlikveri12.Size = new System.Drawing.Size(80, 15);
+            this.lbl_anlikveri12.Size = new System.Drawing.Size(77, 28);
             this.lbl_anlikveri12.TabIndex = 2;
             this.lbl_anlikveri12.Text = "Alev Algılandı";
             // 
             // lbl_anlikveri9
             // 
-            this.lbl_anlikveri9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri9.AutoSize = true;
+            this.lbl_anlikveri9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri9.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri9.Location = new System.Drawing.Point(117, 6);
+            this.lbl_anlikveri9.Location = new System.Drawing.Point(125, 0);
             this.lbl_anlikveri9.Name = "lbl_anlikveri9";
-            this.lbl_anlikveri9.Size = new System.Drawing.Size(68, 15);
+            this.lbl_anlikveri9.Size = new System.Drawing.Size(67, 28);
             this.lbl_anlikveri9.TabIndex = 1;
             this.lbl_anlikveri9.Text = "Soba Kapalı";
             // 
             // lbl_anlikveri8
             // 
-            this.lbl_anlikveri8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri8.AutoSize = true;
+            this.lbl_anlikveri8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbl_anlikveri8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri8.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri8.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri8.Location = new System.Drawing.Point(3, 0);
             this.lbl_anlikveri8.Name = "lbl_anlikveri8";
-            this.lbl_anlikveri8.Size = new System.Drawing.Size(106, 15);
+            this.lbl_anlikveri8.Size = new System.Drawing.Size(116, 28);
             this.lbl_anlikveri8.TabIndex = 0;
             this.lbl_anlikveri8.Text = "Ateşleme Aşaması:";
             this.lbl_anlikveri8.Click += new System.EventHandler(this.lbl_anlikveri3_Click_1);
             // 
             // lbl_anlikveri15
             // 
-            this.lbl_anlikveri15.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri15.AutoSize = true;
+            this.lbl_anlikveri15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri15.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri15.Location = new System.Drawing.Point(329, 6);
+            this.lbl_anlikveri15.Location = new System.Drawing.Point(355, 0);
             this.lbl_anlikveri15.Name = "lbl_anlikveri15";
-            this.lbl_anlikveri15.Size = new System.Drawing.Size(92, 15);
+            this.lbl_anlikveri15.Size = new System.Drawing.Size(86, 28);
             this.lbl_anlikveri15.TabIndex = 9;
             this.lbl_anlikveri15.Text = "Normal Çalışma";
             // 
             // lbl_anlikveri16
             // 
-            this.lbl_anlikveri16.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri16.AutoSize = true;
+            this.lbl_anlikveri16.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri16.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri16.Location = new System.Drawing.Point(329, 34);
+            this.lbl_anlikveri16.Location = new System.Drawing.Point(355, 28);
             this.lbl_anlikveri16.Name = "lbl_anlikveri16";
-            this.lbl_anlikveri16.Size = new System.Drawing.Size(53, 15);
+            this.lbl_anlikveri16.Size = new System.Drawing.Size(51, 28);
             this.lbl_anlikveri16.TabIndex = 10;
             this.lbl_anlikveri16.Text = "Stand By";
             // 
             // lbl_anlikveri17
             // 
-            this.lbl_anlikveri17.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri17.AutoSize = true;
+            this.lbl_anlikveri17.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbl_anlikveri17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri17.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri17.Location = new System.Drawing.Point(329, 63);
+            this.lbl_anlikveri17.Location = new System.Drawing.Point(355, 56);
             this.lbl_anlikveri17.Name = "lbl_anlikveri17";
-            this.lbl_anlikveri17.Size = new System.Drawing.Size(57, 15);
+            this.lbl_anlikveri17.Size = new System.Drawing.Size(54, 28);
             this.lbl_anlikveri17.TabIndex = 11;
             this.lbl_anlikveri17.Text = "Kapanma";
             // 
@@ -464,7 +462,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(171, 85);
+            this.panel2.Size = new System.Drawing.Size(170, 84);
             this.panel2.TabIndex = 7;
             // 
             // tableLayoutPanel6
@@ -481,39 +479,42 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(171, 85);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(170, 84);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // lbl_anlikveri1
             // 
-            this.lbl_anlikveri1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri1.AutoSize = true;
+            this.lbl_anlikveri1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri1.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri1.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri1.Location = new System.Drawing.Point(3, 0);
             this.lbl_anlikveri1.Name = "lbl_anlikveri1";
-            this.lbl_anlikveri1.Size = new System.Drawing.Size(90, 15);
+            this.lbl_anlikveri1.Size = new System.Drawing.Size(164, 28);
             this.lbl_anlikveri1.TabIndex = 0;
             this.lbl_anlikveri1.Text = "Ortam Sıcaklığı:";
             // 
             // lbl_anlikveri2
             // 
-            this.lbl_anlikveri2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri2.AutoSize = true;
+            this.lbl_anlikveri2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri2.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri2.Location = new System.Drawing.Point(3, 34);
+            this.lbl_anlikveri2.Location = new System.Drawing.Point(3, 28);
             this.lbl_anlikveri2.Name = "lbl_anlikveri2";
-            this.lbl_anlikveri2.Size = new System.Drawing.Size(111, 15);
+            this.lbl_anlikveri2.Size = new System.Drawing.Size(164, 28);
             this.lbl_anlikveri2.TabIndex = 1;
             this.lbl_anlikveri2.Text = "Egzoz Gazı Sıcaklığı:";
             // 
             // lbl_anlikveri3
             // 
-            this.lbl_anlikveri3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri3.AutoSize = true;
+            this.lbl_anlikveri3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri3.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri3.Location = new System.Drawing.Point(3, 63);
+            this.lbl_anlikveri3.Location = new System.Drawing.Point(3, 56);
             this.lbl_anlikveri3.Name = "lbl_anlikveri3";
-            this.lbl_anlikveri3.Size = new System.Drawing.Size(77, 15);
+            this.lbl_anlikveri3.Size = new System.Drawing.Size(164, 28);
             this.lbl_anlikveri3.TabIndex = 2;
             this.lbl_anlikveri3.Text = "Oda Fan Hızı:";
             // 
@@ -521,9 +522,9 @@
             // 
             this.panel3.Controls.Add(this.tableLayoutPanel7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(180, 3);
+            this.panel3.Location = new System.Drawing.Point(179, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(309, 85);
+            this.panel3.Size = new System.Drawing.Size(273, 84);
             this.panel3.TabIndex = 8;
             // 
             // tableLayoutPanel7
@@ -542,54 +543,68 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(309, 85);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(273, 84);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // lbl_anlikveri7
             // 
-            this.lbl_anlikveri7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri7.AutoSize = true;
+            this.lbl_anlikveri7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri7.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri7.Location = new System.Drawing.Point(3, 63);
+            this.lbl_anlikveri7.Location = new System.Drawing.Point(3, 56);
             this.lbl_anlikveri7.Name = "lbl_anlikveri7";
-            this.lbl_anlikveri7.Size = new System.Drawing.Size(77, 15);
+            this.lbl_anlikveri7.Size = new System.Drawing.Size(267, 28);
             this.lbl_anlikveri7.TabIndex = 9;
             this.lbl_anlikveri7.Text = "Alarm Modu:";
             // 
             // lbl_anlikveri6
             // 
-            this.lbl_anlikveri6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri6.AutoSize = true;
+            this.lbl_anlikveri6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri6.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri6.Location = new System.Drawing.Point(3, 34);
+            this.lbl_anlikveri6.Location = new System.Drawing.Point(3, 28);
             this.lbl_anlikveri6.Name = "lbl_anlikveri6";
-            this.lbl_anlikveri6.Size = new System.Drawing.Size(33, 15);
+            this.lbl_anlikveri6.Size = new System.Drawing.Size(267, 28);
             this.lbl_anlikveri6.TabIndex = 8;
             this.lbl_anlikveri6.Text = "Süre:";
             // 
             // lbl_anlikveri5
             // 
-            this.lbl_anlikveri5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_anlikveri5.AutoSize = true;
+            this.lbl_anlikveri5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_anlikveri5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_anlikveri5.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri5.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri5.Location = new System.Drawing.Point(3, 0);
             this.lbl_anlikveri5.Name = "lbl_anlikveri5";
-            this.lbl_anlikveri5.Size = new System.Drawing.Size(88, 15);
+            this.lbl_anlikveri5.Size = new System.Drawing.Size(267, 28);
             this.lbl_anlikveri5.TabIndex = 7;
             this.lbl_anlikveri5.Text = "Egzoz Fanı Hızı:";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 21);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(174, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lbl_communicationCounter
+            // 
+            this.lbl_communicationCounter.AutoSize = true;
+            this.lbl_communicationCounter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
+            this.lbl_communicationCounter.Location = new System.Drawing.Point(1120, 0);
+            this.lbl_communicationCounter.Name = "lbl_communicationCounter";
+            this.lbl_communicationCounter.Size = new System.Drawing.Size(39, 96);
+            this.lbl_communicationCounter.TabIndex = 3;
+            this.lbl_communicationCounter.Text = "0/0";
             // 
             // button1
             // 
@@ -782,14 +797,14 @@
             // şifreDeğiştirToolStripMenuItem1
             // 
             this.şifreDeğiştirToolStripMenuItem1.Name = "şifreDeğiştirToolStripMenuItem1";
-            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.şifreDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.şifreDeğiştirToolStripMenuItem1.Text = "Şifre Değiştir";
             this.şifreDeğiştirToolStripMenuItem1.Click += new System.EventHandler(this.şifreDeğiştirToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
             // 
             // temayıDeğiştirToolStripMenuItem1
             // 
@@ -798,7 +813,7 @@
             this.lightToolStripMenuItem,
             this.windowsTemasıToolStripMenuItem});
             this.temayıDeğiştirToolStripMenuItem1.Name = "temayıDeğiştirToolStripMenuItem1";
-            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.temayıDeğiştirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.temayıDeğiştirToolStripMenuItem1.Text = "Temayı Değiştir";
             // 
             // darkToolStripMenuItem
@@ -836,19 +851,19 @@
             // iletişimToolStripMenuItem
             // 
             this.iletişimToolStripMenuItem.Name = "iletişimToolStripMenuItem";
-            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.iletişimToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iletişimToolStripMenuItem.Text = "Hakkında";
             this.iletişimToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(165, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // kullanımKılavuzuToolStripMenuItem1
             // 
             this.kullanımKılavuzuToolStripMenuItem1.Name = "kullanımKılavuzuToolStripMenuItem1";
-            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
+            this.kullanımKılavuzuToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.kullanımKılavuzuToolStripMenuItem1.Text = "Kullanım Kılavuzu";
             this.kullanımKılavuzuToolStripMenuItem1.Click += new System.EventHandler(this.kullanımKılavuzuToolStripMenuItem1_Click);
             // 
