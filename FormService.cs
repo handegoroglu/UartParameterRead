@@ -90,7 +90,7 @@ namespace deneme
             dataGridView1.AutoGenerateColumns = false;
             tablefill(parameters);
 
-             
+
 
             Program.serial.DataReceived += SerialPort_DataReceived;
 
@@ -100,7 +100,7 @@ namespace deneme
             //byte[] array = new byte[] { 0x48, 0x4E, 0x44, 0x01, 0xCB, 0x00, 0x00, 0x00, 0x00, 0x55 };
             //byte checksum = Program.checksum_calculate(array, array.Length);
 
-            
+
 
         }
 
@@ -417,25 +417,25 @@ namespace deneme
 
         async Task sendReadParametersRequest()
         {
-            
-                byte[] results = new byte[49];
 
-                for (byte i = 0; i < results.Length; i++)
-                {
-                    results[i] = i;
-                }
+            byte[] results = new byte[49];
 
-                bool result = true;
-                int errorCounter = 0;
-                do
-                {
-                    
-                    result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
-                    errorCounter++;
-                    
+            for (byte i = 0; i < results.Length; i++)
+            {
+                results[i] = i;
+            }
 
-                } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
-            
+            bool result = true;
+            int errorCounter = 0;
+            do
+            {
+
+                result = await Program.sendData(1, (byte)Program.COMMUNICATION_INFO_BYTES.PARAMATERS_READ, new byte[] { 0x00, 0x00, 0x00, 0x00 }, isWaitAnswer: true, results);
+                errorCounter++;
+
+
+            } while (result == false && errorCounter < Program.MAX_ERROR_COUNT_PER_DATA);
+
         }
 
         public static bool IsAllDigits(string s)
@@ -578,7 +578,13 @@ namespace deneme
                 tableLayoutPanel1.BackColor = Color.Black;
                 this.BackColor = Color.Black;
                 lbl_communicationCounter.ForeColor = Color.Gray;
-                lbl_anlikveri.ForeColor = Color.Gray;
+                lbl_anlikveri1.ForeColor = Color.Gray;
+                lbl_anlikveri2.ForeColor = Color.Gray;
+                lbl_anlikveri3.ForeColor = Color.Gray;
+                lbl_anlikveri5.ForeColor = Color.Gray;
+                lbl_anlikveri6.ForeColor = Color.Gray;
+                lbl_anlikveri7.ForeColor = Color.Gray;
+                lbl_anlikveri8.ForeColor = Color.Gray;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
                 frm.BackColor = Color.Black;
@@ -600,7 +606,13 @@ namespace deneme
                 tableLayoutPanel1.BackColor = Color.WhiteSmoke;
                 this.BackColor = Color.WhiteSmoke;
                 lbl_communicationCounter.ForeColor = Color.Black;
-                lbl_anlikveri.ForeColor = Color.Black;
+                lbl_anlikveri1.ForeColor = Color.Black;
+                lbl_anlikveri2.ForeColor = Color.Black;
+                lbl_anlikveri3.ForeColor = Color.Black;
+                lbl_anlikveri5.ForeColor = Color.Black;
+                lbl_anlikveri6.ForeColor = Color.Black;
+                lbl_anlikveri7.ForeColor = Color.Black;
+                lbl_anlikveri8.ForeColor = Color.Black;
                 //kumanda formunada anında tema değişimi
                 FormRemotControl frm = (FormRemotControl)Application.OpenForms["FormRemotControl"];
                 frm.BackColor = Color.WhiteSmoke;
@@ -767,7 +779,7 @@ namespace deneme
 
         private async void FormService_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Program.serial.DataReceived -= SerialPort_DataReceived; 
+            Program.serial.DataReceived -= SerialPort_DataReceived;
             isFormClosing = true;
 
 
@@ -780,6 +792,7 @@ namespace deneme
 
         void UpdateRuntimeValues()
         {
+            // HATA DURUMLARI İSİMLE GÖSTERİLECEK
             string errorStatus = "";
             if (RunTimeParamaters.ErrorStatus == 1)
             {
@@ -814,19 +827,158 @@ namespace deneme
                 errorStatus = "Depression Failure Alarm";
             }
 
-            lbl_anlikveri.Invoke(() =>
+            // YANMA DURUMLARI İSİMLE GÖSTERİLECEK
+            string ignitionTime = "";
+            if (RunTimeParamaters.IgnitionPhaseName == 0)
             {
-                lbl_anlikveri.Text = "Ortam Sıcaklığı:" + RunTimeParamaters.AmbientTemperature + " / " + "Egzoz Gazı Sıcaklığı:" + RunTimeParamaters.ExhaustGasTemperature + " / " + "Oda Fan Hızı:" + RunTimeParamaters.RoomFanSpeed +
-" / " + "Egzoz Fanı Hızı:" + RunTimeParamaters.ExhaustFanSpeed + " / " + "Süre:" + RunTimeParamaters.Duration +
-" / " + "Ateşleme Aşaması:" + RunTimeParamaters.IgnitionPhaseName + " / " + "Alarm Modu:" + errorStatus;
+                lbl_anlikveri9.ForeColor = Color.Green;
+                lbl_anlikveri10.ForeColor = Color.Red; 
+                lbl_anlikveri11.ForeColor = Color.Red; 
+                lbl_anlikveri12.ForeColor = Color.Red; 
+                lbl_anlikveri13.ForeColor = Color.Red; 
+                lbl_anlikveri14.ForeColor = Color.Red; 
+                lbl_anlikveri15.ForeColor = Color.Red; 
+                lbl_anlikveri16.ForeColor = Color.Red; 
+                lbl_anlikveri17.ForeColor = Color.Red; 
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 1)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Green;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 2)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Green;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 3)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Green;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 4)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Green;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 5)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Green;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 6)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Green;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 7 || RunTimeParamaters.IgnitionPhaseName == 8 || RunTimeParamaters.IgnitionPhaseName == 9)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Green;
+                lbl_anlikveri17.ForeColor = Color.Red;
+            }
+            else if (RunTimeParamaters.IgnitionPhaseName == 10)
+            {
+                lbl_anlikveri9.ForeColor = Color.Red;
+                lbl_anlikveri10.ForeColor = Color.Red;
+                lbl_anlikveri11.ForeColor = Color.Red;
+                lbl_anlikveri12.ForeColor = Color.Red;
+                lbl_anlikveri13.ForeColor = Color.Red;
+                lbl_anlikveri14.ForeColor = Color.Red;
+                lbl_anlikveri15.ForeColor = Color.Red;
+                lbl_anlikveri16.ForeColor = Color.Red;
+                lbl_anlikveri17.ForeColor = Color.Green;
+            }
+
+
+
+
+
+            lbl_anlikveri1.Invoke(() =>
+            {
+                lbl_anlikveri1.Text = "Ortam Sıcaklığı: " + RunTimeParamaters.AmbientTemperature +" °C";
+
             });
 
+            lbl_anlikveri2.Invoke(() =>
+            {
+                lbl_anlikveri2.Text = "Egzoz Gazı Sıcaklığı: " + RunTimeParamaters.ExhaustGasTemperature + " °C"; 
+            });
 
+            lbl_anlikveri3.Invoke(() =>
+            {
+                lbl_anlikveri3.Text = "Oda Fan Hızı: " + RunTimeParamaters.RoomFanSpeed + " V";
+            });
 
+            lbl_anlikveri5.Invoke((Delegate)(() =>
+            {
+                lbl_anlikveri5.Text = "Egzoz Fanı Hızı: " + RunTimeParamaters.ExhaustFanSpeed + " RPM";
+            }));
+
+            TimeSpan durationTime = new TimeSpan(0, RunTimeParamaters.Duration, 0);
+            lbl_anlikveri6.Invoke((Delegate)(() =>
+            {
+                lbl_anlikveri6.Text = "Süre: " + durationTime.Minutes + " dk " + durationTime.Seconds + " sn";
+            }));
+
+            lbl_anlikveri7.Invoke((Delegate)(() =>
+            {
+                lbl_anlikveri7.Text = "Alarm Modu: " + errorStatus;
+            }));
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+
+
+        private void lbl_anlikveri3_Click_1(object sender, EventArgs e)
         {
 
         }

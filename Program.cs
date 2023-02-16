@@ -447,13 +447,6 @@ namespace deneme
             WEEKLY_PLAN_READ = 240,
             NONE
         }
-        /*
-        * 1. Kritik ve akış olmayan veriler
-        * 2. Kritik ve akış olan veriler
-        * 3. kritik olmayan ve akış olan veriler
-        * 4. kritik olmayan ve akış olmayan veriler
-        * 
-        */
         static public byte checksum_calculate(byte[] array, int len)
         {
             int checksum_total = 0;

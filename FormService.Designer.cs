@@ -45,14 +45,34 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_communicationCounter = new System.Windows.Forms.Label();
-            this.lbl_anlikveri = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbl_anlikveri14 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri11 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri13 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri10 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri12 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri9 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri8 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri15 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri16 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri17 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbl_anlikveri1 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri2 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbl_anlikveri7 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri6 = new System.Windows.Forms.Label();
+            this.lbl_anlikveri5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.uygulamaAyarlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +99,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -101,16 +127,15 @@
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.button5, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.button6, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1168, 614);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1168, 702);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // button3
@@ -121,9 +146,9 @@
             this.button3.ForeColor = System.Drawing.Color.Black;
             this.button3.ImageKey = "4.png";
             this.button3.ImageList = this.imageList1;
-            this.button3.Location = new System.Drawing.Point(391, 63);
+            this.button3.Location = new System.Drawing.Point(391, 105);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 44);
+            this.button3.Size = new System.Drawing.Size(188, 49);
             this.button3.TabIndex = 3;
             this.button3.Text = "Fabrika Ayarları";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -171,10 +196,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 12);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 113);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 160);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1162, 478);
+            this.dataGridView1.Size = new System.Drawing.Size(1162, 539);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -244,7 +269,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1162, 54);
+            this.panel1.Size = new System.Drawing.Size(1162, 96);
             this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -257,46 +282,310 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.65348F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.783319F));
             this.tableLayoutPanel3.Controls.Add(this.lbl_communicationCounter, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lbl_anlikveri, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1162, 54);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1165, 97);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // lbl_communicationCounter
             // 
-            this.lbl_communicationCounter.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lbl_communicationCounter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_communicationCounter.AutoSize = true;
             this.lbl_communicationCounter.ForeColor = System.Drawing.Color.White;
-            this.lbl_communicationCounter.Location = new System.Drawing.Point(1135, 19);
+            this.lbl_communicationCounter.Location = new System.Drawing.Point(1130, 41);
             this.lbl_communicationCounter.Name = "lbl_communicationCounter";
             this.lbl_communicationCounter.Size = new System.Drawing.Size(24, 15);
             this.lbl_communicationCounter.TabIndex = 3;
             this.lbl_communicationCounter.Text = "0/0";
             // 
-            // lbl_anlikveri
+            // tableLayoutPanel4
             // 
-            this.lbl_anlikveri.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_anlikveri.AutoSize = true;
-            this.lbl_anlikveri.ForeColor = System.Drawing.Color.White;
-            this.lbl_anlikveri.Location = new System.Drawing.Point(183, 19);
-            this.lbl_anlikveri.Name = "lbl_anlikveri";
-            this.lbl_anlikveri.Size = new System.Drawing.Size(38, 15);
-            this.lbl_anlikveri.TabIndex = 3;
-            this.lbl_anlikveri.Text = "label1";
-            this.lbl_anlikveri.Click += new System.EventHandler(this.label1_Click);
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.97836F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.80465F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.21699F));
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel2, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel3, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(184, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(933, 91);
+            this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.39149F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.53617F));
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri14, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri11, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri13, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri10, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri12, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri9, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri15, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri16, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lbl_anlikveri17, 3, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(495, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(435, 85);
+            this.tableLayoutPanel2.TabIndex = 6;
+            // 
+            // lbl_anlikveri14
+            // 
+            this.lbl_anlikveri14.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri14.AutoSize = true;
+            this.lbl_anlikveri14.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri14.Location = new System.Drawing.Point(223, 63);
+            this.lbl_anlikveri14.Name = "lbl_anlikveri14";
+            this.lbl_anlikveri14.Size = new System.Drawing.Size(63, 15);
+            this.lbl_anlikveri14.TabIndex = 8;
+            this.lbl_anlikveri14.Text = "Temizleme";
+            // 
+            // lbl_anlikveri11
+            // 
+            this.lbl_anlikveri11.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri11.AutoSize = true;
+            this.lbl_anlikveri11.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri11.Location = new System.Drawing.Point(117, 63);
+            this.lbl_anlikveri11.Name = "lbl_anlikveri11";
+            this.lbl_anlikveri11.Size = new System.Drawing.Size(92, 15);
+            this.lbl_anlikveri11.TabIndex = 7;
+            this.lbl_anlikveri11.Text = "Pelet Yükleniyor";
+            // 
+            // lbl_anlikveri13
+            // 
+            this.lbl_anlikveri13.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri13.AutoSize = true;
+            this.lbl_anlikveri13.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri13.Location = new System.Drawing.Point(223, 34);
+            this.lbl_anlikveri13.Name = "lbl_anlikveri13";
+            this.lbl_anlikveri13.Size = new System.Drawing.Size(52, 15);
+            this.lbl_anlikveri13.TabIndex = 5;
+            this.lbl_anlikveri13.Text = "Çalışıyor";
+            // 
+            // lbl_anlikveri10
+            // 
+            this.lbl_anlikveri10.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri10.AutoSize = true;
+            this.lbl_anlikveri10.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri10.Location = new System.Drawing.Point(117, 34);
+            this.lbl_anlikveri10.Name = "lbl_anlikveri10";
+            this.lbl_anlikveri10.Size = new System.Drawing.Size(81, 15);
+            this.lbl_anlikveri10.TabIndex = 4;
+            this.lbl_anlikveri10.Text = "Soba Çalışıyor";
+            // 
+            // lbl_anlikveri12
+            // 
+            this.lbl_anlikveri12.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri12.AutoSize = true;
+            this.lbl_anlikveri12.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri12.Location = new System.Drawing.Point(223, 6);
+            this.lbl_anlikveri12.Name = "lbl_anlikveri12";
+            this.lbl_anlikveri12.Size = new System.Drawing.Size(80, 15);
+            this.lbl_anlikveri12.TabIndex = 2;
+            this.lbl_anlikveri12.Text = "Alev Algılandı";
+            // 
+            // lbl_anlikveri9
+            // 
+            this.lbl_anlikveri9.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri9.AutoSize = true;
+            this.lbl_anlikveri9.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri9.Location = new System.Drawing.Point(117, 6);
+            this.lbl_anlikveri9.Name = "lbl_anlikveri9";
+            this.lbl_anlikveri9.Size = new System.Drawing.Size(68, 15);
+            this.lbl_anlikveri9.TabIndex = 1;
+            this.lbl_anlikveri9.Text = "Soba Kapalı";
+            // 
+            // lbl_anlikveri8
+            // 
+            this.lbl_anlikveri8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri8.AutoSize = true;
+            this.lbl_anlikveri8.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri8.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri8.Name = "lbl_anlikveri8";
+            this.lbl_anlikveri8.Size = new System.Drawing.Size(106, 15);
+            this.lbl_anlikveri8.TabIndex = 0;
+            this.lbl_anlikveri8.Text = "Ateşleme Aşaması:";
+            this.lbl_anlikveri8.Click += new System.EventHandler(this.lbl_anlikveri3_Click_1);
+            // 
+            // lbl_anlikveri15
+            // 
+            this.lbl_anlikveri15.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri15.AutoSize = true;
+            this.lbl_anlikveri15.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri15.Location = new System.Drawing.Point(329, 6);
+            this.lbl_anlikveri15.Name = "lbl_anlikveri15";
+            this.lbl_anlikveri15.Size = new System.Drawing.Size(92, 15);
+            this.lbl_anlikveri15.TabIndex = 9;
+            this.lbl_anlikveri15.Text = "Normal Çalışma";
+            // 
+            // lbl_anlikveri16
+            // 
+            this.lbl_anlikveri16.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri16.AutoSize = true;
+            this.lbl_anlikveri16.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri16.Location = new System.Drawing.Point(329, 34);
+            this.lbl_anlikveri16.Name = "lbl_anlikveri16";
+            this.lbl_anlikveri16.Size = new System.Drawing.Size(53, 15);
+            this.lbl_anlikveri16.TabIndex = 10;
+            this.lbl_anlikveri16.Text = "Stand By";
+            // 
+            // lbl_anlikveri17
+            // 
+            this.lbl_anlikveri17.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri17.AutoSize = true;
+            this.lbl_anlikveri17.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri17.Location = new System.Drawing.Point(329, 63);
+            this.lbl_anlikveri17.Name = "lbl_anlikveri17";
+            this.lbl_anlikveri17.Size = new System.Drawing.Size(57, 15);
+            this.lbl_anlikveri17.TabIndex = 11;
+            this.lbl_anlikveri17.Text = "Kapanma";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tableLayoutPanel6);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(171, 85);
+            this.panel2.TabIndex = 7;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.lbl_anlikveri1, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lbl_anlikveri2, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.lbl_anlikveri3, 0, 2);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(171, 85);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // lbl_anlikveri1
+            // 
+            this.lbl_anlikveri1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri1.AutoSize = true;
+            this.lbl_anlikveri1.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri1.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri1.Name = "lbl_anlikveri1";
+            this.lbl_anlikveri1.Size = new System.Drawing.Size(90, 15);
+            this.lbl_anlikveri1.TabIndex = 0;
+            this.lbl_anlikveri1.Text = "Ortam Sıcaklığı:";
+            // 
+            // lbl_anlikveri2
+            // 
+            this.lbl_anlikveri2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri2.AutoSize = true;
+            this.lbl_anlikveri2.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri2.Location = new System.Drawing.Point(3, 34);
+            this.lbl_anlikveri2.Name = "lbl_anlikveri2";
+            this.lbl_anlikveri2.Size = new System.Drawing.Size(111, 15);
+            this.lbl_anlikveri2.TabIndex = 1;
+            this.lbl_anlikveri2.Text = "Egzoz Gazı Sıcaklığı:";
+            // 
+            // lbl_anlikveri3
+            // 
+            this.lbl_anlikveri3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri3.AutoSize = true;
+            this.lbl_anlikveri3.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri3.Location = new System.Drawing.Point(3, 63);
+            this.lbl_anlikveri3.Name = "lbl_anlikveri3";
+            this.lbl_anlikveri3.Size = new System.Drawing.Size(77, 15);
+            this.lbl_anlikveri3.TabIndex = 2;
+            this.lbl_anlikveri3.Text = "Oda Fan Hızı:";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tableLayoutPanel7);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(180, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(309, 85);
+            this.panel3.TabIndex = 8;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.lbl_anlikveri7, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.lbl_anlikveri6, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.lbl_anlikveri5, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(309, 85);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // lbl_anlikveri7
+            // 
+            this.lbl_anlikveri7.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri7.AutoSize = true;
+            this.lbl_anlikveri7.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri7.Location = new System.Drawing.Point(3, 63);
+            this.lbl_anlikveri7.Name = "lbl_anlikveri7";
+            this.lbl_anlikveri7.Size = new System.Drawing.Size(77, 15);
+            this.lbl_anlikveri7.TabIndex = 9;
+            this.lbl_anlikveri7.Text = "Alarm Modu:";
+            // 
+            // lbl_anlikveri6
+            // 
+            this.lbl_anlikveri6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri6.AutoSize = true;
+            this.lbl_anlikveri6.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri6.Location = new System.Drawing.Point(3, 34);
+            this.lbl_anlikveri6.Name = "lbl_anlikveri6";
+            this.lbl_anlikveri6.Size = new System.Drawing.Size(33, 15);
+            this.lbl_anlikveri6.TabIndex = 8;
+            this.lbl_anlikveri6.Text = "Süre:";
+            // 
+            // lbl_anlikveri5
+            // 
+            this.lbl_anlikveri5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_anlikveri5.AutoSize = true;
+            this.lbl_anlikveri5.ForeColor = System.Drawing.Color.White;
+            this.lbl_anlikveri5.Location = new System.Drawing.Point(3, 6);
+            this.lbl_anlikveri5.Name = "lbl_anlikveri5";
+            this.lbl_anlikveri5.Size = new System.Drawing.Size(88, 15);
+            this.lbl_anlikveri5.TabIndex = 7;
+            this.lbl_anlikveri5.Text = "Egzoz Fanı Hızı:";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(163, 48);
+            this.pictureBox1.Size = new System.Drawing.Size(160, 54);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -311,9 +600,9 @@
             this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.ImageKey = "1.png";
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(3, 63);
+            this.button1.Location = new System.Drawing.Point(3, 105);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 44);
+            this.button1.Size = new System.Drawing.Size(188, 49);
             this.button1.TabIndex = 2;
             this.button1.Text = "Parametreleri Yükle";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -329,9 +618,9 @@
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.ImageKey = "2.png";
             this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(197, 63);
+            this.button2.Location = new System.Drawing.Point(197, 105);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 44);
+            this.button2.Size = new System.Drawing.Size(188, 49);
             this.button2.TabIndex = 3;
             this.button2.Text = "Parametreleri Oku";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -346,9 +635,9 @@
             this.button4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button4.ImageKey = "3.png";
             this.button4.ImageList = this.imageList1;
-            this.button4.Location = new System.Drawing.Point(585, 63);
+            this.button4.Location = new System.Drawing.Point(585, 105);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(188, 44);
+            this.button4.Size = new System.Drawing.Size(188, 49);
             this.button4.TabIndex = 4;
             this.button4.Text = "Ayarları Yükle";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -363,9 +652,9 @@
             this.button5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button5.ImageKey = "6.png";
             this.button5.ImageList = this.imageList1;
-            this.button5.Location = new System.Drawing.Point(779, 63);
+            this.button5.Location = new System.Drawing.Point(779, 105);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(188, 44);
+            this.button5.Size = new System.Drawing.Size(188, 49);
             this.button5.TabIndex = 5;
             this.button5.Text = "Ayarları Kaydet";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -380,28 +669,15 @@
             this.button6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button6.ImageKey = "5.png";
             this.button6.ImageList = this.imageList1;
-            this.button6.Location = new System.Drawing.Point(973, 63);
+            this.button6.Location = new System.Drawing.Point(973, 105);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(192, 44);
+            this.button6.Size = new System.Drawing.Size(192, 49);
             this.button6.TabIndex = 6;
             this.button6.Text = "Bağlantı Ayarları";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 597);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(188, 14);
-            this.tableLayoutPanel2.TabIndex = 7;
             // 
             // openFileDialog1
             // 
@@ -580,7 +856,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 638);
+            this.ClientSize = new System.Drawing.Size(1168, 726);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -595,6 +871,15 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -644,9 +929,29 @@
         private ToolStripSeparator toolStripMenuItem4;
         private ToolStripSeparator toolStripMenuItem6;
         private ToolStripMenuItem windowsTemasıToolStripMenuItem;
-        private Label lbl_anlikveri;
         private TableLayoutPanel tableLayoutPanel3;
         private Label lbl_communicationCounter;
+        private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel2;
+        private Label lbl_anlikveri8;
+        private Label lbl_anlikveri14;
+        private Label lbl_anlikveri11;
+        private Label lbl_anlikveri13;
+        private Label lbl_anlikveri10;
+        private Label lbl_anlikveri12;
+        private Label lbl_anlikveri9;
+        private Label lbl_anlikveri15;
+        private Label lbl_anlikveri16;
+        private Label lbl_anlikveri17;
+        private Panel panel2;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Panel panel3;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Label lbl_anlikveri1;
+        private Label lbl_anlikveri2;
+        private Label lbl_anlikveri3;
+        private Label lbl_anlikveri7;
+        private Label lbl_anlikveri6;
+        private Label lbl_anlikveri5;
     }
 }
